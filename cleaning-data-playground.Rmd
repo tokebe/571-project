@@ -1,0 +1,37 @@
+---
+title: "Cleaning"
+author: "Hans Quiogue"
+date: "3/20/2021"
+output: html_document
+---
+
+```{r loading libraries}
+suppressMessages(library(tidyverse))
+suppressMessages(library(maps))
+```
+
+```{r reading in data}
+# Reads in data 
+raw_data <- read.csv('ufo_data.csv') %>% drop_na(City)
+
+# TODO: Clean 'City' with regex? (Remove parenthesis that include countries?)
+# Can potentially increase data when joining with maps data
+```
+
+```{r}
+# Gets list of US cities without state abbreviations (from maps library)
+us_cities_updated <- us.cities
+us_cities_updated$name <- substr(us_cities_updated$name, 1, nchar(us_cities_updated$name) - 3)
+
+# Gets list of Canadian cities without state abbreviations (from maps library)
+canada_cities_updated <- canada.cities
+canada_cities_updated$name <- substr(canada_cities_updated$name, 1, nchar(canada_cities_updated$name) - 3)
+
+
+# Dataframe of US with long/lat (reduced from 88k -> ~33K, can improve/increase by cleaning data  more before join)
+inner_join(raw_data, us_cities_updated, by = c("City" = "name", "State" = "country.etc"))
+# Dataframe of Canada with long/lat (only 62 values, can probably be improved by cleaning data more before join)
+inner_join(raw_data, canada_cities_updated, by = c("City" = "name", "State" = "country.etc"))
+
+# TODO: non-US/candian..... 
+```
