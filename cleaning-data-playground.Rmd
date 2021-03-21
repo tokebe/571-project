@@ -12,26 +12,65 @@ suppressMessages(library(maps))
 
 ```{r reading in data}
 # Reads in data 
-raw_data <- read.csv('ufo_data.csv') %>% drop_na(City)
-
-# TODO: Clean 'City' with regex? (Remove parenthesis that include countries?)
-# Can potentially increase data when joining with maps data
+raw_data <- read.csv('ufo_data.csv') 
 ```
 
-```{r}
+```{r cleaning}
+# Removes blank values in 'City' (no geo data to use)
+raw_data <- raw_data[!(is.na(raw_data$City) | raw_data$City == ""), ]
+```
+
+```{r cleaning city and making region}
+# New column for regions in 'City' column
+raw_data$`Posted Region` <- NA
+
+# Extract regions from text in paranthesis in 'City'
+extracted_regions <- regmatches(raw_data$City, gregexpr("(?<=\\().+?(?=\\))", raw_data$City, perl = T))
+# Converts null values to NA (for preservation)
+extracted_regions[sapply(extracted_regions, function(x) length(x) == 0L)] <- NA
+# Converts list to vector form
+extracted_regions <- sapply(extracted_regions, toString)
+
+# Place regions in user 'Posted Region'
+raw_data$`Posted Region` <- extracted_regions
+
+# City name without region in parenthesis
+raw_data$City <- gsub("\\s*\\([^\\)]+\\)","", as.character(raw_data$City))
+
+# Manually updating UK regions (there is so many I gave up, can probably use more regex above)
+raw_data$`Posted Region`[raw_data$`Posted Region` == 'UK/England'] <- 'UK'
+raw_data$`Posted Region`[raw_data$`Posted Region` == 'England'] <- 'UK'
+raw_data$`Posted Region`[raw_data$`Posted Region` == 'UK/Wales'] <- 'UK'
+raw_data$`Posted Region`[raw_data$`Posted Region` == 'UK/Scotland'] <- 'UK'
+raw_data$`Posted Region`[raw_data$`Posted Region` == 'Northern Ireland'] <- 'Ireland'
+raw_data$`Posted Region`[raw_data$`Posted Region` == 'Hampshire, UK/England'] <- 'UK'
+```
+
+```{r joining with maps data}
 # Gets list of US cities without state abbreviations (from maps library)
 us_cities_updated <- us.cities
 us_cities_updated$name <- substr(us_cities_updated$name, 1, nchar(us_cities_updated$name) - 3)
+# Manually update to matching Washington DC
+us_cities_updated$name[us_cities_updated$name == 'WASHINGTON'] <- 'Washington, D.C.'
 
 # Gets list of Canadian cities without state abbreviations (from maps library)
 canada_cities_updated <- canada.cities
 canada_cities_updated$name <- substr(canada_cities_updated$name, 1, nchar(canada_cities_updated$name) - 3)
 
-
 # Dataframe of US with long/lat (reduced from 88k -> ~33K, can improve/increase by cleaning data  more before join)
-inner_join(raw_data, us_cities_updated, by = c("City" = "name", "State" = "country.etc"))
+us_data <- inner_join(raw_data, us_cities_updated, by = c("City" = "name", "State" = "country.etc"))
 # Dataframe of Canada with long/lat (only 62 values, can probably be improved by cleaning data more before join)
-inner_join(raw_data, canada_cities_updated, by = c("City" = "name", "State" = "country.etc"))
+# Edit: (cleaning above increased data from 62 -> ~1900 entries)
+canada_data <- inner_join(raw_data, canada_cities_updated, by = c("City" = "name", "State" = "country.etc"))
+# Dataframe of 'international' countries
+international_data <- inner_join(raw_data, world.cities, by = c("City" = "name", "Posted Region" = "country.etc"))
 
-# TODO: non-US/candian..... 
+# Combines everything
+data_with_coordinates <- rbind(us_data, canada_data)
+data_with_coordinates <- rbind(data_with_coordinates, international_data)
 ```
+
+```{r}
+data_with_coordinates
+```
+
