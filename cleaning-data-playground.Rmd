@@ -8,11 +8,12 @@ output: html_document
 ```{r loading libraries}
 suppressMessages(library(tidyverse))
 suppressMessages(library(maps))
+suppressMessages(library(datasets))
 ```
 
 ```{r reading in data}
 # Reads in data 
-raw_data <- read.csv('ufo_data.csv') 
+raw_data <- read.csv('ufo_data.csv', stringsAsFactors = FALSE) 
 ```
 
 ```{r cleaning}
@@ -59,9 +60,11 @@ canada_cities_updated$name <- substr(canada_cities_updated$name, 1, nchar(canada
 
 # Dataframe of US with long/lat (reduced from 88k -> ~33K, can improve/increase by cleaning data  more before join)
 us_data <- inner_join(raw_data, us_cities_updated, by = c("City" = "name", "State" = "country.etc"))
+us_data$`Posted Region` <- "US"
 # Dataframe of Canada with long/lat (only 62 values, can probably be improved by cleaning data more before join)
 # Edit: (cleaning above increased data from 62 -> ~1900 entries)
 canada_data <- inner_join(raw_data, canada_cities_updated, by = c("City" = "name", "State" = "country.etc"))
+canada_data$`Posted Region` <- "Canada"
 # Dataframe of 'international' countries
 international_data <- inner_join(raw_data, world.cities, by = c("City" = "name", "Posted Region" = "country.etc"))
 
@@ -70,7 +73,20 @@ data_with_coordinates <- rbind(us_data, canada_data)
 data_with_coordinates <- rbind(data_with_coordinates, international_data)
 ```
 
+```{r cleaning times}
+# Clean time posted
+data_with_coordinates$Posted <- as.Date(data_with_coordinates$Posted, format = "%m/%d/%y")
+
+# Code below to convert to date and save hours + minutes as well (might not be accurate due to timezone issues..) 
+# For now, I just converted to date without hours + minutes
+# as.POSIXct(data_with_coordinates$Date.Time, format = "%m/%d/%y %H:%M")
+
+# Clean time of sighting (only saves Dates)
+data_with_coordinates$Date.Time <- as.Date(data_with_coordinates$Date.Time, format = "%m/%d/%y %H:%M")
+
+# TODO: Duration?
+```
+
 ```{r}
 data_with_coordinates
 ```
-
