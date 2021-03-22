@@ -1,0 +1,100 @@
+---
+title: "Network"
+author: "Hans Quiogue"
+date: "3/22/2021"
+output: html_document
+---
+
+```{r warning=FALSE}
+suppressMessages(library(tidyverse))
+suppressMessages(library(visNetwork))
+suppressMessages(library(networkD3))
+```
+
+Reading in UFO, routes, and airport data...
+
+```{r message=FALSE, warning=FALSE}
+ufo_data_us <- read_csv('../Data/ufo_data_us_cleaned_v1.csv')
+ufo_data_non_us <- read_csv('../Data/ufo_data_non_us_cleaned_v1.csv')
+routes_data <- read_csv('../Data/routes.csv')
+airport_data <- read.csv('../Data/airports.csv', stringsAsFactors = FALSE)
+```
+
+Merging UFO data
+
+```{r}
+# Add country to ufo US data
+ufo_data_us$Country <- "United States"
+
+# Converting time posted
+ufo_data_us$Posted <- as.Date(ufo_data_us$Posted, format = "%m/%d/%y")
+
+# Clean time of sighting (only saves Dates)
+ufo_data_us$`Date/Time` <- as.Date(ufo_data_us$`Date/Time`, format = "%m/%d/%y %H:%M")
+
+# Joining
+ufo_data <- full_join(ufo_data_us, ufo_data_non_us, 
+                      by = c("Date/Time" = "Date.Time", "City" = "City", "State" = "State", "Shape" = "Shape",
+                             "Duration" = "Duration", "Posted" = "Posted", "Country" = "Country", 
+                             "lat" = "lat", "lng" = "long"))
+```
+
+
+Creating frequency with UFO data
+
+```{r}
+# Renaming UK
+ufo_data$Country[ufo_data$Country == 'UK'] <- "United Kingdom"
+
+# Getting frequency
+ufo_freq <- ufo_data %>% 
+  group_by(City, Country) %>% 
+  summarize(
+    frequency = n()
+  ) %>% 
+  arrange(desc(frequency))
+
+head(ufo_freq)
+```
+
+Create nodes 
+
+```{r}
+# Merge airport data with ufo frequency
+airport_with_sightings <- inner_join(airport_data, ufo_freq, by = c("City", "Country"))
+# For now to make graph smaller, filter by Canada or India
+airport_with_sightings <- airport_with_sightings %>% filter(Country == "Canada" | Country == "India")
+
+# Create nodes
+nodes <- data.frame(id = airport_with_sightings$Airport.ID,
+                label = airport_with_sightings$Name, 
+                group = airport_with_sightings$Country,
+                value = airport_with_sightings$frequency)
+
+nodes$id <- nodes$id %>% as.factor
+```
+
+Creating edges with routes
+
+```{r}
+# Creating edges
+edges <- data.frame(from = routes_data$`Source airport ID`, to = routes_data$`Destination airport ID`)
+
+# Specifiying '\\N' is NA
+edges$from[edges$from == '\\N'] <- NA
+edges$to[edges$to == '\\N'] <- NA
+
+# Removes edges that are not found in node
+edges$from[!edges$from %in% nodes$id] <- NA
+edges$to[!edges$to %in% nodes$id] <- NA
+
+# Remove routes with NA's
+edges <- edges %>% na.omit
+```
+
+Creating network (takes a while to load on my pc.. be cautiuous running below..)
+
+```{r}
+visNetwork(nodes, edges)
+```
+
