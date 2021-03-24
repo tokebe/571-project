@@ -1,0 +1,95 @@
+---
+title: "Journalist Visualizations"
+author: "Jackson Callaghan"
+date: "3/24/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library import, include=False}
+suppressMessages(library(tidyverse))
+suppressMessages(library(fiftystater))
+suppressMessages(library(viridis))
+suppressMessages(library(scales))
+suppressMessages(library(sf))
+suppressMessages(library(albersusa))
+suppressMessages(library(maptools))
+suppressMessages(library(sp))
+library(usmap)
+```
+
+
+```{r message=FALSE, warning=FALSE}
+ufo_us <- read_csv('../Data/ufo_data_us_cleaned_v2.csv') %>% 
+  mutate(Posted = as.Date(Posted, format = "%m/%d/%y")) %>% 
+  mutate(`Date/Time` = as.Date(`Date/Time`, format = "%m/%d/%y %H:%M")) %>% 
+  mutate(State = tolower(state.name[match(State, state.abb)])) %>% 
+  filter(`Date/Time` < as.Date('2021-03-24'))
+
+ufo_non_us <- read_csv('../Data/ufo_data_non_us_cleaned_v2.csv') %>% 
+  mutate(Posted = as.Date(Posted, format = "%m/%d/%y")) %>% 
+  mutate(`Date/Time` = as.Date(`Date.Time`, format = "%m/%d/%y %H:%M")) %>% 
+  mutate(State = tolower(state.name[match(State, state.abb)])) %>% 
+  filter(`Date/Time` < as.Date('2021-03-24'))
+
+routes_data <- read_csv('../Data/routes.csv')
+airport_data <- read.csv('../Data/airports.csv', stringsAsFactors = FALSE)
+```
+
+```{r}
+data("fifty_states")
+
+ufo_us_freq <- ufo_us %>% 
+  group_by(State) %>% 
+  summarise(freq = n()) %>% 
+  drop_na()
+
+bg.color <- 'white'
+
+ufo_us_freq %>% 
+  ggplot(aes(map_id = State)) +
+    geom_map(aes(fill = freq), map = fifty_states, color = bg.color) +
+    expand_limits(x = fifty_states$long, y = fifty_states$lat) +
+    scale_fill_viridis(limits = c(0, max(ufo_us_freq$freq, na.rm = TRUE))) +
+    coord_map(projection = "albers", lat0=39, lat1=45) +
+    labs(title = paste(
+      "Frequency of UFO sightings, ",
+      format(min(ufo_us$`Date/Time`, na.rm = TRUE), "%Y"),
+      "-", format(max(ufo_us$`Date/Time`, na.rm = TRUE),"%Y")
+    )) +
+    theme_void() +
+    theme(plot.background = element_rect(fill = bg.color, color = bg.color))
+```
+
+```{r}
+ufo_us_coords <- ufo_us %>% 
+  dplyr::select(lng, lat, 0:7) %>% 
+  usmap_transform() %>% 
+  dplyr::select(-lng, -lat) %>% 
+  rename(lng = lng.1, lat = lat.1)
+```
+
+```{r}
+cutoff <- 100000
+
+plot_usmap(fill = '#121212') +
+  geom_point(
+    data = ufo_us_coords %>% 
+      filter(!is.na(Duration)) %>% 
+      filter(Duration < cutoff) %>% 
+      arrange(Duration), 
+    aes(x = lng, y = lat, color = Duration), 
+    alpha = 0.85
+  ) +
+  scale_color_viridis_c(
+    option = 'plasma', 
+    limits = c(0, cutoff),
+    na.value = '#121212'
+  )
+  
+
+```
+
