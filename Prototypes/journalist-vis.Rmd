@@ -42,14 +42,20 @@ airport_data <- read.csv('../Data/airports.csv', stringsAsFactors = FALSE)
 ```{r}
 data("fifty_states")
 
+year.range <- c(2000, 2021)
+
 ufo_us_freq <- ufo_us %>% 
+  filter(
+    parse_integer(format(`Date/Time`, "%Y")) > year.range[1] &
+    parse_integer(format(`Date/Time`, "%Y")) < year.range[2]
+  ) %>% 
   group_by(State) %>% 
   summarise(freq = n()) %>% 
   drop_na()
 
 bg.color <- 'white'
 
-ufo_us_freq %>% 
+test <- ufo_us_freq %>% 
   ggplot(aes(map_id = State)) +
     geom_map(aes(fill = freq), map = fifty_states, color = bg.color) +
     expand_limits(x = fifty_states$long, y = fifty_states$lat) +
@@ -57,8 +63,8 @@ ufo_us_freq %>%
     coord_map(projection = "albers", lat0=39, lat1=45) +
     labs(title = paste(
       "Frequency of UFO sightings, ",
-      format(min(ufo_us$`Date/Time`, na.rm = TRUE), "%Y"),
-      "-", format(max(ufo_us$`Date/Time`, na.rm = TRUE),"%Y")
+      format(year.range[1]),
+      "-", format(year.range[2])
     )) +
     theme_void() +
     theme(plot.background = element_rect(fill = bg.color, color = bg.color))
@@ -72,24 +78,129 @@ ufo_us_coords <- ufo_us %>%
   rename(lng = lng.1, lat = lat.1)
 ```
 
-```{r}
-cutoff <- 100000
+Need a good sense of what the upper bound should be...
 
-plot_usmap(fill = '#121212') +
+```{r}
+qt <- quantile(ufo_us$Duration, na.rm = TRUE, probs = c(.5, .75, .8, .9, 1))
+
+print(qt)
+
+ufo_us %>% 
+  filter(Duration < mean(c(qt[[1]], qt[[2]]))) %>% 
+ggplot() +
+  geom_density(aes(x = Duration))
+```
+
+
+```{r}
+# cutoff <- mean(c(qt[[1]], qt[[2]]))
+cutoff <- quantile(ufo_us$Duration, .99, na.rm = TRUE)[[1]]
+# cutoff <- 20000
+
+bg.color <- "#323232"
+fg.color <- "#121212"
+border.color <- "#222222"
+text.color <- "light gray"
+
+plot_usmap(fill = fg.color, color = border.color) +
   geom_point(
     data = ufo_us_coords %>% 
       filter(!is.na(Duration)) %>% 
-      filter(Duration < cutoff) %>% 
+      filter(Duration <= cutoff) %>% 
+      filter(format(Date.Time, '%Y') == '2020') %>% 
       arrange(Duration), 
     aes(x = lng, y = lat, color = Duration), 
-    alpha = 0.85
+    alpha = 1
+  ) +
+  scale_color_viridis_c(
+    option = 'viridis', 
+    limits = c(0, cutoff),
+    na.value = fg.color,
+  ) +
+  theme(
+    plot.background = element_rect(fill = bg.color),
+    legend.background = element_rect(fill = bg.color),
+    legend.text = element_text(color = text.color),
+    legend.title = element_text(color = text.color)
+  )
+```
+
+```{r}
+# cutoff <- mean(c(qt[[1]], qt[[2]]))
+# cutoff <- 20000
+
+year.range <- c(1969, 2021)
+
+bg.color <- "#323232"
+fg.color <- "#121212"
+border.color <- "#222222"
+text.color <- "light gray"
+
+by.city <- ufo_us_coords %>% 
+  filter(
+    parse_integer(format(Date.Time, "%Y")) > year.range[1] &
+    parse_integer(format(Date.Time, "%Y")) < year.range[2]
+  ) %>% 
+  mutate(year = parse_integer(format(Date.Time, "%Y"))) %>% 
+  group_by(lat, lng) %>% 
+  summarise(freq = n(), city = first(city_lower), .groups = "keep")
+
+cutoff <- quantile(by.city$freq, .99)[[1]]
+
+plot_usmap(fill = fg.color, color = border.color) +
+  geom_point(
+    data = by.city %>% arrange(freq) %>% filter(freq <= cutoff),
+    aes(x = lng, y = lat, color = freq), 
+    alpha = 1
+  ) +
+  geom_point(
+    data = by.city %>% arrange(freq) %>% filter(freq > cutoff),
+    aes(x = lng, y = lat),
+    color = "white"
   ) +
   scale_color_viridis_c(
     option = 'plasma', 
     limits = c(0, cutoff),
-    na.value = '#121212'
+    na.value = fg.color,
+  ) +
+  theme(
+    plot.background = element_rect(fill = bg.color),
+    legend.background = element_rect(fill = bg.color),
+    legend.text = element_text(color = text.color),
+    legend.title = element_text(color = text.color)
   )
+```
+
+This can also be replicated using a city map.
+
+
+```{r}
+
+year.range <- c(1969, 2021)
+
+ufo_us %>% 
+  filter(
+    parse_integer(format(`Date/Time`, "%Y")) > year.range[1] &
+    parse_integer(format(`Date/Time`, "%Y")) < year.range[2]
+  ) %>% 
+  mutate(year = parse_integer(format(`Date/Time`, "%Y"))) %>% 
+  group_by(year) %>% 
+  summarise(freq = n()) %>% 
+  drop_na() %>% 
+  ggplot() +
+    geom_line(aes(x = year, y = freq))
   
+```
+
+A bar chart of ufo shapes
+
+```{r}
+
+```
+
+A 
+
+```{r}
 
 ```
 
