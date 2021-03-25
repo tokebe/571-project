@@ -19,6 +19,7 @@ suppressMessages(library(albersusa))
 suppressMessages(library(maptools))
 suppressMessages(library(sp))
 library(usmap)
+library(RColorBrewer)
 ```
 
 
@@ -39,36 +40,7 @@ routes_data <- read_csv('../Data/routes.csv')
 airport_data <- read.csv('../Data/airports.csv', stringsAsFactors = FALSE)
 ```
 
-```{r}
-data("fifty_states")
 
-year.range <- c(2000, 2021)
-
-ufo_us_freq <- ufo_us %>% 
-  filter(
-    parse_integer(format(`Date/Time`, "%Y")) > year.range[1] &
-    parse_integer(format(`Date/Time`, "%Y")) < year.range[2]
-  ) %>% 
-  group_by(State) %>% 
-  summarise(freq = n()) %>% 
-  drop_na()
-
-bg.color <- 'white'
-
-test <- ufo_us_freq %>% 
-  ggplot(aes(map_id = State)) +
-    geom_map(aes(fill = freq), map = fifty_states, color = bg.color) +
-    expand_limits(x = fifty_states$long, y = fifty_states$lat) +
-    scale_fill_viridis(limits = c(0, max(ufo_us_freq$freq, na.rm = TRUE))) +
-    coord_map(projection = "albers", lat0=39, lat1=45) +
-    labs(title = paste(
-      "Frequency of UFO sightings, ",
-      format(year.range[1]),
-      "-", format(year.range[2])
-    )) +
-    theme_void() +
-    theme(plot.background = element_rect(fill = bg.color, color = bg.color))
-```
 
 ```{r}
 ufo_us_coords <- ufo_us %>% 
@@ -78,7 +50,47 @@ ufo_us_coords <- ufo_us %>%
   rename(lng = lng.1, lat = lat.1)
 ```
 
-Need a good sense of what the upper bound should be...
+```{r}
+data("fifty_states")
+
+year.range <- c(2000, 2021)
+
+ufo_us_freq <- ufo_us_coords %>% 
+  filter(
+    parse_integer(format(`Date.Time`, "%Y")) >= year.range[1] &
+    parse_integer(format(`Date.Time`, "%Y")) <= year.range[2]
+  ) %>% 
+  group_by(State) %>% 
+  summarise(freq = n()) %>% 
+  drop_na()
+
+bg.color <- "white"
+
+ufo_us_freq <- ufo_us_freq %>% 
+  mutate(state = State)
+plot_usmap(data = ufo_us_freq, values = "freq") +
+  scale_fill_viridis_c(
+    limits = c(0, max(ufo_us_freq$freq, na.rm = TRUE)),
+    name = "Frequency",
+    option = "viridis"
+  ) +
+  guides(fill = guide_legend()) +
+  labs(
+    title = paste(
+      "Number of reported UFO Sightings by State, ",
+      format(year.range[1]),
+      "-", format(year.range[2])
+    )
+  ) +
+  theme_void() +
+  theme(
+    plot.background = element_rect(fill = bg.color, color = bg.color),
+    legend.margin = margin(20, 20, 20, 20),
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+Need a good sense of what the upper bound should be. (This isn't part of the prototype)
 
 ```{r}
 qt <- quantile(ufo_us$Duration, na.rm = TRUE, probs = c(.5, .75, .8, .9, 1))
@@ -93,9 +105,15 @@ ggplot() +
 
 
 ```{r}
-# cutoff <- mean(c(qt[[1]], qt[[2]]))
-cutoff <- quantile(ufo_us$Duration, .99, na.rm = TRUE)[[1]]
-# cutoff <- 20000
+timescale <- 60 * 60
+
+cutoff <- ufo_us %>% 
+  mutate(Duration = Duration / timescale) %>% 
+  pull(Duration)
+
+cutoff <- quantile(cutoff, .99, na.rm = TRUE)[[1]]
+
+year.range = c(2020, 2021)
 
 bg.color <- "#323232"
 fg.color <- "#121212"
@@ -106,8 +124,12 @@ plot_usmap(fill = fg.color, color = border.color) +
   geom_point(
     data = ufo_us_coords %>% 
       filter(!is.na(Duration)) %>% 
+      mutate(Duration = Duration / timescale) %>% 
       filter(Duration <= cutoff) %>% 
-      filter(format(Date.Time, '%Y') == '2020') %>% 
+      filter(
+        parse_integer(format(`Date.Time`, "%Y")) >= year.range[1] &
+        parse_integer(format(`Date.Time`, "%Y")) <= year.range[2]
+      ) %>% 
       arrange(Duration), 
     aes(x = lng, y = lat, color = Duration), 
     alpha = 1
@@ -117,11 +139,22 @@ plot_usmap(fill = fg.color, color = border.color) +
     limits = c(0, cutoff),
     na.value = fg.color,
   ) +
+  # guides(color = guide_legend()) +
+  labs(
+    title = paste(
+      "Individual UFO reports by Sighting Duration in Hours, ",
+      format(year.range[1]),
+      "-", format(year.range[2])
+    )
+  ) +
+  theme_void() +
   theme(
     plot.background = element_rect(fill = bg.color),
-    legend.background = element_rect(fill = bg.color),
+    legend.background = element_rect(fill = bg.color, color = bg.color),
+    plot.title = element_text(color = text.color, hjust = 0.5),
     legend.text = element_text(color = text.color),
-    legend.title = element_text(color = text.color)
+    legend.title = element_text(color = text.color),
+    legend.margin = margin(20, 20, 20, 20)
   )
 ```
 
@@ -138,8 +171,8 @@ text.color <- "light gray"
 
 by.city <- ufo_us_coords %>% 
   filter(
-    parse_integer(format(Date.Time, "%Y")) > year.range[1] &
-    parse_integer(format(Date.Time, "%Y")) < year.range[2]
+    parse_integer(format(Date.Time, "%Y")) >= year.range[1] &
+    parse_integer(format(Date.Time, "%Y")) <= year.range[2]
   ) %>% 
   mutate(year = parse_integer(format(Date.Time, "%Y"))) %>% 
   group_by(lat, lng) %>% 
@@ -153,25 +186,39 @@ plot_usmap(fill = fg.color, color = border.color) +
     aes(x = lng, y = lat, color = freq), 
     alpha = 1
   ) +
+  scale_color_viridis_c(
+    option = 'plasma', 
+    limits = c(0, cutoff),
+    na.value = fg.color,
+    name = "Frequency"
+  ) +
   geom_point(
     data = by.city %>% arrange(freq) %>% filter(freq > cutoff),
     aes(x = lng, y = lat),
     color = "white"
   ) +
-  scale_color_viridis_c(
-    option = 'plasma', 
-    limits = c(0, cutoff),
-    na.value = fg.color,
+  # scale_color_manual(
+  #   name = "> 65 Reports"
+  # ) +
+  labs(
+    title = paste(
+      "UFO Report Frequency by City Location, ",
+      format(year.range[1]),
+      "-", format(year.range[2])
+    ),
+    caption = "Note: white dots (1% of cities) have >65 reports, ranging 66-479."
   ) +
+  theme_void() +
   theme(
     plot.background = element_rect(fill = bg.color),
-    legend.background = element_rect(fill = bg.color),
+    legend.background = element_rect(fill = bg.color, color = bg.color),
+    plot.title = element_text(color = text.color, hjust = 0.5),
     legend.text = element_text(color = text.color),
-    legend.title = element_text(color = text.color)
+    legend.title = element_text(color = text.color),
+    legend.margin = margin(20, 20, 20, 20),
+    plot.caption = element_text(color = text.color, hjust = 0.5)
   )
 ```
-
-This can also be replicated using a city map.
 
 
 ```{r}
@@ -188,19 +235,40 @@ ufo_us %>%
   summarise(freq = n()) %>% 
   drop_na() %>% 
   ggplot() +
-    geom_line(aes(x = year, y = freq))
-  
+    geom_line(aes(x = year, y = freq), size = 1)
 ```
 
 A bar chart of ufo shapes
 
 ```{r}
-
+ufo_us %>% 
+  mutate(Shape = ifelse(is.na(Shape), "Unknown", Shape)) %>%
+  group_by(Shape) %>% 
+  summarize(freq = n()) %>%
+  ggplot() +
+    geom_bar(aes(x = reorder(Shape, -freq), y = freq), stat = "identity") +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+    labs(y = "Frequency", x = "UFO Shape")
+    
 ```
 
-A 
+A density plot of duration 
 
 ```{r}
+qt <- quantile(ufo_us$Duration, na.rm = TRUE, probs = c(.5, .75, .8, .9, 1))
 
+
+ufo_us %>% 
+  filter(Duration < quantile(Duration, .5, na.rm = TRUE)[[1]]) %>% 
+  mutate(Duration = Duration / 60) %>% 
+ggplot() +
+  geom_density(aes(x = Duration), size = 1) +
+  scale_x_continuous(breaks = seq(0, 11, by = 1))
 ```
 
+```{r}
+ufo_us %>% 
+  filter(Duration > quantile(Duration, .99, na.rm = TRUE)[[1]]) %>% 
+ggplot() +
+  geom_density(aes(x = Duration), size = 1)
+```
