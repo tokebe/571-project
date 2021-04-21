@@ -1,0 +1,59 @@
+---
+title: "Maps"
+output: html_notebook
+---
+
+## Processing UFO data for maps
+
+Loading in libraries
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+Reading in US data
+
+```{r message=FALSE, warning=FALSE}
+ufo_data_us <- read_csv('../data/ufo_data_us_cleaned_v2.csv')
+```
+
+Some cleaning
+
+```{r}
+# Converting time posted
+ufo_data_us$Posted <- as.Date(ufo_data_us$Posted, format = "%m/%d/%y")
+
+# Clean time of sighting (only saves Dates)
+ufo_data_us$`Date/Time` <- as.Date(ufo_data_us$`Date/Time`, format = "%m/%d/%y %H:%M")
+```
+
+Aggregating UFO data for maps
+
+- By state
+
+```{r}
+us_states <- ufo_data_us %>% 
+  group_by(State) %>% 
+  summarize(
+    Sightings = n()
+  ) %>% 
+  arrange(desc(Sightings))
+
+# Remove DC (only contains 10 sightings)
+us_states <- us_states[-c(51), ]
+
+# Writes csv
+write_csv(us_states, 'us_states.csv')
+```
+
+- By city (TODO: fix longitude and latitude)
+
+```{r}
+us_cities <- ufo_data_us %>% 
+  group_by(City, lat, lng) %>% 
+  summarize(
+    Sightings = n(),
+    .groups = 'drop'
+  )
+```
+
