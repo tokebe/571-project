@@ -63,7 +63,7 @@ Create nodes
 # Merge airport data with ufo frequency
 airport_with_sightings <- inner_join(airport_data, ufo_freq, by = c("City", "Country"))
 # For now to make graph smaller, filter by Canada or India
-airport_with_sightings <- airport_with_sightings %>% filter(Country == "Canada" | Country == "India")
+# airport_with_sightings <- airport_with_sightings %>% filter(Country == "United Kingdom" | Country == "Italy")
 
 # Create nodes
 nodes <- data.frame(id = airport_with_sightings$Airport.ID,
@@ -95,6 +95,23 @@ edges <- edges %>% na.omit
 Creating network (takes a while to load on my pc.. be cautiuous running below..)
 
 ```{r}
-visNetwork(nodes, edges)
+visNetwork(nodes, edges) %>% 
+  visIgraphLayout()
+```
+
+```{r}
+airport_with_sightings %>% 
+  group_by(City, Country) %>% 
+  summarize(
+    frequency = sum(frequency) / n()
+  ) %>% 
+  arrange(desc(frequency)) %>% 
+  filter(frequency >= 300) %>% 
+  ggplot() +
+  aes(City, frequency, fill = Country) +
+  geom_col(stat = 'identity') +
+  ggtitle('Top UFO Sightings near Airports') +
+  xlab('City with Airport(s)') 
+  
 ```
 
