@@ -18,12 +18,16 @@ function handleData(jsonData) {
   console.log(jsonData);
 }
 
+function getProjectedCoord(d, i) {
+  return projection([d.lng, d.lat])[i];
+}
+
 Promise.all([
-  d3.json("data/states-10m.json", handleData),
+  d3.json("data/states-10m.json"),
   d3.csv("data/sighting-duration-location.csv"),
 ]).then((data) => {
-  console.log(data);
-
+  // console.log(data);
+  console.log(data[1]);
   svg
     .append("g")
     .selectAll("path")
@@ -38,7 +42,8 @@ Promise.all([
   //   .data(data[1])
   //   .enter()
   //   .append("circle")
-  //   .attr("cx", (d) => projection(d))
-  //   .attr("cy", (d) => projection(d));
-  // .on("mouseover", (event, d) => console.log(d));
+  //   .attr("cx", (d) => getProjectedCoord(d, 0))
+  //   .attr("cy", (d) => getProjectedCoord(d, 1))
+  //   .attr("r", "5px")
+  //   .attr("fill", "red");
 });
