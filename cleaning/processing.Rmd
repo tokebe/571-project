@@ -47,7 +47,11 @@ correct_years <- historical_data %>%
   mutate(`Date/Time` = case_when(
           `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
           TRUE ~ `Date/Time`)
-        )
+        ) %>% 
+  group_by(`Date/Time`) %>% 
+  summarize(
+    Sightings = sum(Sightings)
+  )
 
 # Writes csv
 write_csv(correct_years, '../webpage/data/us-historical-sightings.csv')
