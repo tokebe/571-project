@@ -247,33 +247,64 @@ ufo_data_us$`Date/Time` &lt;- as.Date(ufo_data_us$`Date/Time`, format = &quot;%m
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Aggregating UFO data for historical time series</p>
-<p>TODO: Do it by state?</p>
-<ul>
-<li>By state</li>
-</ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGlzdG9yaWNhbF9kYXRhIDwtIHVmb19kYXRhX3VzICU+JSBcbiAgZ3JvdXBfYnkoYERhdGUvVGltZWApICU+JSBcbiAgc3VtbWFyaXplKFxuICAgIFNpZ2h0aW5ncyA9IG4oKVxuICApICU+JSBcbiAgZHJvcF9uYSgpXG5cbiMgVXBkYXRlIHllYXJzIGFib3ZlIDIwMjEgdG8gLTEwMCB5ZWFycyAoYXNzdW1lcyBpbiAxOTAwJ3MpXG5jb3JyZWN0X3llYXJzIDwtIGhpc3RvcmljYWxfZGF0YSAlPiUgXG4gIG11dGF0ZShgRGF0ZS9UaW1lYCA9IGNhc2Vfd2hlbihcbiAgICAgICAgICBgRGF0ZS9UaW1lYCA+IGFzLlBPU0lYY3QoXCIyMDIxLTA0LTAxIDAxOjAwOjAwXCIpIH4gYERhdGUvVGltZWAgLSB5ZWFycygxMDApLFxuICAgICAgICAgIFRSVUUgfiBgRGF0ZS9UaW1lYClcbiAgICAgICAgKSAlPiUgXG4gIGdyb3VwX2J5KGBEYXRlL1RpbWVgKSAlPiUgXG4gIHN1bW1hcml6ZShcbiAgICBTaWdodGluZ3MgPSBzdW0oU2lnaHRpbmdzKVxuICApXG5cbiMgV3JpdGVzIGNzdlxud3JpdGVfY3N2KGNvcnJlY3RfeWVhcnMsICcuLi93ZWJwYWdlL2RhdGEvdXMtaGlzdG9yaWNhbC1zaWdodGluZ3MuY3N2JylcbmBgYCJ9 -->
-<pre class="r"><code>historical_data &lt;- ufo_data_us %&gt;% 
-  group_by(`Date/Time`) %&gt;% 
-  summarize(
-    Sightings = n()
-  ) %&gt;% 
-  drop_na()
-
-# Update years above 2021 to -100 years (assumes in 1900&#39;s)
-correct_years &lt;- historical_data %&gt;% 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGlzdG9yaWNhbF9kYXRhIDwtIHVmb19kYXRhX3VzICU+JVxuICBtdXRhdGUoYERhdGUvVGltZWAgPSBjYXNlX3doZW4oXG4gICAgICAgICAgYERhdGUvVGltZWAgPiBhcy5QT1NJWGN0KFwiMjAyMS0wNC0wMSAwMTowMDowMFwiKSB+IGBEYXRlL1RpbWVgIC0geWVhcnMoMTAwKSxcbiAgICAgICAgICBUUlVFIH4gYERhdGUvVGltZWApXG4gICAgICAgICkgJT4lIFxuICBncm91cF9ieShgRGF0ZS9UaW1lYCkgJT4lIFxuICBzdW1tYXJpemUoXG4gICAgU2lnaHRpbmdzID0gbigpXG4gICkgJT4lIFxuICBkcm9wX25hKClcblxuIyBHZXQgVUZPIGRhdGEgYnkgc3RhdGVcbnN0YXRlcyA8LSB1Zm9fZGF0YV91cyAlPiUgXG4gIG11dGF0ZShgRGF0ZS9UaW1lYCA9IGNhc2Vfd2hlbihcbiAgICAgICAgICBgRGF0ZS9UaW1lYCA+IGFzLlBPU0lYY3QoXCIyMDIxLTA0LTAxIDAxOjAwOjAwXCIpIH4gYERhdGUvVGltZWAgLSB5ZWFycygxMDApLFxuICAgICAgICAgIFRSVUUgfiBgRGF0ZS9UaW1lYClcbiAgICAgICAgKSAlPiUgXG4gIGdyb3VwX2J5KGBEYXRlL1RpbWVgLCBTdGF0ZSkgJT4lIFxuICBzdW1tYXJpemUoXG4gICAgU2lnaHRpbmdzID0gbigpLFxuICAgIC5ncm91cHMgPSAna2VlcCdcbiAgKSAlPiUgXG4gIGRyb3BfbmEoKVxuXG4jIEdldCBVRk8gZGF0YSBieSBzaGFwZVxuc2hhcGVzIDwtIHVmb19kYXRhX3VzICU+JSBcbiAgbXV0YXRlKGBEYXRlL1RpbWVgID0gY2FzZV93aGVuKFxuICAgICAgICAgIGBEYXRlL1RpbWVgID4gYXMuUE9TSVhjdChcIjIwMjEtMDQtMDEgMDE6MDA6MDBcIikgfiBgRGF0ZS9UaW1lYCAtIHllYXJzKDEwMCksXG4gICAgICAgICAgVFJVRSB+IGBEYXRlL1RpbWVgKVxuICAgICAgICApICU+JSBcbiAgZ3JvdXBfYnkoYERhdGUvVGltZWAsIFNoYXBlKSAlPiUgXG4gIHN1bW1hcml6ZShcbiAgICBTaWdodGluZ3MgPSBuKCksXG4gICAgLmdyb3VwcyA9ICdrZWVwJ1xuICApICU+JSBcbiAgZHJvcF9uYSgpXG5cbiMgQnkgZHVyYXRpb25cbmR1cmF0aW9uIDwtIHVmb19kYXRhX3VzICU+JSBcbiAgbXV0YXRlKGBEYXRlL1RpbWVgID0gY2FzZV93aGVuKFxuICAgICAgICAgIGBEYXRlL1RpbWVgID4gYXMuUE9TSVhjdChcIjIwMjEtMDQtMDEgMDE6MDA6MDBcIikgfiBgRGF0ZS9UaW1lYCAtIHllYXJzKDEwMCksXG4gICAgICAgICAgVFJVRSB+IGBEYXRlL1RpbWVgKVxuICAgICAgICApICU+JSBcbiAgZ3JvdXBfYnkoYERhdGUvVGltZWAsIER1cmF0aW9uKSAlPiUgXG4gIHN1bW1hcml6ZShcbiAgICBTaWdodGluZ3MgPSBuKCksXG4gICAgLmdyb3VwcyA9ICdrZWVwJ1xuICApICU+JSBcbiAgZHJvcF9uYSgpXG5cbiMgV3JpdGVzIGNzdlxud3JpdGVfY3N2KGhpc3RvcmljYWxfZGF0YSwgJy4uL3dlYnBhZ2UvZGF0YS91cy1oaXN0b3JpY2FsLXNpZ2h0aW5ncy5jc3YnKVxud3JpdGVfY3N2KHN0YXRlcywgJy4uL3dlYnBhZ2UvZGF0YS91cy1oaXN0b3JpY2FsLXNpZ2h0aW5ncy1zdGF0ZXMuY3N2JylcbndyaXRlX2NzdihzaGFwZXMsICcuLi93ZWJwYWdlL2RhdGEvdXMtaGlzdG9yaWNhbC1zaWdodGluZ3Mtc2hhcGVzLmNzdicpXG53cml0ZV9jc3YoZHVyYXRpb24sICcuLi93ZWJwYWdlL2RhdGEvdXMtaGlzdG9yaWNhbC1zaWdodGluZ3MtZHVyYXRpb24uY3N2JylcbmBgYCJ9 -->
+<pre class="r"><code>historical_data &lt;- ufo_data_us %&gt;%
   mutate(`Date/Time` = case_when(
           `Date/Time` &gt; as.POSIXct(&quot;2021-04-01 01:00:00&quot;) ~ `Date/Time` - years(100),
           TRUE ~ `Date/Time`)
         ) %&gt;% 
   group_by(`Date/Time`) %&gt;% 
   summarize(
-    Sightings = sum(Sightings)
-  )
+    Sightings = n()
+  ) %&gt;% 
+  drop_na()
+
+# Get UFO data by state
+states &lt;- ufo_data_us %&gt;% 
+  mutate(`Date/Time` = case_when(
+          `Date/Time` &gt; as.POSIXct(&quot;2021-04-01 01:00:00&quot;) ~ `Date/Time` - years(100),
+          TRUE ~ `Date/Time`)
+        ) %&gt;% 
+  group_by(`Date/Time`, State) %&gt;% 
+  summarize(
+    Sightings = n(),
+    .groups = &#39;keep&#39;
+  ) %&gt;% 
+  drop_na()
+
+# Get UFO data by shape
+shapes &lt;- ufo_data_us %&gt;% 
+  mutate(`Date/Time` = case_when(
+          `Date/Time` &gt; as.POSIXct(&quot;2021-04-01 01:00:00&quot;) ~ `Date/Time` - years(100),
+          TRUE ~ `Date/Time`)
+        ) %&gt;% 
+  group_by(`Date/Time`, Shape) %&gt;% 
+  summarize(
+    Sightings = n(),
+    .groups = &#39;keep&#39;
+  ) %&gt;% 
+  drop_na()
+
+# By duration
+duration &lt;- ufo_data_us %&gt;% 
+  mutate(`Date/Time` = case_when(
+          `Date/Time` &gt; as.POSIXct(&quot;2021-04-01 01:00:00&quot;) ~ `Date/Time` - years(100),
+          TRUE ~ `Date/Time`)
+        ) %&gt;% 
+  group_by(`Date/Time`, Duration) %&gt;% 
+  summarize(
+    Sightings = n(),
+    .groups = &#39;keep&#39;
+  ) %&gt;% 
+  drop_na()
 
 # Writes csv
-write_csv(correct_years, &#39;../webpage/data/us-historical-sightings.csv&#39;)</code></pre>
+write_csv(historical_data, &#39;../webpage/data/us-historical-sightings.csv&#39;)
+write_csv(states, &#39;../webpage/data/us-historical-sightings-states.csv&#39;)
+write_csv(shapes, &#39;../webpage/data/us-historical-sightings-shapes.csv&#39;)
+write_csv(duration, &#39;../webpage/data/us-historical-sightings-duration.csv&#39;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -283,7 +314,7 @@ write_csv(correct_years, &#39;../webpage/data/us-historical-sightings.csv&#39;)<
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWFwcyIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMgUHJvY2Vzc2luZyBVRk8gZGF0YQoKTG9hZGluZyBpbiBsaWJyYXJpZXMKCmBgYHtyIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGx1YnJpZGF0ZSkKYGBgCgpSZWFkaW5nIGluIFVTIGRhdGEKCmBgYHtyIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CnVmb19kYXRhX3VzIDwtIHJlYWRfY3N2KCcuLi9kYXRhL3Vmb19kYXRhX3VzX2NsZWFuZWRfdjIuY3N2JykKYGBgCgpTb21lIGNsZWFuaW5nCgpgYGB7cn0KIyBDb252ZXJ0aW5nIHRpbWUgcG9zdGVkCnVmb19kYXRhX3VzJFBvc3RlZCA8LSBhcy5EYXRlKHVmb19kYXRhX3VzJFBvc3RlZCwgZm9ybWF0ID0gIiVtLyVkLyV5IikKCiMgQ2xlYW4gdGltZSBvZiBzaWdodGluZyAob25seSBzYXZlcyBEYXRlcykKdWZvX2RhdGFfdXMkYERhdGUvVGltZWAgPC0gYXMuRGF0ZSh1Zm9fZGF0YV91cyRgRGF0ZS9UaW1lYCwgZm9ybWF0ID0gIiVtLyVkLyV5ICVIOiVNIikKYGBgCgpBZ2dyZWdhdGluZyBVRk8gZGF0YSBmb3IgaGlzdG9yaWNhbCB0aW1lIHNlcmllcwoKVE9ETzogRG8gaXQgYnkgc3RhdGU/CgotIEJ5IHN0YXRlCgpgYGB7cn0KaGlzdG9yaWNhbF9kYXRhIDwtIHVmb19kYXRhX3VzICU+JSAKICBncm91cF9ieShgRGF0ZS9UaW1lYCkgJT4lIAogIHN1bW1hcml6ZSgKICAgIFNpZ2h0aW5ncyA9IG4oKQogICkgJT4lIAogIGRyb3BfbmEoKQoKIyBVcGRhdGUgeWVhcnMgYWJvdmUgMjAyMSB0byAtMTAwIHllYXJzIChhc3N1bWVzIGluIDE5MDAncykKY29ycmVjdF95ZWFycyA8LSBoaXN0b3JpY2FsX2RhdGEgJT4lIAogIG11dGF0ZShgRGF0ZS9UaW1lYCA9IGNhc2Vfd2hlbigKICAgICAgICAgIGBEYXRlL1RpbWVgID4gYXMuUE9TSVhjdCgiMjAyMS0wNC0wMSAwMTowMDowMCIpIH4gYERhdGUvVGltZWAgLSB5ZWFycygxMDApLAogICAgICAgICAgVFJVRSB+IGBEYXRlL1RpbWVgKQogICAgICAgICkgJT4lIAogIGdyb3VwX2J5KGBEYXRlL1RpbWVgKSAlPiUgCiAgc3VtbWFyaXplKAogICAgU2lnaHRpbmdzID0gc3VtKFNpZ2h0aW5ncykKICApCgojIFdyaXRlcyBjc3YKd3JpdGVfY3N2KGNvcnJlY3RfeWVhcnMsICcuLi93ZWJwYWdlL2RhdGEvdXMtaGlzdG9yaWNhbC1zaWdodGluZ3MuY3N2JykKYGBgCgotIEJ5IGNpdHkgKFRPRE86IGZpeCBsb25naXR1ZGUgYW5kIGxhdGl0dWRlKQo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWFwcyIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyMgUHJvY2Vzc2luZyBVRk8gZGF0YQoKTG9hZGluZyBpbiBsaWJyYXJpZXMKCmBgYHtyIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CmxpYnJhcnkodGlkeXZlcnNlKQpsaWJyYXJ5KGx1YnJpZGF0ZSkKYGBgCgpSZWFkaW5nIGluIFVTIGRhdGEKCmBgYHtyIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CnVmb19kYXRhX3VzIDwtIHJlYWRfY3N2KCcuLi9kYXRhL3Vmb19kYXRhX3VzX2NsZWFuZWRfdjIuY3N2JykKYGBgCgpTb21lIGNsZWFuaW5nCgpgYGB7cn0KIyBDb252ZXJ0aW5nIHRpbWUgcG9zdGVkCnVmb19kYXRhX3VzJFBvc3RlZCA8LSBhcy5EYXRlKHVmb19kYXRhX3VzJFBvc3RlZCwgZm9ybWF0ID0gIiVtLyVkLyV5IikKCiMgQ2xlYW4gdGltZSBvZiBzaWdodGluZyAob25seSBzYXZlcyBEYXRlcykKdWZvX2RhdGFfdXMkYERhdGUvVGltZWAgPC0gYXMuRGF0ZSh1Zm9fZGF0YV91cyRgRGF0ZS9UaW1lYCwgZm9ybWF0ID0gIiVtLyVkLyV5ICVIOiVNIikKYGBgCgpBZ2dyZWdhdGluZyBVRk8gZGF0YSBmb3IgaGlzdG9yaWNhbCB0aW1lIHNlcmllcwoKYGBge3J9Cmhpc3RvcmljYWxfZGF0YSA8LSB1Zm9fZGF0YV91cyAlPiUKICBtdXRhdGUoYERhdGUvVGltZWAgPSBjYXNlX3doZW4oCiAgICAgICAgICBgRGF0ZS9UaW1lYCA+IGFzLlBPU0lYY3QoIjIwMjEtMDQtMDEgMDE6MDA6MDAiKSB+IGBEYXRlL1RpbWVgIC0geWVhcnMoMTAwKSwKICAgICAgICAgIFRSVUUgfiBgRGF0ZS9UaW1lYCkKICAgICAgICApICU+JSAKICBncm91cF9ieShgRGF0ZS9UaW1lYCkgJT4lIAogIHN1bW1hcml6ZSgKICAgIFNpZ2h0aW5ncyA9IG4oKQogICkgJT4lIAogIGRyb3BfbmEoKQoKIyBHZXQgVUZPIGRhdGEgYnkgc3RhdGUKc3RhdGVzIDwtIHVmb19kYXRhX3VzICU+JSAKICBtdXRhdGUoYERhdGUvVGltZWAgPSBjYXNlX3doZW4oCiAgICAgICAgICBgRGF0ZS9UaW1lYCA+IGFzLlBPU0lYY3QoIjIwMjEtMDQtMDEgMDE6MDA6MDAiKSB+IGBEYXRlL1RpbWVgIC0geWVhcnMoMTAwKSwKICAgICAgICAgIFRSVUUgfiBgRGF0ZS9UaW1lYCkKICAgICAgICApICU+JSAKICBncm91cF9ieShgRGF0ZS9UaW1lYCwgU3RhdGUpICU+JSAKICBzdW1tYXJpemUoCiAgICBTaWdodGluZ3MgPSBuKCksCiAgICAuZ3JvdXBzID0gJ2tlZXAnCiAgKSAlPiUgCiAgZHJvcF9uYSgpCgojIEdldCBVRk8gZGF0YSBieSBzaGFwZQpzaGFwZXMgPC0gdWZvX2RhdGFfdXMgJT4lIAogIG11dGF0ZShgRGF0ZS9UaW1lYCA9IGNhc2Vfd2hlbigKICAgICAgICAgIGBEYXRlL1RpbWVgID4gYXMuUE9TSVhjdCgiMjAyMS0wNC0wMSAwMTowMDowMCIpIH4gYERhdGUvVGltZWAgLSB5ZWFycygxMDApLAogICAgICAgICAgVFJVRSB+IGBEYXRlL1RpbWVgKQogICAgICAgICkgJT4lIAogIGdyb3VwX2J5KGBEYXRlL1RpbWVgLCBTaGFwZSkgJT4lIAogIHN1bW1hcml6ZSgKICAgIFNpZ2h0aW5ncyA9IG4oKSwKICAgIC5ncm91cHMgPSAna2VlcCcKICApICU+JSAKICBkcm9wX25hKCkKCiMgQnkgZHVyYXRpb24KZHVyYXRpb24gPC0gdWZvX2RhdGFfdXMgJT4lIAogIG11dGF0ZShgRGF0ZS9UaW1lYCA9IGNhc2Vfd2hlbigKICAgICAgICAgIGBEYXRlL1RpbWVgID4gYXMuUE9TSVhjdCgiMjAyMS0wNC0wMSAwMTowMDowMCIpIH4gYERhdGUvVGltZWAgLSB5ZWFycygxMDApLAogICAgICAgICAgVFJVRSB+IGBEYXRlL1RpbWVgKQogICAgICAgICkgJT4lIAogIGdyb3VwX2J5KGBEYXRlL1RpbWVgLCBEdXJhdGlvbikgJT4lIAogIHN1bW1hcml6ZSgKICAgIFNpZ2h0aW5ncyA9IG4oKSwKICAgIC5ncm91cHMgPSAna2VlcCcKICApICU+JSAKICBkcm9wX25hKCkKCiMgV3JpdGVzIGNzdgp3cml0ZV9jc3YoaGlzdG9yaWNhbF9kYXRhLCAnLi4vd2VicGFnZS9kYXRhL3VzLWhpc3RvcmljYWwtc2lnaHRpbmdzLmNzdicpCndyaXRlX2NzdihzdGF0ZXMsICcuLi93ZWJwYWdlL2RhdGEvdXMtaGlzdG9yaWNhbC1zaWdodGluZ3Mtc3RhdGVzLmNzdicpCndyaXRlX2NzdihzaGFwZXMsICcuLi93ZWJwYWdlL2RhdGEvdXMtaGlzdG9yaWNhbC1zaWdodGluZ3Mtc2hhcGVzLmNzdicpCndyaXRlX2NzdihkdXJhdGlvbiwgJy4uL3dlYnBhZ2UvZGF0YS91cy1oaXN0b3JpY2FsLXNpZ2h0aW5ncy1kdXJhdGlvbi5jc3YnKQpgYGAKCi0gQnkgY2l0eSAoVE9ETzogZml4IGxvbmdpdHVkZSBhbmQgbGF0aXR1ZGUpCg==</div>
 
 
 

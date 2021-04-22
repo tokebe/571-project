@@ -30,31 +30,62 @@ ufo_data_us$`Date/Time` <- as.Date(ufo_data_us$`Date/Time`, format = "%m/%d/%y %
 
 Aggregating UFO data for historical time series
 
-TODO: Do it by state?
-
-- By state
-
 ```{r}
-historical_data <- ufo_data_us %>% 
-  group_by(`Date/Time`) %>% 
-  summarize(
-    Sightings = n()
-  ) %>% 
-  drop_na()
-
-# Update years above 2021 to -100 years (assumes in 1900's)
-correct_years <- historical_data %>% 
+historical_data <- ufo_data_us %>%
   mutate(`Date/Time` = case_when(
           `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
           TRUE ~ `Date/Time`)
         ) %>% 
   group_by(`Date/Time`) %>% 
   summarize(
-    Sightings = sum(Sightings)
-  )
+    Sightings = n()
+  ) %>% 
+  drop_na()
+
+# Get UFO data by state
+states <- ufo_data_us %>% 
+  mutate(`Date/Time` = case_when(
+          `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
+          TRUE ~ `Date/Time`)
+        ) %>% 
+  group_by(`Date/Time`, State) %>% 
+  summarize(
+    Sightings = n(),
+    .groups = 'keep'
+  ) %>% 
+  drop_na()
+
+# Get UFO data by shape
+shapes <- ufo_data_us %>% 
+  mutate(`Date/Time` = case_when(
+          `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
+          TRUE ~ `Date/Time`)
+        ) %>% 
+  group_by(`Date/Time`, Shape) %>% 
+  summarize(
+    Sightings = n(),
+    .groups = 'keep'
+  ) %>% 
+  drop_na()
+
+# By duration
+duration <- ufo_data_us %>% 
+  mutate(`Date/Time` = case_when(
+          `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
+          TRUE ~ `Date/Time`)
+        ) %>% 
+  group_by(`Date/Time`, Duration) %>% 
+  summarize(
+    Sightings = n(),
+    .groups = 'keep'
+  ) %>% 
+  drop_na()
 
 # Writes csv
-write_csv(correct_years, '../webpage/data/us-historical-sightings.csv')
+write_csv(historical_data, '../webpage/data/us-historical-sightings.csv')
+write_csv(states, '../webpage/data/us-historical-sightings-states.csv')
+write_csv(shapes, '../webpage/data/us-historical-sightings-shapes.csv')
+write_csv(duration, '../webpage/data/us-historical-sightings-duration.csv')
 ```
 
 - By city (TODO: fix longitude and latitude)
