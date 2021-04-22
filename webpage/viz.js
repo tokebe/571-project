@@ -120,6 +120,10 @@ Promise.all([
       return val ? colorScale(val) : "grey";
     })
     .on("mouseover", (e, d) => {
+      d3.select(e.target)
+        .transition()
+        .duration(50)
+        .style("stroke-width", "3px");
       tooltip.transition().style("opacity", ".9");
 
       tooltip
@@ -127,12 +131,16 @@ Promise.all([
         .style("left", e.pageX + 5 + "px")
         .style("top", e.pageY - 30 + "px");
     })
-    .on("mousemove", function (event, d) {
+    .on("mousemove", function (e, d) {
       tooltip
-        .style("left", event.pageX + 10 + "px")
-        .style("top", event.pageY - 30 + "px");
+        .style("left", e.pageX + 10 + "px")
+        .style("top", e.pageY - 30 + "px");
     })
-    .on("mouseout", function (event, d) {
+    .on("mouseout", function (e, d) {
+      d3.select(e.target)
+        .transition()
+        .duration(300)
+        .style("stroke-width", "1px");
       tooltip.transition().style("opacity", "0");
     });
 });
