@@ -3,12 +3,13 @@ title: "Maps"
 output: html_notebook
 ---
 
-## Processing UFO data for maps
+## Processing UFO data
 
 Loading in libraries
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
+library(lubridate)
 ```
 
 Reading in US data
@@ -27,33 +28,29 @@ ufo_data_us$Posted <- as.Date(ufo_data_us$Posted, format = "%m/%d/%y")
 ufo_data_us$`Date/Time` <- as.Date(ufo_data_us$`Date/Time`, format = "%m/%d/%y %H:%M")
 ```
 
-Aggregating UFO data for maps
+Aggregating UFO data for historical time series
+
+TODO: Do it by state?
 
 - By state
 
 ```{r}
-us_states <- ufo_data_us %>% 
-  group_by(State) %>% 
+historical_data <- ufo_data_us %>% 
+  group_by(`Date/Time`) %>% 
   summarize(
     Sightings = n()
   ) %>% 
-  arrange(desc(Sightings))
+  drop_na()
 
-# Remove DC (only contains 10 sightings)
-us_states <- us_states[-c(51), ]
+# Update years above 2021 to -100 years (assumes in 1900's)
+correct_years <- historical_data %>% 
+  mutate(`Date/Time` = case_when(
+          `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
+          TRUE ~ `Date/Time`)
+        )
 
 # Writes csv
-write_csv(us_states, 'us_states.csv')
+write_csv(correct_years, '../webpage/data/us-historical-sightings.csv')
 ```
 
 - By city (TODO: fix longitude and latitude)
-
-```{r}
-us_cities <- ufo_data_us %>% 
-  group_by(City, lat, lng) %>% 
-  summarize(
-    Sightings = n(),
-    .groups = 'drop'
-  )
-```
-

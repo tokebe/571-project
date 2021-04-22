@@ -16,3 +16,10 @@ div.tooltip {
       border-radius: 8px;
       pointer-events: none;
     }
+
+/* TODO: Move placement */
+#historical-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
