@@ -50,29 +50,11 @@ function initPlots(svg, width, height) {
         }
     }).then((data) => {
         // Scales 
-        const xScale = d3.scaleTime()
-                        .domain(d3.extent(data, (d) => d.date))
-                        .range([0, width]);
-        const yScale = d3.scaleLinear()
-                        .domain([0, d3.max(data, (d) => d.value)])
-                        .range([height, 0]);
+        const [ xScale, yScale ] = initScales(data, width, height);
 
         // Add axes
-        const xAxis = d3.axisBottom()
-                        .scale(xScale);
-                        
-        const yAxis = d3.axisLeft()
-                        .scale(yScale);
-                        
-        svg.append('g')
-            .attr('class', 'axis')
-            .attr('transform', 'translate(0,' + height + ')')
-            .call(xAxis);
-
-        svg.append('g')
-            .attr('class', 'axis')
-            .call(yAxis);
-
+        const [ xAxis, yAxis ] = initAxes(svg, xScale, yScale, height);
+        
         // Adds lines
         svg.append('path')
             .datum(data)
@@ -84,4 +66,35 @@ function initPlots(svg, width, height) {
                     .y((d) => yScale(d.value))
                 )
     });
+}
+
+function initScales(data, width, height) {
+    const xScale = d3.scaleTime()
+                    .domain(d3.extent(data, (d) => d.date))
+                    .range([0, width]);
+    const yScale = d3.scaleLinear()
+                    .domain([0, d3.max(data, (d) => d.value)])
+                    .range([height, 0]);
+    
+    return [ xScale, yScale ];
+}
+
+
+function initAxes(svg, xScale, yScale, height) {
+    const xAxis = d3.axisBottom()
+                        .scale(xScale);
+                        
+    const yAxis = d3.axisLeft()
+                    .scale(yScale);
+                    
+    svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis);
+
+    svg.append('g')
+        .attr('class', 'axis')
+        .call(yAxis);
+
+    return [ xAxis, yAxis ];
 }
