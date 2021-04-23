@@ -66,7 +66,7 @@ Promise.all([
       tooltip.transition().style("opacity", ".9");
 
       tooltip
-        .html(d.properties.name + ",\n" + getStateSightings(d, data))
+        .html(d.properties.name + "<br/>" + getStateSightings(d, data))
         .style("left", e.pageX + 5 + "px")
         .style("top", e.pageY - 30 + "px");
     })
