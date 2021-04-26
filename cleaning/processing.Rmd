@@ -28,7 +28,7 @@ ufo_data_us$Posted <- as.Date(ufo_data_us$Posted, format = "%m/%d/%y")
 ufo_data_us$`Date/Time` <- as.Date(ufo_data_us$`Date/Time`, format = "%m/%d/%y %H:%M")
 ```
 
-Aggregating UFO data for historical time series
+Aggregating UFO data for historical time series (wide format to match stacked D3 format)
 
 ```{r}
 historical_data <- ufo_data_us %>%
@@ -38,7 +38,7 @@ historical_data <- ufo_data_us %>%
         ) %>% 
   group_by(`Date/Time`) %>% 
   summarize(
-    Sightings = n()
+    Total = n()
   ) %>% 
   drop_na() 
 
@@ -70,9 +70,11 @@ shapes <- ufo_data_us %>%
   drop_na() %>% 
   pivot_wider(names_from = Shape, values_from = Sightings, values_fill = list(Sightings = 0))
 
+# Wide format joined
+wide_joined <- inner_join(states, shapes, by = 'Date/Time')
+wide_joined <- inner_join(wide_joined, historical_data, by = 'Date/Time')
+
 # Writes csv
-write_csv(historical_data, '../webpage/data/us-historical-sightings.csv')
-write_csv(states, '../webpage/data/us-historical-sightings-states.csv')
-write_csv(shapes, '../webpage/data/us-historical-sightings-shapes.csv')
+write_csv(wide_joined, '../webpage/data/us-historical-wide.csv')
 ```
 
