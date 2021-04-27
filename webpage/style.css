@@ -1,3 +1,10 @@
+.mapContainer {
+    min-height: 580px;
+    column-count: 2;
+}
+
+.ma
+
 .state {
     /* fill: white; */
     stroke: black;
@@ -20,4 +27,11 @@ div.tooltip {
     opacity: 100%;
     /* something */
     stroke: white;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }

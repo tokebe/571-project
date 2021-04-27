@@ -9,9 +9,16 @@ const projection = d3
 const path = d3.geoPath().projection(projection);
 
 const svg = d3
-  .select("body")
+  .select(".mapContainer")
   .append("svg")
   .attr("width", width)
+  .attr("height", height);
+
+const colorScaleLegend = d3
+  .select(".mapContainer")
+  .append("svg")
+  .attr("class", "colorScaleLegend")
+  .attr("width", 50)
   .attr("height", height);
 
 // Set up tooltip
@@ -23,7 +30,7 @@ const tooltip = d3
 
 // state info
 const stateInfo = d3
-  .select("body")
+  .select(".mapContainer")
   .append("div")
   .attr("class", "stateInfo")
   .style("opacity", "0%");
@@ -78,7 +85,7 @@ function cityMouseOverFunc(e, d, data) {
         d.freq +
         " Sighting" +
         plural +
-        +"</br>" + // make this only if duration known
+        "</br>" + // make this only if duration known
         "Avg. Sighting Duration: " +
         humanizeDuration(d.mean_dur * 1000, {
           maxDecimalPoints: 1,
@@ -96,8 +103,8 @@ function cityMouseOutFunc(e, d) {
 
 function getDataInRange(data, range) {
   const cityData = [];
-  for (const state in data[2]) {
-    const stateObj = data[2][state];
+  for (const state in data[1]) {
+    const stateObj = data[1][state];
     for (const city in stateObj) {
       const cityObj = stateObj[city];
       let freq = 0,
@@ -131,8 +138,8 @@ function getDataInRange(data, range) {
   }
 
   const stateData = {};
-  for (const state in data[3]) {
-    const stateObj = data[3][state];
+  for (const state in data[2]) {
+    const stateObj = data[2][state];
     let freq = 0,
       mean_dur = 0,
       count = 0;
@@ -152,22 +159,55 @@ function getDataInRange(data, range) {
     };
   }
 
-  return { stateData: stateData, cityData: cityData };
+  return {
+    stateData: stateData,
+    cityData: cityData,
+    freqExtent: d3.extent(data[3], (d) => {
+      return parseFloat(d.freq);
+    }),
+    durExtent: d3.extent(data[3], (d) => {
+      return parseFloat(d.mean_dur);
+    }),
+  };
 }
 
 function makeMap(stateShapes, data) {
   const stateData = data.stateData;
   const cityData = data.cityData;
 
-  const logScale = d3
-    .scaleLog()
-    .domain(d3.extent(cityData, (d) => parseFloat(d.freq)));
+  const extent = d3.extent(cityData, (d) => parseFloat(d.freq));
+
+  const logScale = d3.scaleLog().domain(extent);
   const colorScale = d3
     .scaleSequential()
-    // .domain(d3.extent(data[2], (d) => parseFloat(d.freq)))
+    // .domain(d3.extent(data[1], (d) => parseFloat(d.freq)))
     .interpolator((d) => d3.interpolateViridis(logScale(d)));
 
   svg.selectAll("g").remove();
+
+  // TODO scale bar https://blog.scottlogic.com/2019/03/13/how-to-create-a-continuous-colour-range-legend-using-d3-and-d3fc.html
+
+  // const expandedDomain = d3.range(
+  //   extent[0],
+  //   extent[1],
+  //   (extent[1] - extent[0]) / height
+  // );
+
+  // // Defining the legend bar
+  // const svgBar = fc
+  //   .autoBandwidth(fc.seriesSvgBar())
+  //   // .xScale(xScale)
+  //   .yScale(logScale)
+  //   .crossValue(0)
+  //   .baseValue((_, i) => (i > 0 ? expandedDomain[i - 1] : 0))
+  //   .mainValue((d) => d)
+  //   .decorate((selection) => {
+  //     selection.selectAll("path").style("fill", (d) => colourScale(d));
+  //   });
+
+  // // Drawing the legend bar
+  // const legendSvg = container.append("svg");
+  // const legendBar = legendSvg.append("g").datum(expandedDomain).call(svgBar);
 
   svg
     .append("g")
@@ -221,30 +261,41 @@ function makeMap(stateShapes, data) {
     });
 }
 
-function updateMap(data) {
+function updateMap(data, color, relColor) {
   const stateData = data.stateData;
   const cityData = data.cityData;
+  const freqExtent = data.freqExtent;
+  const durExtent = data.durExtent;
 
-  const logScale = d3
-    .scaleLog()
-    .domain(d3.extent(cityData, (d) => parseFloat(d.freq)));
+  const logScale = d3.scaleSymlog().domain(
+    relColor
+      ? color === "freq"
+        ? freqExtent
+        : durExtent
+      : d3.extent(cityData, (d) => {
+          return parseFloat(color === "freq" ? d.freq : d.mean_dur);
+        })
+  );
   const colorScale = d3
     .scaleSequential()
-    // .domain(d3.extent(data[2], (d) => parseFloat(d.freq)))
     .interpolator((d) => d3.interpolateViridis(logScale(d)));
 
   const points = svg.selectAll("circle").data(cityData);
 
   // update existing points
   points
-    .sort((a, b) => a.freq - b.freq)
-    .transition()
+    .sort((a, b) =>
+      color === "freq" ? a.freq - b.freq : a.mean_dur - b.mean_dur
+    )
     .attr("cx", (d) => getProjectedCoord(d, 0))
     .attr("cy", (d) => getProjectedCoord(d, 1))
     .attr("class", "cityDot")
     .style("stroke-width", "0px")
+    // .transition()
     .style("fill", (d) => {
-      const val = colorScale(d.freq);
+      const val = colorScale(
+        parseFloat(color === "freq" ? d.freq : d.mean_dur)
+      );
       return val ? val : "grey";
     });
 
@@ -252,14 +303,18 @@ function updateMap(data) {
   points
     .enter()
     .append("circle")
-    .sort((a, b) => a.freq - b.freq)
+    .sort((a, b) =>
+      color === "freq" ? a.freq - b.freq : a.mean_dur - b.mean_dur
+    )
     .attr("cx", (d) => getProjectedCoord(d, 0))
     .attr("cy", (d) => getProjectedCoord(d, 1))
     .attr("r", "3px")
     .attr("class", "cityDot")
     .style("stroke-width", "0px")
     .style("fill", (d) => {
-      const val = colorScale(d.freq);
+      const val = colorScale(
+        parseFloat(color === "freq" ? d.freq : d.mean_dur)
+      );
       return val ? val : "grey";
     })
     .on("mouseover", (e, d) => {
@@ -275,18 +330,53 @@ function updateMap(data) {
 
 Promise.all([
   d3.json("data/states-10m.json"),
-  d3.json("data/stateCodes.json"),
   d3.json("data/ufo_us_by_city_year.json"),
   d3.json("data/ufo_us_by_state_year.json"),
   d3.csv("data/ufo_us_by_city_year.csv"),
 ]).then((data) => {
   console.log(data);
-  makeMap(data[0], getDataInRange(data, [2000, 2021]));
+  let savedData = getDataInRange(data, [2000, 2021]);
+  makeMap(data[0], savedData);
 
+  let color = "freq",
+    range = [2000, 2021],
+    relColor = false;
+
+  // time slider
+  const sliderTime = d3
+    .sliderBottom()
+    .min(d3.min(data[3], (d) => d.year))
+    .max(d3.max(data[3], (d) => d.year))
+    .width(width * 0.8)
+    .step(1)
+    .tickFormat(d3.format(""))
+    .ticks(10)
+    .default(2021)
+    .on("onchange", (val) => {
+      val = [parseInt(val), parseInt(val)];
+      if (range[0] !== val[0] || range[1] !== val[1]) {
+        range = val;
+        savedData = getDataInRange(data, range);
+      }
+      updateMap(savedData, color, relColor);
+    });
+
+  const gTime = d3
+    .select(".yearSliderBox")
+    .attr("class", "yearSlider hidden")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", 100)
+    .append("g")
+    .attr("transform", "translate(30,30)");
+
+  gTime.call(sliderTime);
+
+  // time range
   const sliderRange = d3
     .sliderBottom()
-    .min(d3.min(data[4], (d) => d.year))
-    .max(d3.max(data[4], (d) => d.year))
+    .min(d3.min(data[3], (d) => d.year))
+    .max(d3.max(data[3], (d) => d.year))
     .width(width * 0.8)
     .tickFormat(d3.format(""))
     .ticks(10)
@@ -295,20 +385,62 @@ Promise.all([
     .fill("#2196f3")
     .on("end", (val) => {
       val = val.map((d) => parseInt(d));
-      console.log(val); // TODO call drawMap with new range
-      updateMap(getDataInRange(data, val));
+      if (range[0] !== val[0] || range[1] !== val[1]) {
+        range = val;
+        savedData = getDataInRange(data, range);
+      }
+      updateMap(savedData, color, relColor);
     });
 
-  var gRange = d3
-    .select("body")
+  const gRange = d3
+    .select(".yearRangeSliderBox")
     .append("svg")
     .attr("width", width)
     .attr("height", 100)
     .append("g")
     .attr("transform", "translate(30,30)")
-    .attr("class", "yearSlider");
+    .attr("class", "yearRangeSlider");
 
   gRange.call(sliderRange);
-  // TODO implement year selection
   // TODO implement color switch between count and duration
+
+  document.getElementById("useRange").addEventListener("change", () => {
+    // toggle which slider is shown
+    document.getElementById("yearSliderBox").classList.toggle("hidden");
+    document.getElementById("yearRangeSliderBox").classList.toggle("hidden");
+    // update map to reflect newly shown slider
+    range = document
+      .getElementById("yearSliderBox")
+      .classList.contains("hidden")
+      ? sliderRange.value().map((d) => parseInt(d))
+      : [parseInt(sliderTime.value()), parseInt(sliderTime.value())];
+    console.log(range);
+    savedData = getDataInRange(data, range);
+    updateMap(savedData, color, relColor);
+  });
+
+  document.getElementById("relColor").addEventListener("change", () => {
+    relColor = document.getElementById("relColor").checked;
+    updateMap(savedData, color, relColor);
+  });
+
+  function colorDisplayChanged(event) {
+    color = document.getElementById("showFreq").checked ? "freq" : "dur";
+    console.log(color);
+    savedData = getDataInRange(data, range);
+    updateMap(savedData, color, relColor);
+  }
+
+  document
+    .getElementById("showFreq")
+    .addEventListener("change", colorDisplayChanged);
+
+  document
+    .getElementById("showDur")
+    .addEventListener("change", colorDisplayChanged);
 });
+
+document.getElementById("useRange").checked = true;
+document.getElementById("relColor").checked = false;
+document.getElementById("showFreq").checked = true;
+document.getElementById("showDur").checked = false;
