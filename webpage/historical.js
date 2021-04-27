@@ -1,31 +1,93 @@
 /*--------------------------------------*
- *-------- User interface side ---------*
+ *--------- Initial page load ----------*
  *--------------------------------------*/
 
-// Historical button clicked
-document.getElementById('historical-btn').addEventListener('click', () => {
+ // When page loads initially
+window.addEventListener('load', async () => {
     
     // Hide map
-    const states = Array.from(document.getElementsByClassName('state'));
-    states.map(elem => elem.style.visibility = 'hidden');
+    // const states = Array.from(document.getElementsByClassName('state'));
+    // states.map(elem => elem.style.visibility = 'hidden');
 
     // Dimensions
     const [ margin, width, height ] = initDimensions();
 
     // Append svg
-    const svg = initSVG(margin, width, height);
-
-    // Read and initialize plots
-    const dataset = readData('data/us-historical-sightings-shapes.csv');
-    initPlots(dataset, svg, margin, width, height); 
+    const svg = await initSVG(margin, width, height);
 
     // Create other 
     createAttrSelection();
-    createAttrTypeSelection(['None']);
-    createDateFilter('2020-01-01', '2020-02-01');
+    createAttrTypeSelection();
+    createDateFilter('1928', '2021');
+
+    // Read and initialize plots
+    const dataset = readData('data/us-historical-wide.csv');
+    await initPlots(dataset, svg, margin, width, height); 
+
+    // Updates
+    await updateTimeAndSlider();
+    updateAttrTypeSelection();
 });
 
+/*--------------------------------------*
+ *------------- Updating ---------------*
+ *--------------------------------------*/
 
+function updateAttrTypeSelection(initial = true, checked) {
+    const attr = document.getElementById('attr-selection').value;
+    const defaults = initial ? ['Total', 'CA', 'NM', 'NC', 'NY', 'Light', 'Circle', 'Sphere'] : checked; 
+
+    console.log(defaults);
+
+    const types = getAttrValues();
+    const selection = document.getElementById('filter-types');
+    
+    if (selection !== null) {
+        // Remove old items
+        const parent = document.getElementById('filter-types');
+        Array.from(parent.childNodes).forEach(child => parent.removeChild(child));
+
+        // Add new items
+        types.forEach(type => {
+            const label = document.createElement('label');
+            label.setAttribute('class', 'dropdown-item');
+            label.innerText = type + ' ';
+
+            const input = document.createElement('input');
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('name', '');
+            input.setAttribute('value', type);
+            input.setAttribute('id', 'type-' + type);
+            input.setAttribute('class', '')
+
+            // Initial checkboxes are checked at first
+            if (defaults.includes(type)) {
+                input.setAttribute('checked', 'true');
+            }
+
+            label.appendChild(input);
+            selection.appendChild(label);
+        });
+    }    
+}
+
+async function updateTimeAndSlider() {
+    const slider = document.getElementById('filter-dates');
+
+    if (slider !== undefined) {
+        // When there is a change on the range slider for dates, text is updated
+        slider.noUiSlider.on('update', (values, handle) => {
+            // Starting and ending handles for slider
+            const dateValues = [
+                document.getElementById('date-start'),
+                document.getElementById('date-end')
+            ];
+
+            // Update text
+            dateValues[handle].innerText = formatDate(new Date(+values[handle]));
+        });
+    }
+}
 
 /*--------------------------------------*
  *---------- Page generation -----------*
@@ -33,9 +95,7 @@ document.getElementById('historical-btn').addEventListener('click', () => {
 
 function createAttrSelection() {
     // Selection
-    const select = document.createElement('select');
-    select.setAttribute('name', 'dropdown')
-    document.getElementById('attr-selection').appendChild(select);
+    const select = document.getElementById('attr-selection')
 
     // Options
     const optionsList = ['All', 'State', 'Shape'];
@@ -47,10 +107,8 @@ function createAttrSelection() {
     });
 }
 
-function createAttrTypeSelection(types) {
-    // Dropdown holder
-    const dropdown = document.createElement('div');
-    dropdown.setAttribute('class', 'dropdown');
+function createAttrTypeSelection() {
+    const dropdown = document.getElementById('attr-types');
 
     // Button to display dropdown
     const button = document.createElement('button');
@@ -67,24 +125,10 @@ function createAttrTypeSelection(types) {
     form.setAttribute('class', 'dropdown-menu');
     form.setAttribute('aria-labelledby', 'dropdownMenuButton');
     form.setAttribute('id', 'filter-types');
-
-    // Items
-    types.forEach(type => {
-        const label = document.createElement('label');
-        label.setAttribute('class', 'dropdown-item');
-        label.innerText = type + ' ';
-
-        const input = document.createElement('input');
-        input.setAttribute('type', 'checkbox');
-        input.setAttribute('name', '');
-        input.setAttribute('value', type);
-        label.appendChild(input);
-
-        form.appendChild(label);
-    });
     
+    updateAttrTypeSelection();
+
     dropdown.appendChild(form);
-    document.getElementById('historical-viz').appendChild(dropdown);
 }
 
 function createDateFilter(start, end) {
@@ -92,31 +136,32 @@ function createDateFilter(start, end) {
     const slider = document.getElementById('filter-dates');
 
     noUiSlider.create(slider, {
-        start: [timestamp('2019'), timestamp('2020')],
+        start: [timestamp(start), timestamp(end)],
         range: {
-            min: timestamp('1928-07-12'),
-            max: timestamp('2021-03-02')
+            min: timestamp('1928'),
+            max: timestamp('2021')
         },
-        format: wNumb({ decimals: 0 }),     // No decimals
-        step: 24 * 60 * 60 * 1000           // Step every day
-    });
-
-    // When there is a change on the range slider for dates, text is updated
-    slider.noUiSlider.on('update', (values, handle) => {
-        // Starting and ending handles for slider
-        const dateValues = [
-            document.getElementById('event-start'),
-            document.getElementById('event-end')
-        ];
-
-        // Update text
-        dateValues[handle].innerText = formatDate(new Date(+values[handle]));
+        format: wNumb({ decimals: 0 }),         // No decimals
+        step: 12 * 4 * 7 * 24 * 60 * 60 * 1000  // Step every year
     });
 }
 
 /*--------------------------------------*
  *------ Pre-plot initialization -------*
  *--------------------------------------*/
+
+function getData(fullData) {
+    // Subset and options choosen by user
+    const subsetChoosen = $('input:checked').map((i, e) => e.value).toArray();
+    const [start, end] = getSelectedDates();
+
+    // Subsets data
+    const dataSubset = getSubset(fullData, subsetChoosen, start, end);
+    // Stacks data
+    const stackedData = d3.stack().keys(subsetChoosen)(dataSubset);
+
+    return [subsetChoosen, dataSubset, stackedData];
+}
 
 function initDimensions() {
     // Dimensions
@@ -133,10 +178,12 @@ function initDimensions() {
 }
 
 
-function initSVG(margin, width, height) {
-    const svg = d3.select('#stacked-area-plot')
+async function initSVG(margin, width, height) {
+    const svg = d3.select('#historical-viz')
+                .append('svg')
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
+                .attr('id', 'stacked-area-plot')
                 .append('g')
                 .attr('transform',
                     'translate(' + margin.left + ',' + margin.top + ')');
@@ -148,15 +195,13 @@ function initSVG(margin, width, height) {
 function initScales(data, width, height, subset) {
     const xScale = d3.scaleTime()
                     .domain(d3.extent(data, (d) => d.date))
-                    .nice()
                     .range([0, width]);
     const yScale = d3.scaleLinear()
                     .domain([0, d3.max(data, (d) => {
                         const numList = [];
                         subset.forEach(key => numList.push(+d[key]));
-                        return Math.max(...numList) + 5;
+                        return numList.reduce((acc, val) => acc + val, 0);
                     })])
-                    .nice()
                     .range([height, 0]);
     
     return [ xScale, yScale ];
@@ -189,21 +234,17 @@ function initAxes(svg, xScale, yScale, margin, width, height) {
         .attr('class', 'axis')
         .attr('transform', 'translate(0,' + height + ')')
         .call(xAxis);
-
+        
     svg.append('g')
         .attr('class', 'axis')
-        .call(yAxis);
-
-    return [ xAxis, yAxis ];
+        .call(yAxis)
 }
 
-
-function initColorScale(subset, colors) {
+function initColorScale(subset) {
     return d3.scaleOrdinal()
             .domain(subset)
-            .range(colors)
+            .range(d3.schemeSet2);
 }
-
 
 function initLegend(subset, svg, margin, width, color) {
     const squareSize = 20;
@@ -213,7 +254,7 @@ function initLegend(subset, svg, margin, width, color) {
       .data(subset)
       .enter()
       .append('rect')
-        .attr('x', width - margin.left)
+        .attr('x', width + margin.left)
         .attr('y', (d, i) =>  10 + i * (squareSize + 5)) // 100 is first square. 25 is the distance between them
         .attr('width', squareSize)
         .attr('height', squareSize)
@@ -224,7 +265,7 @@ function initLegend(subset, svg, margin, width, color) {
         .data(subset)
         .enter()
         .append('text')
-            .attr('x', (width - margin.left) + (squareSize * 1.3))
+            .attr('x', (width + margin.left) + (squareSize * 1.3))
             .attr('y', (d, i) => 10 + i * (squareSize + 5) + (squareSize / 1.8)) // 100 is first square. 25 is the distance between them
             .style('fill', d => color(d))
             .text(function(d){ return d})
@@ -240,7 +281,7 @@ const readData = (file) => d3.csv(file);
 
 function getSubset(data, keys, startDate, endDate) {
     // Convert to proper time
-    const timeConv = d3.timeParse('%Y-%m-%d');
+    const timeConv = d3.timeParse('%Y');
 
     // Goes through each historical entry
     const subset = data.map(obj => {
@@ -254,112 +295,150 @@ function getSubset(data, keys, startDate, endDate) {
         });
         return result;
     });
+
     // Returns filtered by keys and time
-    return subset.filter(d => d.date > new Date(startDate) & d.date < new Date(endDate));
+    return subset.filter(d => d.date >= new Date(+startDate) & d.date <= new Date(+endDate));
 }
 
 /*--------------------------------------*
  *---- User filtering / tool tips ------*
  *--------------------------------------*/
 
-function areaHighlight(d) {
-    // Reduce opacity of all groups
-    d3.selectAll('.area').style('opacity', 0.1)
-    // Make selected area stand out more
-    d3.select('.' + d.toElement.className['baseVal'].slice(5))
-        .style('opacity', 0.7);
-}
+// function areaHighlight(d) {
+//     // Reduce opacity of all groups
+//     d3.selectAll('.area').style('opacity', 0.1)
+//     console.log('.' + d.srcElement.className['baseVal'].slice(5));
 
-function resetHighlight(d) {
-    d3.selectAll('.area').style('opacity', 0.7)
-}
+//     // Make selected area stand out more
+//     d3.select('.' + d.srcElement.className['baseVal'].slice(5))
+//         .style('opacity', 0.7);
+// }
+
+// function resetHighlight(d) {
+//     d3.selectAll('.area').style('opacity', 0.7)
+// }
 
 /*--------------------------------------*
- *-------- Plot initialization ---------*
+ *-------- Plot init and update --------*
  *--------------------------------------*/
 
-function initPlots(dataset, svg, margin, width, height) {
-    dataset.then((data) => {
+async function initPlots(dataset, svg, margin, width, height, initialArea = undefined) {
+    dataset.then(async (data) => {
+        // Updates plot and returns area generator (using for transitions)
+        let areaGenerator = await updatePlot(data, svg, margin, width, height, initialArea);
         
-        // TODO: Retrieve key subset and date filter from user and set color scheme
-        const subsetChoosen = ['Light', 'Circle', 'Other']
-        const colors = ['red', 'blue', 'green', 'black']
-        const dataSubset = getSubset(data, subsetChoosen, '2020-01-01', '2020-02-01');
-        
-        const stackedData = d3.stack().keys(subsetChoosen)(dataSubset);
+        // Changing between attributes
+        document.getElementById('attr-selection').addEventListener('change', async () => {
+            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator);
+        });
 
-        // Scales 
-        const [ xScale, yScale ] = initScales(dataSubset, width, height, subsetChoosen);
+        // Slider events
+        document.getElementById('filter-dates').addEventListener('mouseup', async () => {
+            const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
+        });
 
-        // Add axes
-        const [ xAxis, yAxis ] = initAxes(svg, xScale, yScale, margin, width, height);
-
-        // Create color pallete
-        const colorScale = initColorScale(subsetChoosen, colors);
-
-        // Helps create area
-        const areaGenerator = d3.area()
-                                .x((d) => xScale(d.data.date))
-                                .y0((d) => yScale(d[0])) 
-                                .y1((d) => yScale(d[1]))
-                                .curve(d3.curveBasis);
-
-        // Create stacked area plot
-        svg.selectAll('.areas')
-            .data(stackedData)
-            .join('path')
-            .attr('d', areaGenerator)
-            .attr('class', (d) => 'area ' + d.key)
-            .attr('fill', (d) => colorScale(d.key))
-            .attr('opacity', 0.7)
-            .on('mouseover', areaHighlight)
-            .on('mouseleave', resetHighlight);   
-            
-        // Create legend
-        initLegend(subsetChoosen, svg, margin, width, colorScale);
+        // Changing between attribute types
+        document.getElementById('confirm-attr-types').addEventListener('click', async () => {
+            const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
+        });
     });
+}
+
+function createPlot(svg, stackedData, initialArea, areaGenerator, colorScale) {
+    // Create stacked area plot
+    svg.selectAll('.areas')
+        .data(stackedData)
+        .join('path')
+        .attr('d', initialArea)
+        .transition()
+        .duration(1000)
+        .attr('d', areaGenerator)
+        .attr('class', (d) => 'area ' + d.key)
+        .attr('fill', (d) => colorScale(d.key))
+        .attr('opacity', 0.7);
+        // .on('mouseover', areaHighlight)
+        // .on('mouseleave', resetHighlight)   
+}
+
+async function initUpdate(data, margin, width, height, initialArea, initial = true, checked) {
+    updateAttrTypeSelection(initial, checked);
+    await d3.selectAll('#stacked-area-plot').remove();
+    const newSvg = await initSVG(margin, width, height);
+    return await updatePlot(data, newSvg, margin, width, height, initialArea);
+}
+
+async function updatePlot(data, svg, margin, width, height, initialArea) {
+    const [subsetChoosen, dataSubset, stackedData] = getData(data);
+    
+    // Scales 
+    const [ xScale, yScale ] = initScales(dataSubset, width, height, subsetChoosen);
+
+    // Add axes
+    initAxes(svg, xScale, yScale, margin, width, height);
+
+    // Create color pallete
+    const colorScale = initColorScale(subsetChoosen);
+
+    // Initial area
+    if (initialArea === undefined) {
+        initialArea = d3.area()
+                        .x((d) => xScale(d.data.date))
+                        .y0((d) => yScale(d[0])) 
+                        .y1(height)
+                        .curve(d3.curveBasis);
+    }
+
+    // Helps create area
+    const areaGenerator = d3.area()
+                            .x((d) => xScale(d.data.date))
+                            .y0((d) => yScale(d[0])) 
+                            .y1((d) => yScale(d[1]))
+                            .curve(d3.curveBasis);
+    
+    // Create plot itself
+    createPlot(svg, stackedData, initialArea, areaGenerator, colorScale);
+
+    // Create legend
+    initLegend(subsetChoosen, svg, margin, width, colorScale);
+
+    return areaGenerator;
 }
 
 /*--------------------------------------*
  *-------------- Utilities -------------*
  *--------------------------------------*/
 
+function getAttrValues() {
+    const attr = document.getElementById('attr-selection').value;
+    
+    switch (attr) {
+        case 'State': 
+            return ['CA', 'NM', 'NC', 'NY', 'MO', 'ID', 'ND', 'AL', 'IN', 'GA', 'KY', 'FL', 'LA',
+                    'MD', 'WA', 'ME', 'TX', 'VA', 'WI', 'OK', 'MI', 'OR', 'TN', 'WY', 'AK', 'DE',
+                    'MN', 'MS', 'CO', 'PA', 'MA', 'AZ', 'OH', 'NE', 'IL', 'KS', 'WV', 'AR', 'SC',
+                    'NJ', 'IA', 'CT', 'UT', 'MT', 'SD', 'NV', 'NH', 'HI', 'VT', 'RI', 'DC']; 
+        case 'Shape':
+            return ['Light', 'Circle', 'Sphere', 'Disk', 'Fireball', 'Formation', 
+                    'Unknown', 'Rectangle', 'Other', 'Oval', 'Cylinder', 'Cigar',
+                    'Triangle', 'Cone', 'Chevron', 'Diamond', 'Teardrop', 'Egg',
+                    'Changing', 'Flash', 'Cross'];
+        default: 
+            return ['Total']; 
+    }
+}
+
+function getSelectedDates() {
+    const slider = document.getElementById('filter-dates');
+    return slider.noUiSlider.get();
+}
+
 function timestamp(str) {
     return new Date(str).getTime();
 }
 
-// Retrieves correct suffix of a day in a month
-function correctSuffix(d) {
-    if (d > 3 && d < 21) return 'th';
-    switch (d % 10) {
-        case 1:
-            return "st"; // Ex: 1 => 1st
-        case 2:
-            return "nd"; // Ex: 22 => 2nd
-        case 3:
-            return "rd"; // Ex: 3 => 3rd
-        default:
-            return "th"; // Ex: 25 => 25th, 30 => 30th
-    }
-}
-
 // Format correct date for slider
 function formatDate(date) {
-    const weekdays = [
-        "Sunday", "Monday", "Tuesday",
-        "Wednesday", "Thursday", "Friday",
-        "Saturday"
-    ];
-
-    const months = [
-        "January", "February", "March",
-        "April", "May", "June", "July",
-        "August", "September", "October",
-        "November", "December"
-    ];
-
-    return weekdays[date.getDay()] + ", " +
-        date.getDate() + correctSuffix(date.getDate()) + " " +
-        months[date.getMonth()] + " " +
-        date.getFullYear();
+    return date.getFullYear();
 }
