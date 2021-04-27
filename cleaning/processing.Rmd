@@ -10,6 +10,7 @@ Loading in libraries
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(lubridate)
+library(tidygeocoder)
 ```
 
 Reading in US data
@@ -77,5 +78,148 @@ wide_joined <- inner_join(wide_joined, historical_data, by = 'Date/Time')
 
 # Writes csv
 write_csv(wide_joined, '../webpage/data/us-historical-wide.csv')
+```
+
+Merging routes and UFO data
+
+Reading in flight data
+
+```{r}
+airport <- read.csv('../data/airports.csv')
+routes <- read.csv('../data/routes.csv')
+```
+
+Reverse geocoding to retrieve states by longitude and latitude
+
+(Note reverse geocoding may take a while to query the results)
+
+```{r}
+airport_us <- airport %>% filter(Country == 'United States')
+
+airport_us <- reverse_geocode(airport_us, lat = Latitude, long = Longitude, full_results = TRUE)
+```
+
+Selecting needed columns
+
+```{r}
+airport_us_1 <- airport_us %>% 
+  select(Airport.ID, Name, City, state) %>% 
+  rename(Source_Name = Name, Source_City = City,
+         Source_State = state)
+
+airport_us_2 <- airport_us %>% 
+  select(Airport.ID, Name, City, state) %>% 
+  rename(Dest_Name = Name, Dest_City = City,
+         Dest_State = state)
+
+routes <- routes %>% select(Source.airport.ID, Destination.airport.ID)
+```
+
+Converting state name to abbreviations
+
+```{r}
+names(state.abb) <- state.name 
+airport_us_new <- airport_us
+airport_us_new$State <- state.abb[airport_us_new$state]
+```
+
+Getting airport count by state and city
+
+```{r}
+airport_us_city <- airport_us_new %>% 
+  select(Airport.ID, Name, City, State) %>% 
+  group_by(City, State) %>% 
+  summarize(
+    `Airport Count` = n(),
+    .groups = 'keep'
+  ) %>% 
+  arrange(desc(`Airport Count`))
+
+airport_us_state <- airport_us_new %>% 
+  select(Airport.ID, Name, City, State) %>% 
+  group_by(State) %>% 
+  summarize(
+    `Airport Count` = n(),
+    .groups = 'keep'
+  ) %>% 
+  arrange(desc(`Airport Count`))
+```
+
+Getting alien count by state and city
+
+```{r}
+ufo_us_city <- ufo_data_us %>% 
+  group_by(City, State) %>% 
+  summarize(
+    Sightings = n(),
+    .groups = 'keep'
+  ) %>% 
+  arrange(desc(Sightings))
+
+ufo_us_state <- ufo_data_us %>% 
+  group_by(State) %>% 
+  summarize(
+    Sightings = n()
+  ) %>% 
+  arrange(desc(Sightings))
+```
+
+Joining airport and sightings
+
+```{r}
+airport_and_ufo_city <- ufo_us_city %>% 
+  left_join(airport_us_city, by = c("City", "State"))
+
+airport_and_ufo_city$`Airport Count`[is.na(airport_and_ufo_city$`Airport Count`)] <- 0
+  
+airport_and_ufo_state <- ufo_us_state %>%
+  left_join(airport_us_state, by = "State")
+
+airport_and_ufo_state$`Airport Count`[is.na(airport_and_ufo_state$`Airport Count`)] <- 0
+```
+
+Checking 
+
+```{r}
+airport_and_ufo_state %>% 
+  ggplot() +
+  aes(Sightings) + 
+  geom_histogram()
+```
+
+```{r}
+airport_and_ufo_city %>% 
+  ggplot() +
+  aes(`Airport Count`) + 
+  geom_histogram()
+```
+
+
+```{r}
+airport_and_ufo_state %>% 
+  ggplot() +
+  aes(Sightings, `Airport Count`) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+airport_and_ufo_city %>% 
+  ggplot() +
+  aes(Sightings, `Airport Count`) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+airport_and_ufo_city %>% 
+  ggplot() +
+  aes(`Airport Count`, Sightings, group = as.factor(`Airport Count`)) + 
+  geom_boxplot()
+```
+
+```{r}
+write.csv(airport_and_ufo_city, '../webpage/data/airports-and-sightings-city.csv')
+write.csv(airport_and_ufo_state, '../webpage/data/airports-and-sightings-state.csv')
 ```
 
