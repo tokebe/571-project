@@ -1,0 +1,2485 @@
+"state","year","freq","state_code","mean_dur"
+"alabama",1939,1,"AL",300
+"alabama",1951,1,"AL",259200
+"alabama",1962,1,"AL",NA
+"alabama",1965,2,"AL",45
+"alabama",1966,1,"AL",180
+"alabama",1967,3,"AL",170
+"alabama",1968,2,"AL",237900
+"alabama",1969,1,"AL",105
+"alabama",1972,3,"AL",434500
+"alabama",1973,5,"AL",2247300
+"alabama",1974,1,"AL",10
+"alabama",1975,3,"AL",760
+"alabama",1976,2,"AL",15000
+"alabama",1978,3,"AL",864270
+"alabama",1980,3,"AL",1584000
+"alabama",1981,1,"AL",NA
+"alabama",1984,2,"AL",432060
+"alabama",1985,1,"AL",864000
+"alabama",1987,3,"AL",2800
+"alabama",1988,1,"AL",2700
+"alabama",1992,1,"AL",216000
+"alabama",1993,1,"AL",60
+"alabama",1994,4,"AL",750
+"alabama",1995,3,"AL",1296900
+"alabama",1996,2,"AL",330
+"alabama",1997,5,"AL",388968
+"alabama",1998,3,"AL",420
+"alabama",1999,4,"AL",432202.5
+"alabama",2000,2,"AL",480
+"alabama",2001,2,"AL",600
+"alabama",2002,1,"AL",NA
+"alabama",2003,1,"AL",3600
+"alabama",2004,3,"AL",405
+"alabama",2005,5,"AL",346022
+"alabama",2006,28,"AL",457243.962962963
+"alabama",2007,48,"AL",251108.707317073
+"alabama",2008,46,"AL",318603.846153846
+"alabama",2009,31,"AL",310831.034482759
+"alabama",2010,23,"AL",193229.318181818
+"alabama",2011,30,"AL",182929.981481481
+"alabama",2012,64,"AL",406245
+"alabama",2013,75,"AL",289892.272727273
+"alabama",2014,113,"AL",402498.529411765
+"alabama",2015,57,"AL",214672.653061224
+"alabama",2016,44,"AL",421697.368421053
+"alabama",2017,56,"AL",415973.773584906
+"alabama",2018,22,"AL",253792.5
+"alabama",2019,50,"AL",303106.829268293
+"alabama",2020,55,"AL",498787.674418605
+"alabama",2021,3,"AL",460
+"alabama",NA,9,"AL",144215
+"alaska",1949,1,"AK",120
+"alaska",1954,1,"AK",1140
+"alaska",1957,1,"AK",180
+"alaska",1968,1,"AK",60
+"alaska",1969,1,"AK",240
+"alaska",1974,1,"AK",18000
+"alaska",1976,1,"AK",600
+"alaska",1978,3,"AK",400
+"alaska",1987,1,"AK",432000
+"alaska",1988,1,"AK",3600
+"alaska",1989,1,"AK",3600
+"alaska",1995,1,"AK",1036800
+"alaska",1996,1,"AK",720
+"alaska",1997,1,"AK",900
+"alaska",1998,2,"AK",225
+"alaska",2000,2,"AK",950400
+"alaska",2001,2,"AK",900
+"alaska",2002,1,"AK",10
+"alaska",2003,1,"AK",1200
+"alaska",2004,2,"AK",756450
+"alaska",2005,6,"AK",4540
+"alaska",2006,12,"AK",291763.636363636
+"alaska",2007,5,"AK",277200
+"alaska",2008,13,"AK",288933.333333333
+"alaska",2009,15,"AK",917179.285714286
+"alaska",2010,12,"AK",576343.333333333
+"alaska",2011,17,"AK",109200
+"alaska",2012,41,"AK",325969.736842105
+"alaska",2013,47,"AK",146960.930232558
+"alaska",2014,36,"AK",359873.333333333
+"alaska",2015,34,"AK",406347.1875
+"alaska",2016,41,"AK",1154281.76470588
+"alaska",2017,20,"AK",213810
+"alaska",2018,22,"AK",240393.333333333
+"alaska",2019,14,"AK",278406.428571429
+"alaska",2020,14,"AK",134440.909090909
+"alaska",NA,7,"AK",494280
+"arizona",1953,1,"AZ",NA
+"arizona",1959,1,"AZ",60
+"arizona",1968,1,"AZ",14400
+"arizona",1969,2,"AZ",210
+"arizona",1972,1,"AZ",NA
+"arizona",1974,2,"AZ",1800
+"arizona",1975,4,"AZ",570
+"arizona",1976,1,"AZ",240
+"arizona",1977,1,"AZ",120
+"arizona",1978,5,"AZ",2882400
+"arizona",1979,2,"AZ",1410
+"arizona",1980,2,"AZ",2700
+"arizona",1981,1,"AZ",2100
+"arizona",1984,2,"AZ",180
+"arizona",1985,4,"AZ",1200
+"arizona",1986,2,"AZ",390
+"arizona",1987,4,"AZ",438060
+"arizona",1988,6,"AZ",432415
+"arizona",1989,5,"AZ",216492
+"arizona",1990,1,"AZ",1800
+"arizona",1991,1,"AZ",180
+"arizona",1992,3,"AZ",490
+"arizona",1993,8,"AZ",79174266.25
+"arizona",1994,4,"AZ",1387.5
+"arizona",1995,6,"AZ",1160
+"arizona",1996,5,"AZ",648690
+"arizona",1997,38,"AZ",108396.833333333
+"arizona",1998,2,"AZ",240
+"arizona",1999,7,"AZ",1594.28571428571
+"arizona",2000,10,"AZ",493989.142857143
+"arizona",2001,7,"AZ",371522.142857143
+"arizona",2002,9,"AZ",540573.75
+"arizona",2003,9,"AZ",589457.142857143
+"arizona",2004,6,"AZ",87870
+"arizona",2005,18,"AZ",260644.285714286
+"arizona",2006,104,"AZ",151614.674157303
+"arizona",2007,124,"AZ",282238.657142857
+"arizona",2008,161,"AZ",348752.867346939
+"arizona",2009,152,"AZ",342746.274074074
+"arizona",2010,107,"AZ",411489.752688172
+"arizona",2011,150,"AZ",469572.785714286
+"arizona",2012,188,"AZ",279868.606936416
+"arizona",2013,215,"AZ",354945
+"arizona",2014,275,"AZ",324198.218623482
+"arizona",2015,262,"AZ",288766.404958678
+"arizona",2016,217,"AZ",452528.724489796
+"arizona",2017,193,"AZ",369125.689655172
+"arizona",2018,83,"AZ",465849.74025974
+"arizona",2019,187,"AZ",445716.52173913
+"arizona",2020,199,"AZ",428008.301886792
+"arizona",2021,29,"AZ",448475.818181818
+"arizona",NA,20,"AZ",223466.470588235
+"arkansas",1955,1,"AR",864000
+"arkansas",1957,2,"AR",600
+"arkansas",1965,1,"AR",600
+"arkansas",1966,1,"AR",NA
+"arkansas",1967,1,"AR",14400
+"arkansas",1968,2,"AR",150
+"arkansas",1969,1,"AR",300
+"arkansas",1970,1,"AR",14400
+"arkansas",1971,1,"AR",120
+"arkansas",1973,2,"AR",1296900
+"arkansas",1974,1,"AR",NA
+"arkansas",1976,1,"AR",259200
+"arkansas",1979,2,"AR",1320
+"arkansas",1980,1,"AR",600
+"arkansas",1981,1,"AR",NA
+"arkansas",1983,2,"AR",300
+"arkansas",1984,2,"AR",433800
+"arkansas",1985,2,"AR",10800
+"arkansas",1986,1,"AR",30
+"arkansas",1987,4,"AR",495
+"arkansas",1988,1,"AR",NA
+"arkansas",1989,2,"AR",10050
+"arkansas",1991,2,"AR",331170150
+"arkansas",1997,4,"AR",172830
+"arkansas",1999,3,"AR",210
+"arkansas",2000,1,"AR",7200
+"arkansas",2001,1,"AR",60
+"arkansas",2002,2,"AR",5640
+"arkansas",2003,2,"AR",300
+"arkansas",2004,1,"AR",420
+"arkansas",2005,5,"AR",3000
+"arkansas",2006,19,"AR",963635
+"arkansas",2007,25,"AR",595632.272727273
+"arkansas",2008,33,"AR",374534.642857143
+"arkansas",2009,24,"AR",295929.130434783
+"arkansas",2010,42,"AR",627330.46875
+"arkansas",2011,39,"AR",435031.648648649
+"arkansas",2012,50,"AR",165841.276595745
+"arkansas",2013,52,"AR",477571.956521739
+"arkansas",2014,30,"AR",421313.47826087
+"arkansas",2015,39,"AR",616267.272727273
+"arkansas",2016,36,"AR",803982
+"arkansas",2017,39,"AR",450927.5
+"arkansas",2018,37,"AR",377410.3125
+"arkansas",2019,65,"AR",241422.025
+"arkansas",2020,82,"AR",255480
+"arkansas",2021,5,"AR",433350
+"arkansas",NA,8,"AR",456951.428571429
+"california",1928,1,"CA",600
+"california",1942,1,"CA",NA
+"california",1946,1,"CA",864000
+"california",1947,1,"CA",1800
+"california",1948,2,"CA",900
+"california",1950,2,"CA",480
+"california",1951,1,"CA",NA
+"california",1952,3,"CA",432120
+"california",1953,1,"CA",300
+"california",1954,6,"CA",324487.5
+"california",1955,2,"CA",600
+"california",1956,3,"CA",380
+"california",1957,3,"CA",80
+"california",1958,2,"CA",216225
+"california",1959,6,"CA",518832
+"california",1960,5,"CA",97800
+"california",1961,1,"CA",NA
+"california",1962,1,"CA",NA
+"california",1963,3,"CA",1100
+"california",1964,4,"CA",648630
+"california",1965,6,"CA",216770
+"california",1966,9,"CA",110268.75
+"california",1967,8,"CA",1297878.75
+"california",1968,10,"CA",1220
+"california",1969,7,"CA",654355.714285714
+"california",1970,5,"CA",518736
+"california",1971,8,"CA",543745.714285714
+"california",1972,7,"CA",122820
+"california",1973,6,"CA",434160
+"california",1974,10,"CA",108562.5
+"california",1975,8,"CA",309377.142857143
+"california",1976,14,"CA",764880
+"california",1977,12,"CA",217606.458333333
+"california",1978,15,"CA",625543.846153846
+"california",1979,16,"CA",583871.25
+"california",1980,13,"CA",43791
+"california",1981,16,"CA",783.166666666667
+"california",1982,8,"CA",333.75
+"california",1983,9,"CA",912840
+"california",1984,5,"CA",1296984
+"california",1985,8,"CA",494166.428571429
+"california",1986,9,"CA",698.571428571429
+"california",1987,9,"CA",622766.25
+"california",1988,9,"CA",400
+"california",1989,9,"CA",174103.333333333
+"california",1990,20,"CA",91488.9473684211
+"california",1991,8,"CA",260130
+"california",1992,11,"CA",1039833
+"california",1993,13,"CA",217222.5
+"california",1994,21,"CA",119266.25
+"california",1995,17,"CA",1209904
+"california",1996,20,"CA",501888
+"california",1997,20,"CA",239983.235294118
+"california",1998,16,"CA",72548
+"california",1999,18,"CA",81964.875
+"california",2000,25,"CA",623886
+"california",2001,23,"CA",391681.764705882
+"california",2002,15,"CA",568014.642857143
+"california",2003,18,"CA",635763.529411765
+"california",2004,24,"CA",514923.954545455
+"california",2005,27,"CA",432927.6
+"california",2006,368,"CA",251657.522222222
+"california",2007,517,"CA",333828.016771488
+"california",2008,602,"CA",365098.857536765
+"california",2009,545,"CA",286212.485743381
+"california",2010,524,"CA",365379.335483871
+"california",2011,530,"CA",331139.554865424
+"california",2012,645,"CA",549253.057758621
+"california",2013,641,"CA",450783.079526227
+"california",2014,762,"CA",439447.912552891
+"california",2015,702,"CA",410965.562305296
+"california",2016,497,"CA",568453.617977528
+"california",2017,501,"CA",507469.591836735
+"california",2018,278,"CA",432571.088709677
+"california",2019,425,"CA",358576.597938144
+"california",2020,543,"CA",330314.843612335
+"california",2021,60,"CA",535136.320754717
+"california",NA,98,"CA",319343.454545455
+"colorado",1950,2,"CO",108002.5
+"colorado",1954,1,"CO",240
+"colorado",1956,1,"CO",3600
+"colorado",1957,1,"CO",900
+"colorado",1959,1,"CO",3600
+"colorado",1964,1,"CO",900
+"colorado",1965,1,"CO",18000
+"colorado",1967,1,"CO",1200
+"colorado",1968,1,"CO",600
+"colorado",1969,2,"CO",300
+"colorado",1972,2,"CO",120
+"colorado",1974,5,"CO",1512075
+"colorado",1975,1,"CO",1296000
+"colorado",1976,5,"CO",216195
+"colorado",1977,3,"CO",720040
+"colorado",1978,1,"CO",900
+"colorado",1979,2,"CO",1036800
+"colorado",1980,2,"CO",216150
+"colorado",1981,3,"CO",540030
+"colorado",1983,2,"CO",432450
+"colorado",1986,1,"CO",60
+"colorado",1987,4,"CO",162712.5
+"colorado",1988,1,"CO",60
+"colorado",1989,2,"CO",330
+"colorado",1990,1,"CO",1296000
+"colorado",1991,1,"CO",3888000
+"colorado",1992,2,"CO",1050
+"colorado",1993,3,"CO",867900
+"colorado",1994,1,"CO",2592000
+"colorado",1995,2,"CO",1296600
+"colorado",1996,3,"CO",660
+"colorado",1997,4,"CO",219615
+"colorado",1998,3,"CO",870100
+"colorado",1999,2,"CO",1296030
+"colorado",2000,3,"CO",580300
+"colorado",2001,6,"CO",173244
+"colorado",2002,1,"CO",30
+"colorado",2003,1,"CO",300
+"colorado",2004,9,"CO",108870.125
+"colorado",2005,11,"CO",282225
+"colorado",2006,72,"CO",633473.180327869
+"colorado",2007,78,"CO",351351.081081081
+"colorado",2008,95,"CO",391934.943181818
+"colorado",2009,84,"CO",508509.743589744
+"colorado",2010,61,"CO",1197480.26785714
+"colorado",2011,104,"CO",274862.547368421
+"colorado",2012,110,"CO",412869.841584158
+"colorado",2013,129,"CO",389241.176470588
+"colorado",2014,185,"CO",473287.735849057
+"colorado",2015,154,"CO",443539.51048951
+"colorado",2016,184,"CO",393592.189349112
+"colorado",2017,145,"CO",294440.243902439
+"colorado",2018,104,"CO",1148316.02272727
+"colorado",2019,112,"CO",436380
+"colorado",2020,203,"CO",348070.131578947
+"colorado",2021,24,"CO",239530
+"colorado",NA,22,"CO",149949.230769231
+"connecticut",1960,1,"CT",300
+"connecticut",1965,1,"CT",120
+"connecticut",1967,2,"CT",1296180
+"connecticut",1969,1,"CT",120
+"connecticut",1970,2,"CT",390
+"connecticut",1971,1,"CT",600
+"connecticut",1972,1,"CT",1296000
+"connecticut",1973,1,"CT",900
+"connecticut",1974,1,"CT",10800
+"connecticut",1975,2,"CT",360
+"connecticut",1977,2,"CT",600
+"connecticut",1978,2,"CT",648300
+"connecticut",1980,2,"CT",545400
+"connecticut",1984,1,"CT",90
+"connecticut",1985,1,"CT",300
+"connecticut",1988,2,"CT",1950
+"connecticut",1989,1,"CT",7776000
+"connecticut",1992,3,"CT",172.5
+"connecticut",1994,1,"CT",300
+"connecticut",1995,2,"CT",518700
+"connecticut",1997,2,"CT",450
+"connecticut",1999,1,"CT",150
+"connecticut",2000,1,"CT",600
+"connecticut",2001,1,"CT",1728000
+"connecticut",2002,1,"CT",600
+"connecticut",2004,1,"CT",NA
+"connecticut",2005,1,"CT",259200
+"connecticut",2006,8,"CT",119370
+"connecticut",2007,18,"CT",219848.571428571
+"connecticut",2008,22,"CT",75756.6666666667
+"connecticut",2009,24,"CT",303987.25
+"connecticut",2010,17,"CT",454046.142857143
+"connecticut",2011,31,"CT",238492.857142857
+"connecticut",2012,62,"CT",113312.678571429
+"connecticut",2013,47,"CT",572487.391304348
+"connecticut",2014,37,"CT",329990.322580645
+"connecticut",2015,38,"CT",343647.1875
+"connecticut",2016,24,"CT",671634.285714286
+"connecticut",2017,33,"CT",429398.888888889
+"connecticut",2018,38,"CT",416578.846153846
+"connecticut",2019,44,"CT",457539.642857143
+"connecticut",2020,49,"CT",418981.764705882
+"connecticut",2021,10,"CT",693654
+"connecticut",NA,6,"CT",370.583333333333
+"delaware",1949,1,"DE",60
+"delaware",1967,1,"DE",720
+"delaware",1969,1,"DE",60
+"delaware",1970,1,"DE",1050
+"delaware",1972,1,"DE",NA
+"delaware",1974,1,"DE",900
+"delaware",1976,1,"DE",120
+"delaware",1982,1,"DE",2592000
+"delaware",1984,2,"DE",420
+"delaware",1988,1,"DE",2592000
+"delaware",1990,1,"DE",2592000
+"delaware",1993,1,"DE",3600
+"delaware",1995,1,"DE",60
+"delaware",1999,2,"DE",972060
+"delaware",2003,1,"DE",120
+"delaware",2006,9,"DE",339.285714285714
+"delaware",2007,13,"DE",12930.5454545455
+"delaware",2008,9,"DE",221827.5
+"delaware",2009,9,"DE",1320
+"delaware",2010,9,"DE",989353.333333333
+"delaware",2011,14,"DE",149929.416666667
+"delaware",2012,26,"DE",497736.666666667
+"delaware",2013,12,"DE",235745
+"delaware",2014,32,"DE",881116.451612903
+"delaware",2015,25,"DE",733230
+"delaware",2016,18,"DE",898532.307692308
+"delaware",2017,18,"DE",511631.666666667
+"delaware",2018,7,"DE",617725.714285714
+"delaware",2019,13,"DE",576980
+"delaware",2020,23,"DE",389241.25
+"delaware",2021,1,"DE",432000
+"delaware",NA,1,"DE",NA
+"florida",1945,1,"FL",300
+"florida",1947,1,"FL",360
+"florida",1950,1,"FL",864000
+"florida",1952,4,"FL",14400
+"florida",1955,2,"FL",300
+"florida",1959,1,"FL",2250
+"florida",1961,2,"FL",210
+"florida",1963,2,"FL",2100
+"florida",1964,2,"FL",1575
+"florida",1965,3,"FL",2400
+"florida",1966,2,"FL",900
+"florida",1967,4,"FL",320
+"florida",1968,3,"FL",675
+"florida",1969,5,"FL",288200
+"florida",1970,4,"FL",740
+"florida",1971,2,"FL",960
+"florida",1972,4,"FL",390
+"florida",1973,2,"FL",7725
+"florida",1974,4,"FL",252000
+"florida",1975,4,"FL",217080
+"florida",1976,9,"FL",670
+"florida",1977,5,"FL",294462
+"florida",1978,3,"FL",3950
+"florida",1979,5,"FL",486
+"florida",1980,4,"FL",120
+"florida",1981,8,"FL",371065.714285714
+"florida",1982,2,"FL",37.5
+"florida",1983,3,"FL",300
+"florida",1984,5,"FL",810
+"florida",1985,12,"FL",377329.090909091
+"florida",1986,5,"FL",648420
+"florida",1987,5,"FL",450
+"florida",1988,4,"FL",90
+"florida",1989,3,"FL",504100
+"florida",1990,3,"FL",900
+"florida",1991,3,"FL",864400
+"florida",1992,1,"FL",300
+"florida",1993,2,"FL",360
+"florida",1994,7,"FL",259552
+"florida",1995,7,"FL",864330
+"florida",1996,6,"FL",1008355
+"florida",1997,15,"FL",420652.8
+"florida",1998,11,"FL",275918.636363636
+"florida",1999,5,"FL",108062.5
+"florida",2000,8,"FL",63081.4285714286
+"florida",2001,9,"FL",446.25
+"florida",2002,8,"FL",864162.857142857
+"florida",2003,8,"FL",765480
+"florida",2004,19,"FL",298401.176470588
+"florida",2005,22,"FL",347430
+"florida",2006,158,"FL",325254.417910448
+"florida",2007,227,"FL",404093.898550725
+"florida",2008,272,"FL",332942.353909465
+"florida",2009,224,"FL",417157.056097561
+"florida",2010,203,"FL",258337.878306878
+"florida",2011,307,"FL",372034.833333333
+"florida",2012,410,"FL",401577.534246575
+"florida",2013,497,"FL",361897.991071429
+"florida",2014,579,"FL",399841.575875486
+"florida",2015,414,"FL",429077.843243243
+"florida",2016,319,"FL",466267.103942652
+"florida",2017,289,"FL",2937785.09885932
+"florida",2018,205,"FL",366146.034482759
+"florida",2019,363,"FL",614537.22027972
+"florida",2020,356,"FL",311687.137931034
+"florida",2021,28,"FL",173781.666666667
+"florida",NA,40,"FL",77133.64
+"georgia",1942,1,"GA",150
+"georgia",1958,3,"GA",190
+"georgia",1962,1,"GA",180
+"georgia",1963,1,"GA",1200
+"georgia",1964,3,"GA",540
+"georgia",1967,4,"GA",570
+"georgia",1968,6,"GA",780
+"georgia",1969,2,"GA",307.5
+"georgia",1971,3,"GA",950
+"georgia",1972,4,"GA",90
+"georgia",1973,2,"GA",750
+"georgia",1974,2,"GA",240
+"georgia",1975,3,"GA",72420
+"georgia",1976,2,"GA",195
+"georgia",1977,1,"GA",2592000
+"georgia",1978,1,"GA",432000
+"georgia",1979,1,"GA",1944000
+"georgia",1980,2,"GA",1296600
+"georgia",1983,1,"GA",60
+"georgia",1984,7,"GA",993684
+"georgia",1985,1,"GA",1800
+"georgia",1986,4,"GA",43335
+"georgia",1988,1,"GA",180
+"georgia",1989,2,"GA",432120
+"georgia",1990,4,"GA",140
+"georgia",1991,3,"GA",110
+"georgia",1992,1,"GA",300
+"georgia",1993,1,"GA",NA
+"georgia",1994,1,"GA",1296000
+"georgia",1995,4,"GA",547600
+"georgia",1996,3,"GA",864120
+"georgia",1997,1,"GA",120
+"georgia",1998,2,"GA",420
+"georgia",1999,1,"GA",300
+"georgia",2000,4,"GA",432112.5
+"georgia",2001,7,"GA",115600
+"georgia",2002,4,"GA",577600
+"georgia",2003,6,"GA",1230
+"georgia",2004,6,"GA",158565
+"georgia",2005,8,"GA",680677.5
+"georgia",2006,63,"GA",504098.727272727
+"georgia",2007,94,"GA",295898.522727273
+"georgia",2008,94,"GA",248254.130952381
+"georgia",2009,82,"GA",407208.760273973
+"georgia",2010,64,"GA",397581.538461538
+"georgia",2011,89,"GA",311109.9625
+"georgia",2012,119,"GA",295478.844036697
+"georgia",2013,133,"GA",461383.983050847
+"georgia",2014,212,"GA",447709.047619048
+"georgia",2015,125,"GA",563261.578947368
+"georgia",2016,116,"GA",263074.615384615
+"georgia",2017,109,"GA",492425.684210526
+"georgia",2018,67,"GA",308719.523809524
+"georgia",2019,146,"GA",590217.980769231
+"georgia",2020,119,"GA",279103.012048193
+"georgia",2021,8,"GA",72380
+"georgia",NA,16,"GA",61659
+"hawaii",1966,1,"HI",330
+"hawaii",1967,1,"HI",8
+"hawaii",1973,2,"HI",864150
+"hawaii",1977,1,"HI",600
+"hawaii",1980,1,"HI",390
+"hawaii",1985,1,"HI",2700
+"hawaii",1990,1,"HI",3600
+"hawaii",1993,1,"HI",5400
+"hawaii",1994,1,"HI",60
+"hawaii",1995,2,"HI",864300
+"hawaii",1997,2,"HI",2850
+"hawaii",2000,2,"HI",3630
+"hawaii",2002,1,"HI",NA
+"hawaii",2006,8,"HI",23265
+"hawaii",2007,15,"HI",486470
+"hawaii",2008,10,"HI",317073.333333333
+"hawaii",2009,17,"HI",246413.076923077
+"hawaii",2010,24,"HI",120808.043478261
+"hawaii",2011,19,"HI",81834.375
+"hawaii",2012,27,"HI",551985
+"hawaii",2013,34,"HI",305693.823529412
+"hawaii",2014,50,"HI",388493.571428571
+"hawaii",2015,20,"HI",422826.666666667
+"hawaii",2016,22,"HI",488724
+"hawaii",2017,11,"HI",1426470
+"hawaii",2018,7,"HI",50074.2857142857
+"hawaii",2019,33,"HI",440835
+"hawaii",2020,33,"HI",1005213
+"hawaii",2021,1,"HI",2592000
+"hawaii",NA,4,"HI",500
+"idaho",1932,1,"ID",NA
+"idaho",1950,1,"ID",864000
+"idaho",1957,1,"ID",180
+"idaho",1961,1,"ID",432000
+"idaho",1974,1,"ID",14400
+"idaho",1975,1,"ID",1050
+"idaho",1976,2,"ID",300
+"idaho",1978,2,"ID",434700
+"idaho",1983,1,"ID",900
+"idaho",1986,1,"ID",300
+"idaho",1989,3,"ID",563.333333333333
+"idaho",1990,1,"ID",NA
+"idaho",1991,4,"ID",154050
+"idaho",1993,1,"ID",180
+"idaho",1994,2,"ID",302550
+"idaho",1996,2,"ID",172950
+"idaho",1998,1,"ID",120
+"idaho",1999,1,"ID",864000
+"idaho",2000,1,"ID",240
+"idaho",2001,2,"ID",432015
+"idaho",2002,3,"ID",432900
+"idaho",2004,8,"ID",669766.5625
+"idaho",2005,5,"ID",235.625
+"idaho",2006,28,"ID",448572.272727273
+"idaho",2007,14,"ID",204381.571428571
+"idaho",2008,21,"ID",478206
+"idaho",2009,23,"ID",590572.090909091
+"idaho",2010,29,"ID",396450.384615385
+"idaho",2011,43,"ID",216443.25
+"idaho",2012,53,"ID",259960.276595745
+"idaho",2013,97,"ID",552594.352941177
+"idaho",2014,84,"ID",307249.5
+"idaho",2015,88,"ID",509318.888888889
+"idaho",2016,69,"ID",393779.047619048
+"idaho",2017,47,"ID",340947.272727273
+"idaho",2018,43,"ID",471714.324324324
+"idaho",2019,94,"ID",682633.448275862
+"idaho",2020,120,"ID",486871.348314607
+"idaho",2021,12,"ID",285393
+"idaho",NA,9,"ID",219960
+"illinois",1953,1,"IL",120
+"illinois",1954,1,"IL",604800
+"illinois",1958,1,"IL",600
+"illinois",1962,2,"IL",1200
+"illinois",1964,3,"IL",1728040
+"illinois",1965,3,"IL",1152000
+"illinois",1966,3,"IL",1080030
+"illinois",1967,3,"IL",864340
+"illinois",1968,3,"IL",1050
+"illinois",1969,5,"IL",1896
+"illinois",1970,5,"IL",520872
+"illinois",1972,2,"IL",432030
+"illinois",1973,2,"IL",864150
+"illinois",1974,4,"IL",3607.5
+"illinois",1975,5,"IL",864150
+"illinois",1976,3,"IL",600
+"illinois",1977,4,"IL",427.5
+"illinois",1978,3,"IL",1700
+"illinois",1979,6,"IL",360180
+"illinois",1980,4,"IL",119250
+"illinois",1981,2,"IL",660
+"illinois",1982,3,"IL",1944150
+"illinois",1983,2,"IL",1296090
+"illinois",1984,3,"IL",1360
+"illinois",1985,2,"IL",1296150
+"illinois",1986,1,"IL",864000
+"illinois",1987,5,"IL",675
+"illinois",1988,4,"IL",742.5
+"illinois",1989,4,"IL",175
+"illinois",1990,2,"IL",4500
+"illinois",1992,4,"IL",720220
+"illinois",1994,1,"IL",900
+"illinois",1995,2,"IL",1200
+"illinois",1996,6,"IL",199.5
+"illinois",1997,6,"IL",144410
+"illinois",1998,6,"IL",382.5
+"illinois",1999,8,"IL",62545.7142857143
+"illinois",2000,8,"IL",540281.25
+"illinois",2001,7,"IL",234
+"illinois",2002,10,"IL",1512405.83333333
+"illinois",2003,2,"IL",180
+"illinois",2004,12,"IL",481036.666666667
+"illinois",2005,15,"IL",432385.384615385
+"illinois",2006,105,"IL",489039.203125
+"illinois",2007,164,"IL",308305.138157895
+"illinois",2008,153,"IL",517634.277777778
+"illinois",2009,135,"IL",376072.596638655
+"illinois",2010,197,"IL",475714.16
+"illinois",2011,204,"IL",259236.702631579
+"illinois",2012,258,"IL",363438.164556962
+"illinois",2013,168,"IL",511710.6
+"illinois",2014,163,"IL",530405.510204082
+"illinois",2015,175,"IL",402615.906040268
+"illinois",2016,148,"IL",415875.447761194
+"illinois",2017,85,"IL",502692.692307692
+"illinois",2018,99,"IL",293630.649350649
+"illinois",2019,151,"IL",400238.534482759
+"illinois",2020,155,"IL",332687.654867257
+"illinois",2021,8,"IL",216540
+"illinois",NA,21,"IL",155635
+"indiana",1940,1,"IN",1800
+"indiana",1948,1,"IN",NA
+"indiana",1953,1,"IN",1800
+"indiana",1954,1,"IN",604800
+"indiana",1957,2,"IN",3600
+"indiana",1960,1,"IN",300
+"indiana",1961,1,"IN",2592000
+"indiana",1963,1,"IN",300
+"indiana",1966,4,"IN",648465
+"indiana",1969,1,"IN",1200
+"indiana",1970,5,"IN",3888900
+"indiana",1971,2,"IN",960
+"indiana",1972,2,"IN",649800
+"indiana",1973,4,"IN",1575
+"indiana",1974,2,"IN",217350
+"indiana",1975,3,"IN",3840
+"indiana",1976,1,"IN",300
+"indiana",1977,3,"IN",1298475
+"indiana",1978,1,"IN",900
+"indiana",1980,3,"IN",2640
+"indiana",1981,2,"IN",259350
+"indiana",1982,2,"IN",60
+"indiana",1983,3,"IN",1200
+"indiana",1985,1,"IN",300
+"indiana",1987,2,"IN",510
+"indiana",1988,2,"IN",675
+"indiana",1989,1,"IN",600
+"indiana",1990,2,"IN",450
+"indiana",1991,4,"IN",262.5
+"indiana",1993,2,"IN",300
+"indiana",1994,4,"IN",324150
+"indiana",1995,3,"IN",210
+"indiana",1996,3,"IN",1152100
+"indiana",1997,6,"IN",288250
+"indiana",1998,5,"IN",315
+"indiana",1999,3,"IN",1296900
+"indiana",2000,2,"IN",330
+"indiana",2002,4,"IN",432945
+"indiana",2003,3,"IN",250
+"indiana",2004,8,"IN",505050
+"indiana",2005,3,"IN",446800
+"indiana",2006,44,"IN",385293
+"indiana",2007,71,"IN",393140
+"indiana",2008,119,"IN",221343.953703704
+"indiana",2009,68,"IN",245680.19047619
+"indiana",2010,94,"IN",341021.331325301
+"indiana",2011,82,"IN",385771.297297297
+"indiana",2012,131,"IN",292381.363636364
+"indiana",2013,135,"IN",509660.975609756
+"indiana",2014,132,"IN",289521
+"indiana",2015,75,"IN",283741.343283582
+"indiana",2016,74,"IN",475127.903225806
+"indiana",2017,50,"IN",418364.042553191
+"indiana",2018,73,"IN",346004.482758621
+"indiana",2019,154,"IN",629006.928571429
+"indiana",2020,142,"IN",371873.4375
+"indiana",2021,3,"IN",60
+"indiana",NA,17,"IN",5256886.66666667
+"iowa",1957,1,"IA",7776000
+"iowa",1958,1,"IA",1512000
+"iowa",1965,1,"IA",1728000
+"iowa",1968,2,"IA",3888000
+"iowa",1970,1,"IA",300
+"iowa",1971,2,"IA",780
+"iowa",1972,1,"IA",180
+"iowa",1973,1,"IA",3600
+"iowa",1975,1,"IA",600
+"iowa",1976,2,"IA",758100
+"iowa",1977,1,"IA",180
+"iowa",1978,3,"IA",864240
+"iowa",1981,2,"IA",10530
+"iowa",1982,1,"IA",60
+"iowa",1983,2,"IA",10800
+"iowa",1986,2,"IA",120
+"iowa",1989,1,"IA",900
+"iowa",1992,2,"IA",450
+"iowa",1993,1,"IA",777600
+"iowa",1997,1,"IA",900
+"iowa",1998,3,"IA",1728070
+"iowa",1999,1,"IA",3600
+"iowa",2002,2,"IA",1800
+"iowa",2003,3,"IA",216170
+"iowa",2005,6,"IA",1037760
+"iowa",2006,23,"IA",371418.619047619
+"iowa",2007,48,"IA",171783.719512195
+"iowa",2008,31,"IA",566034.62962963
+"iowa",2009,41,"IA",212102.111111111
+"iowa",2010,46,"IA",481037.435897436
+"iowa",2011,43,"IA",444103.026315789
+"iowa",2012,93,"IA",435934.651898734
+"iowa",2013,76,"IA",281891.571428571
+"iowa",2014,68,"IA",527437.5
+"iowa",2015,45,"IA",783635.25
+"iowa",2016,40,"IA",668932.5
+"iowa",2017,41,"IA",663961.538461538
+"iowa",2018,32,"IA",374991.25
+"iowa",2019,41,"IA",154668.75
+"iowa",2020,67,"IA",152491.754385965
+"iowa",2021,5,"IA",173352
+"iowa",NA,7,"IA",136.25
+"kansas",1954,1,"KS",180
+"kansas",1956,1,"KS",300
+"kansas",1958,1,"KS",NA
+"kansas",1963,1,"KS",5184000
+"kansas",1965,1,"KS",450
+"kansas",1967,5,"KS",450
+"kansas",1969,1,"KS",691200
+"kansas",1971,1,"KS",1200
+"kansas",1973,2,"KS",1728000
+"kansas",1974,3,"KS",290500
+"kansas",1975,1,"KS",172800
+"kansas",1976,1,"KS",300
+"kansas",1982,1,"KS",120
+"kansas",1983,1,"KS",1296000
+"kansas",1985,2,"KS",900
+"kansas",1987,3,"KS",1298420
+"kansas",1989,1,"KS",2592000
+"kansas",1991,2,"KS",3600
+"kansas",1994,2,"KS",432030
+"kansas",1996,2,"KS",864150
+"kansas",1999,2,"KS",345630
+"kansas",2000,2,"KS",972600
+"kansas",2001,3,"KS",620
+"kansas",2002,2,"KS",648300
+"kansas",2003,2,"KS",648000
+"kansas",2004,1,"KS",180
+"kansas",2005,5,"KS",1209780
+"kansas",2006,28,"KS",450022.2
+"kansas",2007,44,"KS",307473.625
+"kansas",2008,27,"KS",712903.8
+"kansas",2009,35,"KS",329740
+"kansas",2010,47,"KS",268374.333333333
+"kansas",2011,41,"KS",422496.487179487
+"kansas",2012,54,"KS",902023.823529412
+"kansas",2013,48,"KS",319116.976744186
+"kansas",2014,66,"KS",447404.745762712
+"kansas",2015,41,"KS",235536.923076923
+"kansas",2016,41,"KS",435086.052631579
+"kansas",2017,48,"KS",312497.045454545
+"kansas",2018,30,"KS",275404.285714286
+"kansas",2019,38,"KS",417988
+"kansas",2020,64,"KS",358346.568627451
+"kansas",2021,4,"KS",576220
+"kansas",NA,13,"KS",87320
+"kentucky",1943,1,"KY",1800
+"kentucky",1950,1,"KY",60
+"kentucky",1956,1,"KY",NA
+"kentucky",1958,1,"KY",3888000
+"kentucky",1960,1,"KY",7776000
+"kentucky",1962,1,"KY",90
+"kentucky",1965,1,"KY",1200
+"kentucky",1967,2,"KY",690
+"kentucky",1968,3,"KY",900
+"kentucky",1970,2,"KY",690
+"kentucky",1973,3,"KY",950
+"kentucky",1974,6,"KY",324975
+"kentucky",1975,3,"KY",680
+"kentucky",1976,2,"KY",432150
+"kentucky",1977,4,"KY",9150
+"kentucky",1979,1,"KY",60
+"kentucky",1980,2,"KY",900
+"kentucky",1981,2,"KY",433800
+"kentucky",1982,2,"KY",900
+"kentucky",1984,4,"KY",600
+"kentucky",1986,3,"KY",150
+"kentucky",1987,1,"KY",300
+"kentucky",1988,3,"KY",864100
+"kentucky",1989,1,"KY",180
+"kentucky",1990,2,"KY",675
+"kentucky",1991,1,"KY",300
+"kentucky",1992,2,"KY",1200
+"kentucky",1993,4,"KY",550
+"kentucky",1994,5,"KY",1814598
+"kentucky",1995,3,"KY",210
+"kentucky",1996,1,"KY",900
+"kentucky",1997,2,"KY",1080090
+"kentucky",1998,1,"KY",90
+"kentucky",1999,2,"KY",2593350
+"kentucky",2000,1,"KY",660
+"kentucky",2001,3,"KY",1050
+"kentucky",2002,2,"KY",10
+"kentucky",2003,3,"KY",600
+"kentucky",2004,3,"KY",180
+"kentucky",2005,7,"KY",679285.714285714
+"kentucky",2006,38,"KY",178436.193548387
+"kentucky",2007,48,"KY",209254.23255814
+"kentucky",2008,62,"KY",187924.719298246
+"kentucky",2009,49,"KY",226216.788888889
+"kentucky",2010,48,"KY",330657.636363636
+"kentucky",2011,69,"KY",368365.449152542
+"kentucky",2012,58,"KY",586060.188679245
+"kentucky",2013,89,"KY",655726.363636364
+"kentucky",2014,79,"KY",293510.735294118
+"kentucky",2015,60,"KY",336780.576923077
+"kentucky",2016,47,"KY",345488.863636364
+"kentucky",2017,52,"KY",466681.170212766
+"kentucky",2018,36,"KY",272712
+"kentucky",2019,61,"KY",525467.547169811
+"kentucky",2020,74,"KY",347475.692307692
+"kentucky",2021,3,"KY",2250
+"kentucky",NA,21,"KY",932088.461538462
+"louisiana",1945,1,"LA",600
+"louisiana",1953,1,"LA",300
+"louisiana",1958,1,"LA",7776000
+"louisiana",1962,1,"LA",240
+"louisiana",1964,1,"LA",300
+"louisiana",1965,2,"LA",3456000
+"louisiana",1967,1,"LA",60
+"louisiana",1969,1,"LA",NA
+"louisiana",1973,1,"LA",345600
+"louisiana",1974,5,"LA",1382417
+"louisiana",1975,2,"LA",18000
+"louisiana",1976,2,"LA",180
+"louisiana",1977,1,"LA",1200
+"louisiana",1978,3,"LA",300
+"louisiana",1979,4,"LA",648225
+"louisiana",1980,1,"LA",360
+"louisiana",1981,1,"LA",360
+"louisiana",1982,2,"LA",432600
+"louisiana",1983,2,"LA",108150
+"louisiana",1985,2,"LA",1050
+"louisiana",1987,1,"LA",15
+"louisiana",1988,3,"LA",1100
+"louisiana",1989,2,"LA",300
+"louisiana",1990,2,"LA",259200
+"louisiana",1993,1,"LA",120
+"louisiana",1994,2,"LA",3240000
+"louisiana",1996,2,"LA",1620000
+"louisiana",1997,1,"LA",600
+"louisiana",1998,4,"LA",54930
+"louisiana",1999,2,"LA",1050
+"louisiana",2000,4,"LA",432820
+"louisiana",2001,1,"LA",300
+"louisiana",2002,1,"LA",900
+"louisiana",2003,1,"LA",5184000
+"louisiana",2004,1,"LA",3456000
+"louisiana",2005,4,"LA",2797.5
+"louisiana",2006,22,"LA",593349.722222222
+"louisiana",2007,22,"LA",327370
+"louisiana",2008,42,"LA",101482.125
+"louisiana",2009,54,"LA",228654.705882353
+"louisiana",2010,26,"LA",318735.192307692
+"louisiana",2011,29,"LA",436223.652173913
+"louisiana",2012,40,"LA",418797.857142857
+"louisiana",2013,47,"LA",383029.333333333
+"louisiana",2014,99,"LA",522607.863636364
+"louisiana",2015,59,"LA",451074.807692308
+"louisiana",2016,44,"LA",130457.142857143
+"louisiana",2017,30,"LA",412304.444444444
+"louisiana",2018,21,"LA",484111.428571429
+"louisiana",2019,38,"LA",271671.909090909
+"louisiana",2020,31,"LA",97640.7931034483
+"louisiana",NA,9,"LA",36972
+"maine",1946,1,"ME",864000
+"maine",1964,1,"ME",3600
+"maine",1967,1,"ME",300
+"maine",1974,1,"ME",120
+"maine",1984,1,"ME",900
+"maine",1992,1,"ME",300
+"maine",1995,2,"ME",1200
+"maine",1999,1,"ME",120
+"maine",2002,2,"ME",5550
+"maine",2005,1,"ME",900
+"maine",2006,5,"ME",547.5
+"maine",2007,4,"ME",217.5
+"maine",2008,6,"ME",108200
+"maine",2009,6,"ME",174582
+"maine",2010,7,"ME",679149.142857143
+"maine",2011,10,"ME",261688.5
+"maine",2012,31,"ME",334114.137931034
+"maine",2013,18,"ME",270836.470588235
+"maine",2014,20,"ME",546446.842105263
+"maine",2015,14,"ME",236105.454545455
+"maine",2016,14,"ME",133587.692307692
+"maine",2017,3,"ME",390
+"maine",2018,5,"ME",961200
+"maine",2019,7,"ME",1148305.71428571
+"maine",2020,16,"ME",216835
+"maine",NA,3,"ME",750
+"maryland",1946,1,"MD",600
+"maryland",1948,2,"MD",94
+"maryland",1949,1,"MD",150
+"maryland",1950,1,"MD",600
+"maryland",1960,1,"MD",300
+"maryland",1963,2,"MD",60
+"maryland",1964,1,"MD",2592000
+"maryland",1965,1,"MD",300
+"maryland",1966,1,"MD",300
+"maryland",1967,1,"MD",300
+"maryland",1968,2,"MD",60
+"maryland",1970,1,"MD",300
+"maryland",1971,1,"MD",900
+"maryland",1973,4,"MD",345
+"maryland",1975,4,"MD",3340
+"maryland",1977,6,"MD",1728210
+"maryland",1978,1,"MD",180
+"maryland",1979,4,"MD",86467.5
+"maryland",1981,1,"MD",1800
+"maryland",1984,1,"MD",900
+"maryland",1985,1,"MD",NA
+"maryland",1988,1,"MD",3
+"maryland",1989,3,"MD",87700
+"maryland",1990,3,"MD",1350
+"maryland",1992,3,"MD",640
+"maryland",1993,4,"MD",202965
+"maryland",1994,1,"MD",120
+"maryland",1995,1,"MD",300
+"maryland",1996,2,"MD",600
+"maryland",1997,1,"MD",600
+"maryland",1998,2,"MD",120
+"maryland",2000,2,"MD",300
+"maryland",2001,1,"MD",1800
+"maryland",2002,8,"MD",238263.75
+"maryland",2004,2,"MD",1598400
+"maryland",2005,1,"MD",1500
+"maryland",2006,24,"MD",180836.086956522
+"maryland",2007,37,"MD",441035.142857143
+"maryland",2008,51,"MD",247366.042553191
+"maryland",2009,36,"MD",1178364.41176471
+"maryland",2010,39,"MD",239815
+"maryland",2011,63,"MD",97132.7777777778
+"maryland",2012,98,"MD",344523.956043956
+"maryland",2013,91,"MD",285840.722891566
+"maryland",2014,124,"MD",499951.578947368
+"maryland",2015,92,"MD",753008.795180723
+"maryland",2016,81,"MD",346890
+"maryland",2017,84,"MD",461802.077922078
+"maryland",2018,47,"MD",239033.571428571
+"maryland",2019,49,"MD",396943.695652174
+"maryland",2020,63,"MD",261438.888888889
+"maryland",2021,6,"MD",518700
+"maryland",NA,8,"MD",847110.2
+"massachusetts",1953,1,"MA",180
+"massachusetts",1956,1,"MA",2700
+"massachusetts",1959,1,"MA",3456000
+"massachusetts",1960,1,"MA",1200
+"massachusetts",1962,1,"MA",300
+"massachusetts",1965,1,"MA",60
+"massachusetts",1968,1,"MA",1200
+"massachusetts",1971,1,"MA",3600
+"massachusetts",1973,1,"MA",NA
+"massachusetts",1975,1,"MA",120
+"massachusetts",1976,3,"MA",576140
+"massachusetts",1977,2,"MA",675
+"massachusetts",1978,2,"MA",225
+"massachusetts",1983,3,"MA",200
+"massachusetts",1985,2,"MA",432150
+"massachusetts",1986,1,"MA",120
+"massachusetts",1987,2,"MA",240
+"massachusetts",1988,2,"MA",648360
+"massachusetts",1990,3,"MA",605700
+"massachusetts",1991,1,"MA",180
+"massachusetts",1994,4,"MA",194970
+"massachusetts",1995,1,"MA",900
+"massachusetts",1996,1,"MA",3600
+"massachusetts",1997,3,"MA",580
+"massachusetts",2004,2,"MA",432255
+"massachusetts",2005,3,"MA",740
+"massachusetts",2006,19,"MA",275538.947368421
+"massachusetts",2007,25,"MA",302624.325
+"massachusetts",2008,27,"MA",218375.48
+"massachusetts",2009,30,"MA",361055.769230769
+"massachusetts",2010,41,"MA",539787.703125
+"massachusetts",2011,42,"MA",214336.675
+"massachusetts",2012,67,"MA",361901.129032258
+"massachusetts",2013,93,"MA",347203.902439024
+"massachusetts",2014,83,"MA",358996.8
+"massachusetts",2015,63,"MA",459778.909090909
+"massachusetts",2016,39,"MA",529408.181818182
+"massachusetts",2017,42,"MA",527258.918918919
+"massachusetts",2018,23,"MA",368383.5
+"massachusetts",2019,35,"MA",468116.25
+"massachusetts",2020,57,"MA",444972.615384615
+"massachusetts",NA,8,"MA",1454450
+"michigan",1947,1,"MI",1200
+"michigan",1950,1,"MI",600
+"michigan",1954,2,"MI",561600
+"michigan",1955,1,"MI",1800
+"michigan",1957,1,"MI",300
+"michigan",1959,1,"MI",1800
+"michigan",1962,2,"MI",375
+"michigan",1963,1,"MI",120
+"michigan",1964,3,"MI",560
+"michigan",1965,4,"MI",288190
+"michigan",1966,7,"MI",157008
+"michigan",1968,2,"MI",1830
+"michigan",1969,1,"MI",2592000
+"michigan",1970,4,"MI",129690
+"michigan",1971,1,"MI",3456000
+"michigan",1972,1,"MI",NA
+"michigan",1973,3,"MI",700
+"michigan",1974,3,"MI",950
+"michigan",1975,4,"MI",4635
+"michigan",1976,4,"MI",1057.5
+"michigan",1977,7,"MI",62425.7142857143
+"michigan",1978,8,"MI",1263.75
+"michigan",1979,4,"MI",735
+"michigan",1980,6,"MI",518712
+"michigan",1981,2,"MI",2400
+"michigan",1982,2,"MI",750
+"michigan",1983,6,"MI",552
+"michigan",1984,1,"MI",1500
+"michigan",1986,6,"MI",432920
+"michigan",1987,3,"MI",540
+"michigan",1988,3,"MI",120
+"michigan",1990,6,"MI",448.333333333333
+"michigan",1991,4,"MI",918067.5
+"michigan",1992,1,"MI",120
+"michigan",1993,2,"MI",480
+"michigan",1994,5,"MI",1212
+"michigan",1995,11,"MI",707344.090909091
+"michigan",1996,4,"MI",216203.75
+"michigan",1997,11,"MI",410916.666666667
+"michigan",1998,7,"MI",831.428571428571
+"michigan",1999,8,"MI",1161442.5
+"michigan",2000,2,"MI",90
+"michigan",2001,4,"MI",489620
+"michigan",2002,3,"MI",29500
+"michigan",2003,3,"MI",432150
+"michigan",2004,4,"MI",302.666666666667
+"michigan",2005,10,"MI",170025
+"michigan",2006,70,"MI",327019.152542373
+"michigan",2007,111,"MI",383406.370192308
+"michigan",2008,112,"MI",559593.069306931
+"michigan",2009,97,"MI",322708.528409091
+"michigan",2010,93,"MI",417681.398809524
+"michigan",2011,126,"MI",382032.410714286
+"michigan",2012,179,"MI",312869.790419162
+"michigan",2013,145,"MI",646156.278195489
+"michigan",2014,147,"MI",454737.045454545
+"michigan",2015,145,"MI",617475.725806452
+"michigan",2016,119,"MI",468976.153846154
+"michigan",2017,117,"MI",583480.188679245
+"michigan",2018,50,"MI",318711.951219512
+"michigan",2019,98,"MI",351267.466666667
+"michigan",2020,149,"MI",384037.090909091
+"michigan",2021,8,"MI",864300
+"michigan",NA,17,"MI",432840
+"minnesota",1949,1,"MN",240
+"minnesota",1950,1,"MN",600
+"minnesota",1952,1,"MN",1800
+"minnesota",1960,1,"MN",NA
+"minnesota",1964,1,"MN",360
+"minnesota",1967,2,"MN",240
+"minnesota",1968,3,"MN",340
+"minnesota",1974,2,"MN",90000
+"minnesota",1975,4,"MN",220
+"minnesota",1976,2,"MN",195
+"minnesota",1977,1,"MN",7200
+"minnesota",1978,2,"MN",300
+"minnesota",1979,2,"MN",900
+"minnesota",1980,3,"MN",860
+"minnesota",1981,1,"MN",3600
+"minnesota",1982,2,"MN",90
+"minnesota",1983,2,"MN",60
+"minnesota",1984,1,"MN",300
+"minnesota",1985,1,"MN",NA
+"minnesota",1986,1,"MN",900
+"minnesota",1987,3,"MN",864080
+"minnesota",1988,3,"MN",1008200
+"minnesota",1989,1,"MN",1800
+"minnesota",1991,1,"MN",120
+"minnesota",1992,2,"MN",1296300
+"minnesota",1993,2,"MN",432030
+"minnesota",1994,1,"MN",180
+"minnesota",1996,4,"MN",65385
+"minnesota",1997,4,"MN",648975
+"minnesota",1998,3,"MN",388860
+"minnesota",1999,3,"MN",259500
+"minnesota",2000,4,"MN",161.25
+"minnesota",2001,3,"MN",925
+"minnesota",2002,3,"MN",1728380
+"minnesota",2003,1,"MN",60
+"minnesota",2004,7,"MN",794976
+"minnesota",2005,10,"MN",752316
+"minnesota",2006,41,"MN",398662.525
+"minnesota",2007,48,"MN",614106.204545455
+"minnesota",2008,48,"MN",420080.869565217
+"minnesota",2009,57,"MN",312518.270833333
+"minnesota",2010,51,"MN",211603.043478261
+"minnesota",2011,69,"MN",163005.325757576
+"minnesota",2012,129,"MN",351712.20338983
+"minnesota",2013,120,"MN",486867.5
+"minnesota",2014,95,"MN",464628.705882353
+"minnesota",2015,133,"MN",303091.293103448
+"minnesota",2016,73,"MN",550140.454545455
+"minnesota",2017,71,"MN",311137.894736842
+"minnesota",2018,45,"MN",445210.243902439
+"minnesota",2019,113,"MN",294104.27184466
+"minnesota",2020,110,"MN",165033.06122449
+"minnesota",2021,2,"MN",1296000
+"minnesota",NA,16,"MN",402810
+"mississippi",1950,1,"MS",600
+"mississippi",1963,2,"MS",390
+"mississippi",1967,1,"MS",300
+"mississippi",1968,1,"MS",900
+"mississippi",1969,1,"MS",300
+"mississippi",1970,1,"MS",NA
+"mississippi",1971,1,"MS",NA
+"mississippi",1974,1,"MS",7200
+"mississippi",1975,2,"MS",1200
+"mississippi",1977,4,"MS",1944052.5
+"mississippi",1978,4,"MS",667.5
+"mississippi",1979,2,"MS",216060
+"mississippi",1982,2,"MS",2116800
+"mississippi",1986,1,"MS",864000
+"mississippi",1987,1,"MS",NA
+"mississippi",1988,2,"MS",165
+"mississippi",1989,3,"MS",60
+"mississippi",1992,2,"MS",5490
+"mississippi",1994,2,"MS",106.75
+"mississippi",1995,3,"MS",400
+"mississippi",1998,2,"MS",461.25
+"mississippi",2000,1,"MS",120
+"mississippi",2001,3,"MS",2030400
+"mississippi",2002,1,"MS",240
+"mississippi",2003,2,"MS",194550
+"mississippi",2004,3,"MS",1440300
+"mississippi",2005,4,"MS",288340
+"mississippi",2006,11,"MS",265060.888888889
+"mississippi",2007,20,"MS",678284
+"mississippi",2008,19,"MS",254848.676470588
+"mississippi",2009,23,"MS",494254.736842105
+"mississippi",2010,17,"MS",96641.9642857143
+"mississippi",2011,21,"MS",114560.526315789
+"mississippi",2012,42,"MS",146817.5
+"mississippi",2013,35,"MS",336418
+"mississippi",2014,36,"MS",984712.727272727
+"mississippi",2015,36,"MS",675802.75862069
+"mississippi",2016,27,"MS",345673.75
+"mississippi",2017,23,"MS",506524.5
+"mississippi",2018,22,"MS",420648.333333333
+"mississippi",2019,30,"MS",456450
+"mississippi",2020,24,"MS",73505
+"mississippi",2021,5,"MS",820932
+"mississippi",NA,11,"MS",1896
+"missouri",1930,1,"MO",1200
+"missouri",1952,1,"MO",90
+"missouri",1955,1,"MO",NA
+"missouri",1956,1,"MO",300
+"missouri",1961,1,"MO",NA
+"missouri",1962,1,"MO",180
+"missouri",1963,2,"MO",7200
+"missouri",1964,2,"MO",605
+"missouri",1965,3,"MO",690
+"missouri",1966,1,"MO",900
+"missouri",1967,1,"MO",NA
+"missouri",1968,2,"MO",300
+"missouri",1969,2,"MO",3660
+"missouri",1970,2,"MO",1425
+"missouri",1971,3,"MO",200
+"missouri",1972,1,"MO",390
+"missouri",1973,1,"MO",7200
+"missouri",1974,3,"MO",648600
+"missouri",1975,2,"MO",675
+"missouri",1976,3,"MO",64830
+"missouri",1978,4,"MO",65737.5
+"missouri",1979,3,"MO",117900
+"missouri",1980,3,"MO",88100
+"missouri",1981,2,"MO",1950
+"missouri",1982,2,"MO",1500
+"missouri",1983,3,"MO",840
+"missouri",1984,5,"MO",474
+"missouri",1985,3,"MO",2160
+"missouri",1986,1,"MO",691200
+"missouri",1987,5,"MO",558
+"missouri",1989,2,"MO",902.25
+"missouri",1990,3,"MO",220
+"missouri",1991,2,"MO",270
+"missouri",1992,2,"MO",3888030
+"missouri",1993,1,"MO",5184000
+"missouri",1994,3,"MO",360
+"missouri",1995,1,"MO",60
+"missouri",1996,4,"MO",43567.5
+"missouri",1997,4,"MO",346072.5
+"missouri",1998,6,"MO",691248
+"missouri",1999,4,"MO",645
+"missouri",2000,6,"MO",792655
+"missouri",2001,3,"MO",480
+"missouri",2002,1,"MO",900
+"missouri",2004,6,"MO",630
+"missouri",2005,11,"MO",271685.454545455
+"missouri",2006,51,"MO",487224.217391304
+"missouri",2007,103,"MO",461078.75
+"missouri",2008,93,"MO",524376.813953488
+"missouri",2009,78,"MO",327093.638888889
+"missouri",2010,108,"MO",339979.04787234
+"missouri",2011,124,"MO",749999.407894737
+"missouri",2012,163,"MO",530073.274647887
+"missouri",2013,95,"MO",389183.93258427
+"missouri",2014,127,"MO",223676.153846154
+"missouri",2015,88,"MO",479328.243243243
+"missouri",2016,94,"MO",506470.843373494
+"missouri",2017,101,"MO",522604.534883721
+"missouri",2018,53,"MO",811280
+"missouri",2019,111,"MO",432893.388888889
+"missouri",2020,115,"MO",631535.753424658
+"missouri",2021,9,"MO",125400
+"missouri",NA,25,"MO",4980
+"montana",1963,1,"MT",3600
+"montana",1965,1,"MT",180
+"montana",1966,2,"MT",720
+"montana",1968,1,"MT",90
+"montana",1969,2,"MT",1350
+"montana",1970,1,"MT",1
+"montana",1972,1,"MT",2592000
+"montana",1982,2,"MT",130050
+"montana",1986,1,"MT",60
+"montana",1987,1,"MT",60
+"montana",1990,1,"MT",259200
+"montana",1991,1,"MT",900
+"montana",1992,1,"MT",600
+"montana",1993,2,"MT",865800
+"montana",1994,1,"MT",300
+"montana",1995,2,"MT",600
+"montana",1996,1,"MT",259200
+"montana",1997,3,"MT",450
+"montana",1999,2,"MT",1296900
+"montana",2000,2,"MT",1296120
+"montana",2001,2,"MT",1728000
+"montana",2002,1,"MT",NA
+"montana",2003,4,"MT",432450
+"montana",2005,8,"MT",2076
+"montana",2006,18,"MT",385745.454545455
+"montana",2007,20,"MT",350728.888888889
+"montana",2008,18,"MT",103537.058823529
+"montana",2009,28,"MT",126272.84
+"montana",2010,27,"MT",100150.5
+"montana",2011,43,"MT",141718.638888889
+"montana",2012,65,"MT",365854
+"montana",2013,49,"MT",466628
+"montana",2014,52,"MT",383913.333333333
+"montana",2015,56,"MT",302144.081632653
+"montana",2016,44,"MT",330710.526315789
+"montana",2017,47,"MT",307970.454545455
+"montana",2018,27,"MT",433781.25
+"montana",2019,59,"MT",279245.294117647
+"montana",2020,52,"MT",227571.176470588
+"montana",NA,4,"MT",330
+"nebraska",1953,1,"NE",2250
+"nebraska",1958,1,"NE",NA
+"nebraska",1960,1,"NE",1800
+"nebraska",1961,1,"NE",300
+"nebraska",1964,1,"NE",300
+"nebraska",1965,1,"NE",1200
+"nebraska",1966,1,"NE",NA
+"nebraska",1967,1,"NE",NA
+"nebraska",1969,1,"NE",2592000
+"nebraska",1975,1,"NE",180
+"nebraska",1976,1,"NE",120
+"nebraska",1979,1,"NE",120
+"nebraska",1980,3,"NE",288160
+"nebraska",1981,2,"NE",150
+"nebraska",1984,1,"NE",300
+"nebraska",1985,3,"NE",1440750
+"nebraska",1988,1,"NE",390
+"nebraska",1990,1,"NE",7689600
+"nebraska",1991,1,"NE",480
+"nebraska",1993,1,"NE",3600
+"nebraska",1994,2,"NE",330
+"nebraska",1995,1,"NE",1800
+"nebraska",1997,1,"NE",NA
+"nebraska",1999,1,"NE",300
+"nebraska",2000,2,"NE",630
+"nebraska",2001,1,"NE",180
+"nebraska",2002,3,"NE",600
+"nebraska",2003,4,"NE",270038.75
+"nebraska",2004,2,"NE",1296150
+"nebraska",2005,1,"NE",1200
+"nebraska",2006,18,"NE",486762.8125
+"nebraska",2007,28,"NE",542808.6
+"nebraska",2008,17,"NE",263386
+"nebraska",2009,25,"NE",678955.909090909
+"nebraska",2010,36,"NE",384276.893939394
+"nebraska",2011,26,"NE",192987.6
+"nebraska",2012,42,"NE",291605.789473684
+"nebraska",2013,27,"NE",401517.6
+"nebraska",2014,24,"NE",772549.565217391
+"nebraska",2015,20,"NE",288670
+"nebraska",2016,13,"NE",345932.307692308
+"nebraska",2017,25,"NE",198504
+"nebraska",2018,20,"NE",481743.333333333
+"nebraska",2019,26,"NE",522682.5
+"nebraska",2020,31,"NE",325189
+"nebraska",2021,6,"NE",1380
+"nebraska",NA,1,"NE",300
+"nevada",1964,1,"NV",2400
+"nevada",1967,1,"NV",1200
+"nevada",1971,1,"NV",900
+"nevada",1973,1,"NV",7200
+"nevada",1975,1,"NV",120
+"nevada",1978,1,"NV",600
+"nevada",1979,1,"NV",NA
+"nevada",1981,1,"NV",120
+"nevada",1982,2,"NV",450
+"nevada",1983,1,"NV",300
+"nevada",1985,2,"NV",300
+"nevada",1986,1,"NV",660
+"nevada",1988,1,"NV",9072000
+"nevada",1989,1,"NV",8.5
+"nevada",1990,1,"NV",1296000
+"nevada",1991,1,"NV",7200
+"nevada",1992,2,"NV",480
+"nevada",1994,4,"NV",108667.5
+"nevada",1997,4,"NV",2895
+"nevada",1998,1,"NV",180
+"nevada",1999,3,"NV",453600
+"nevada",2000,1,"NV",45
+"nevada",2001,4,"NV",270
+"nevada",2002,1,"NV",1296000
+"nevada",2003,4,"NV",1320
+"nevada",2004,6,"NV",52320
+"nevada",2005,5,"NV",777661.4
+"nevada",2006,28,"NV",226721.203703704
+"nevada",2007,51,"NV",211288.333333333
+"nevada",2008,61,"NV",300008.842105263
+"nevada",2009,43,"NV",410630.769230769
+"nevada",2010,41,"NV",325186.648648649
+"nevada",2011,44,"NV",569754.4125
+"nevada",2012,78,"NV",265098.152173913
+"nevada",2013,45,"NV",532020
+"nevada",2014,86,"NV",316617.721518987
+"nevada",2015,95,"NV",518280.731707317
+"nevada",2016,59,"NV",566395.636363636
+"nevada",2017,52,"NV",216718.723404255
+"nevada",2018,53,"NV",426738.222222222
+"nevada",2019,63,"NV",433977.818181818
+"nevada",2020,83,"NV",338486.818181818
+"nevada",2021,7,"NV",75325.7142857143
+"nevada",NA,7,"NV",480
+"new hampshire",1965,1,"NH",18000
+"new hampshire",1966,1,"NH",750
+"new hampshire",1974,1,"NH",648000
+"new hampshire",1977,1,"NH",900
+"new hampshire",1978,2,"NH",300
+"new hampshire",1980,2,"NH",432150
+"new hampshire",1981,1,"NH",120
+"new hampshire",1985,1,"NH",180
+"new hampshire",1987,1,"NH",1200
+"new hampshire",1989,1,"NH",300
+"new hampshire",1992,1,"NH",600
+"new hampshire",1995,1,"NH",240
+"new hampshire",1996,1,"NH",120
+"new hampshire",1997,1,"NH",900
+"new hampshire",2001,1,"NH",259200
+"new hampshire",2003,1,"NH",900
+"new hampshire",2006,3,"NH",501.333333333333
+"new hampshire",2007,3,"NH",270
+"new hampshire",2008,8,"NH",248973.75
+"new hampshire",2009,7,"NH",123783.214285714
+"new hampshire",2010,6,"NH",99000
+"new hampshire",2011,8,"NH",288270
+"new hampshire",2012,31,"NH",316138
+"new hampshire",2013,20,"NH",970937.647058823
+"new hampshire",2014,33,"NH",443157
+"new hampshire",2015,31,"NH",504013.928571429
+"new hampshire",2016,17,"NH",516836.25
+"new hampshire",2017,17,"NH",405450
+"new hampshire",2018,23,"NH",77293.3333333333
+"new hampshire",2019,23,"NH",330043.636363636
+"new hampshire",2020,17,"NH",96871.7647058823
+"new hampshire",NA,1,"NH",180
+"new jersey",1956,2,"NJ",600
+"new jersey",1958,1,"NJ",NA
+"new jersey",1960,1,"NJ",600
+"new jersey",1961,1,"NJ",10800
+"new jersey",1964,1,"NJ",900
+"new jersey",1965,2,"NJ",432150
+"new jersey",1966,2,"NJ",1728000
+"new jersey",1968,3,"NJ",165
+"new jersey",1969,1,"NJ",180
+"new jersey",1970,3,"NJ",2700
+"new jersey",1973,1,"NJ",120
+"new jersey",1975,2,"NJ",259290
+"new jersey",1976,2,"NJ",690
+"new jersey",1977,2,"NJ",1296900
+"new jersey",1978,2,"NJ",600
+"new jersey",1979,3,"NJ",150.666666666667
+"new jersey",1980,2,"NJ",180
+"new jersey",1983,2,"NJ",120
+"new jersey",1985,2,"NJ",129900
+"new jersey",1987,2,"NJ",480
+"new jersey",1988,1,"NJ",3600
+"new jersey",1989,1,"NJ",300
+"new jersey",1990,1,"NJ",NA
+"new jersey",1991,2,"NJ",60
+"new jersey",1993,1,"NJ",360
+"new jersey",1994,1,"NJ",60
+"new jersey",1996,4,"NJ",4125600
+"new jersey",1997,3,"NJ",240
+"new jersey",1998,1,"NJ",2592000
+"new jersey",2000,3,"NJ",1296200
+"new jersey",2001,3,"NJ",1785600
+"new jersey",2002,1,"NJ",180
+"new jersey",2003,3,"NJ",144750
+"new jersey",2004,3,"NJ",433500
+"new jersey",2005,5,"NJ",518593.2
+"new jersey",2006,28,"NJ",218741
+"new jersey",2007,31,"NJ",421864.444444444
+"new jersey",2008,54,"NJ",461410.224489796
+"new jersey",2009,55,"NJ",445636.354166667
+"new jersey",2010,46,"NJ",771768.25
+"new jersey",2011,50,"NJ",306866.866666667
+"new jersey",2012,87,"NJ",268461.829268293
+"new jersey",2013,81,"NJ",512696.571428571
+"new jersey",2014,77,"NJ",319600.714285714
+"new jersey",2015,61,"NJ",409061.25
+"new jersey",2016,61,"NJ",296908.163265306
+"new jersey",2017,57,"NJ",332171.538461538
+"new jersey",2018,26,"NJ",553461.6
+"new jersey",2019,110,"NJ",451753.235294118
+"new jersey",2020,72,"NJ",333505.64516129
+"new jersey",2021,6,"NJ",867700
+"new jersey",NA,15,"NJ",576797.5
+"new mexico",1929,1,"NM",300
+"new mexico",1944,1,"NM",3600
+"new mexico",1947,1,"NM",300
+"new mexico",1951,1,"NM",600
+"new mexico",1953,1,"NM",NA
+"new mexico",1954,1,"NM",NA
+"new mexico",1959,2,"NM",1410
+"new mexico",1965,1,"NM",NA
+"new mexico",1966,2,"NM",300
+"new mexico",1969,1,"NM",5400
+"new mexico",1972,1,"NM",1200
+"new mexico",1974,1,"NM",3600
+"new mexico",1976,2,"NM",180
+"new mexico",1977,1,"NM",60
+"new mexico",1979,2,"NM",60
+"new mexico",1982,1,"NM",NA
+"new mexico",1983,2,"NM",3750
+"new mexico",1984,1,"NM",2700
+"new mexico",1985,1,"NM",NA
+"new mexico",1986,1,"NM",300
+"new mexico",1988,5,"NM",727.5
+"new mexico",1989,2,"NM",7500
+"new mexico",1990,1,"NM",432000
+"new mexico",1991,1,"NM",1080000
+"new mexico",1992,1,"NM",432000
+"new mexico",1993,2,"NM",1944300
+"new mexico",1994,2,"NM",432060
+"new mexico",1995,2,"NM",3600
+"new mexico",1996,3,"NM",676.666666666667
+"new mexico",1997,5,"NM",173142
+"new mexico",1998,6,"NM",900
+"new mexico",1999,1,"NM",3000
+"new mexico",2000,5,"NM",690
+"new mexico",2001,2,"NM",180
+"new mexico",2002,4,"NM",1747.5
+"new mexico",2003,2,"NM",390
+"new mexico",2004,2,"NM",540
+"new mexico",2005,3,"NM",144301.666666667
+"new mexico",2006,46,"NM",330318.452380952
+"new mexico",2007,40,"NM",427787.583333333
+"new mexico",2008,51,"NM",378412.553191489
+"new mexico",2009,40,"NM",405992.631578947
+"new mexico",2010,33,"NM",74149.1666666667
+"new mexico",2011,27,"NM",133817.4
+"new mexico",2012,69,"NM",255047.894736842
+"new mexico",2013,80,"NM",210753.857142857
+"new mexico",2014,104,"NM",461271.875
+"new mexico",2015,70,"NM",389343.5
+"new mexico",2016,70,"NM",298273.212121212
+"new mexico",2017,69,"NM",294005.689655172
+"new mexico",2018,54,"NM",183703.469387755
+"new mexico",2019,79,"NM",448897.916666667
+"new mexico",2020,69,"NM",401465.454545455
+"new mexico",2021,7,"NM",518550
+"new mexico",NA,14,"NM",144441.166666667
+"new york",1930,1,"NY",NA
+"new york",1952,1,"NY",600
+"new york",1954,1,"NY",120
+"new york",1957,1,"NY",210
+"new york",1959,1,"NY",900
+"new york",1960,3,"NY",432430
+"new york",1961,1,"NY",900
+"new york",1962,2,"NY",210
+"new york",1963,1,"NY",600
+"new york",1965,7,"NY",536016
+"new york",1966,2,"NY",1830
+"new york",1967,2,"NY",3888600
+"new york",1968,2,"NY",1860
+"new york",1969,3,"NY",43800
+"new york",1970,3,"NY",270
+"new york",1972,1,"NY",600
+"new york",1973,2,"NY",675
+"new york",1974,6,"NY",763520
+"new york",1975,6,"NY",1080290
+"new york",1976,5,"NY",972
+"new york",1977,2,"NY",1275
+"new york",1978,6,"NY",518496
+"new york",1979,6,"NY",433420
+"new york",1980,1,"NY",300
+"new york",1981,1,"NY",12600
+"new york",1983,5,"NY",492
+"new york",1984,2,"NY",432090
+"new york",1985,1,"NY",600
+"new york",1986,1,"NY",300
+"new york",1987,5,"NY",34956
+"new york",1988,4,"NY",180
+"new york",1989,8,"NY",347.142857142857
+"new york",1990,4,"NY",840
+"new york",1991,6,"NY",864150
+"new york",1992,1,"NY",3456000
+"new york",1993,3,"NY",1200
+"new york",1994,5,"NY",1296060
+"new york",1995,11,"NY",296683.636363636
+"new york",1997,3,"NY",180
+"new york",1998,4,"NY",280950
+"new york",1999,2,"NY",1296600
+"new york",2000,4,"NY",1080035
+"new york",2001,9,"NY",666728.571428571
+"new york",2002,4,"NY",648200
+"new york",2003,4,"NY",640
+"new york",2004,5,"NY",691530
+"new york",2005,5,"NY",86490
+"new york",2006,41,"NY",262339.027027027
+"new york",2007,74,"NY",429149.1875
+"new york",2008,98,"NY",630882.657303371
+"new york",2009,97,"NY",531560.272727273
+"new york",2010,96,"NY",589557.988636364
+"new york",2011,144,"NY",316340.453125
+"new york",2012,206,"NY",412498.232142857
+"new york",2013,144,"NY",418197.5
+"new york",2014,172,"NY",249854.451219512
+"new york",2015,173,"NY",497795.032258065
+"new york",2016,125,"NY",324083.217391304
+"new york",2017,96,"NY",534986.666666667
+"new york",2018,61,"NY",242920.188679245
+"new york",2019,119,"NY",503120.9375
+"new york",2020,161,"NY",418007.288888889
+"new york",2021,10,"NY",840246.666666667
+"new york",NA,19,"NY",902840
+"north carolina",1930,1,"NC",120
+"north carolina",1955,1,"NC",300
+"north carolina",1959,1,"NC",90
+"north carolina",1961,1,"NC",864000
+"north carolina",1962,2,"NC",1350
+"north carolina",1965,2,"NC",900
+"north carolina",1966,2,"NC",627.5
+"north carolina",1967,5,"NC",346248
+"north carolina",1968,2,"NC",150
+"north carolina",1969,1,"NC",900
+"north carolina",1970,2,"NC",4050
+"north carolina",1971,1,"NC",2592000
+"north carolina",1972,3,"NC",720
+"north carolina",1973,4,"NC",1953.75
+"north carolina",1974,4,"NC",3720
+"north carolina",1975,3,"NC",720440
+"north carolina",1976,2,"NC",1470
+"north carolina",1977,3,"NC",600
+"north carolina",1978,3,"NC",300
+"north carolina",1979,4,"NC",280
+"north carolina",1980,1,"NC",600
+"north carolina",1981,2,"NC",600
+"north carolina",1982,5,"NC",145280
+"north carolina",1985,2,"NC",162.5
+"north carolina",1986,4,"NC",151710
+"north carolina",1987,1,"NC",1800
+"north carolina",1988,1,"NC",30
+"north carolina",1989,4,"NC",390
+"north carolina",1991,1,"NC",90
+"north carolina",1992,3,"NC",450
+"north carolina",1993,2,"NC",990
+"north carolina",1994,5,"NC",2437.5
+"north carolina",1995,5,"NC",698
+"north carolina",1996,6,"NC",114
+"north carolina",1997,7,"NC",216071.666666667
+"north carolina",1998,2,"NC",180
+"north carolina",1999,3,"NC",86540
+"north carolina",2000,2,"NC",60
+"north carolina",2001,6,"NC",931
+"north carolina",2002,3,"NC",300
+"north carolina",2003,8,"NC",324836.25
+"north carolina",2004,5,"NC",1800
+"north carolina",2005,11,"NC",1128096
+"north carolina",2006,52,"NC",452008.418367347
+"north carolina",2007,101,"NC",442448.443181818
+"north carolina",2008,121,"NC",301088.420560748
+"north carolina",2009,102,"NC",412910.554347826
+"north carolina",2010,116,"NC",279700.145631068
+"north carolina",2011,168,"NC",383276.873376623
+"north carolina",2012,227,"NC",348542.975369458
+"north carolina",2013,180,"NC",341578.374233129
+"north carolina",2014,245,"NC",546233.690987124
+"north carolina",2015,166,"NC",364113.377483444
+"north carolina",2016,188,"NC",662533.157894737
+"north carolina",2017,126,"NC",434730.796460177
+"north carolina",2018,98,"NC",348189.069767442
+"north carolina",2019,147,"NC",349584.277777778
+"north carolina",2020,109,"NC",466933.917525773
+"north carolina",2021,10,"NC",4770
+"north carolina",NA,19,"NC",221440
+"north dakota",1934,1,"ND",432000
+"north dakota",1968,1,"ND",120
+"north dakota",1974,1,"ND",1800
+"north dakota",1976,2,"ND",300
+"north dakota",1977,2,"ND",600
+"north dakota",1978,2,"ND",NA
+"north dakota",1983,1,"ND",300
+"north dakota",1990,1,"ND",518400
+"north dakota",1991,1,"ND",120
+"north dakota",1995,2,"ND",4752000
+"north dakota",1996,1,"ND",518400
+"north dakota",1998,1,"ND",300
+"north dakota",2000,1,"ND",900
+"north dakota",2002,1,"ND",270
+"north dakota",2003,2,"ND",1512000
+"north dakota",2004,2,"ND",1410
+"north dakota",2006,8,"ND",547830
+"north dakota",2007,6,"ND",288511.666666667
+"north dakota",2008,10,"ND",146406.666666667
+"north dakota",2009,9,"ND",302883.333333333
+"north dakota",2010,5,"ND",1559196
+"north dakota",2011,10,"ND",250749.8
+"north dakota",2012,11,"ND",284100
+"north dakota",2013,7,"ND",187900
+"north dakota",2014,8,"ND",111377.142857143
+"north dakota",2015,10,"ND",87546
+"north dakota",2016,11,"ND",271074.545454545
+"north dakota",2017,9,"ND",557096.666666667
+"north dakota",2018,7,"ND",185644.285714286
+"north dakota",2019,16,"ND",504472.5
+"north dakota",2020,24,"ND",709794
+"north dakota",2021,1,"ND",600
+"north dakota",NA,1,"ND",NA
+"ohio",1953,1,"OH",35
+"ohio",1956,4,"OH",1301452.5
+"ohio",1957,2,"OH",390
+"ohio",1958,1,"OH",86400
+"ohio",1959,2,"OH",1950
+"ohio",1960,3,"OH",1500
+"ohio",1962,2,"OH",1200
+"ohio",1964,3,"OH",3780
+"ohio",1965,3,"OH",403240
+"ohio",1966,4,"OH",300
+"ohio",1967,6,"OH",260748
+"ohio",1968,5,"OH",864228
+"ohio",1969,2,"OH",437400
+"ohio",1970,1,"OH",300
+"ohio",1971,2,"OH",2592000
+"ohio",1972,5,"OH",519312
+"ohio",1973,5,"OH",3037.5
+"ohio",1974,5,"OH",735
+"ohio",1976,3,"OH",480
+"ohio",1977,9,"OH",228
+"ohio",1978,3,"OH",87500
+"ohio",1980,3,"OH",2600
+"ohio",1981,4,"OH",115620
+"ohio",1982,2,"OH",60
+"ohio",1983,2,"OH",900
+"ohio",1984,2,"OH",750
+"ohio",1985,2,"OH",210
+"ohio",1986,4,"OH",435
+"ohio",1987,2,"OH",9030
+"ohio",1988,3,"OH",800
+"ohio",1989,3,"OH",345
+"ohio",1990,1,"OH",NA
+"ohio",1991,2,"OH",360
+"ohio",1992,4,"OH",86480
+"ohio",1993,5,"OH",1944
+"ohio",1994,10,"OH",99163.3333333333
+"ohio",1995,12,"OH",69840
+"ohio",1996,2,"OH",1410
+"ohio",1997,5,"OH",518538
+"ohio",1998,9,"OH",432185.625
+"ohio",1999,8,"OH",248027.142857143
+"ohio",2000,4,"OH",690
+"ohio",2001,4,"OH",864120
+"ohio",2002,5,"OH",52632
+"ohio",2003,4,"OH",702300
+"ohio",2004,5,"OH",390
+"ohio",2005,9,"OH",1393567.5
+"ohio",2006,78,"OH",593820.952380952
+"ohio",2007,104,"OH",331610.027472527
+"ohio",2008,118,"OH",435299.056603774
+"ohio",2009,119,"OH",359000.523809524
+"ohio",2010,116,"OH",364994.22
+"ohio",2011,141,"OH",498282.261363636
+"ohio",2012,249,"OH",426101.334841629
+"ohio",2013,325,"OH",482411.683168317
+"ohio",2014,247,"OH",417918.103448276
+"ohio",2015,194,"OH",350977.369942197
+"ohio",2016,137,"OH",310588.278688525
+"ohio",2017,131,"OH",269649.831932773
+"ohio",2018,96,"OH",516109.090909091
+"ohio",2019,185,"OH",544441.875
+"ohio",2020,219,"OH",435072.676056338
+"ohio",2021,6,"OH",346458
+"ohio",NA,28,"OH",1435084.28571429
+"oklahoma",1947,1,"OK",120
+"oklahoma",1955,1,"OK",1200
+"oklahoma",1956,1,"OK",20
+"oklahoma",1958,2,"OK",1800
+"oklahoma",1961,2,"OK",390
+"oklahoma",1962,2,"OK",NA
+"oklahoma",1963,1,"OK",1800
+"oklahoma",1964,2,"OK",930
+"oklahoma",1965,1,"OK",2592000
+"oklahoma",1967,1,"OK",120
+"oklahoma",1968,4,"OK",432400
+"oklahoma",1969,1,"OK",600
+"oklahoma",1970,2,"OK",389025
+"oklahoma",1971,1,"OK",180
+"oklahoma",1973,1,"OK",NA
+"oklahoma",1974,1,"OK",1500
+"oklahoma",1975,2,"OK",1800
+"oklahoma",1976,1,"OK",45
+"oklahoma",1977,2,"OK",450
+"oklahoma",1978,2,"OK",1560
+"oklahoma",1979,1,"OK",NA
+"oklahoma",1980,2,"OK",648300
+"oklahoma",1981,4,"OK",405
+"oklahoma",1982,1,"OK",1800
+"oklahoma",1987,2,"OK",675
+"oklahoma",1988,4,"OK",420
+"oklahoma",1989,3,"OK",14600
+"oklahoma",1990,1,"OK",180
+"oklahoma",1995,2,"OK",136800
+"oklahoma",1996,3,"OK",825
+"oklahoma",1998,4,"OK",180
+"oklahoma",1999,4,"OK",648210
+"oklahoma",2000,1,"OK",432000
+"oklahoma",2001,6,"OK",72200
+"oklahoma",2002,1,"OK",60
+"oklahoma",2003,1,"OK",15
+"oklahoma",2004,2,"OK",165
+"oklahoma",2005,5,"OK",200
+"oklahoma",2006,26,"OK",507963.958333333
+"oklahoma",2007,36,"OK",769319.1875
+"oklahoma",2008,50,"OK",431509.326086957
+"oklahoma",2009,37,"OK",432968.470588235
+"oklahoma",2010,34,"OK",360613.95
+"oklahoma",2011,50,"OK",247980.697674419
+"oklahoma",2012,87,"OK",578009
+"oklahoma",2013,74,"OK",301606.849315069
+"oklahoma",2014,87,"OK",509547.272727273
+"oklahoma",2015,72,"OK",409892.272727273
+"oklahoma",2016,41,"OK",1116832.5
+"oklahoma",2017,42,"OK",583886.153846154
+"oklahoma",2018,39,"OK",392219.166666667
+"oklahoma",2019,63,"OK",439430.714285714
+"oklahoma",2020,84,"OK",508596.4
+"oklahoma",2021,5,"OK",328548
+"oklahoma",NA,9,"OK",216633.75
+"oregon",1949,1,"OR",NA
+"oregon",1950,2,"OR",540
+"oregon",1956,1,"OR",864000
+"oregon",1958,1,"OR",90
+"oregon",1960,2,"OR",1350
+"oregon",1961,1,"OR",18000
+"oregon",1962,1,"OR",120
+"oregon",1963,1,"OR",7200
+"oregon",1964,1,"OR",600
+"oregon",1965,2,"OR",10500
+"oregon",1966,2,"OR",2400
+"oregon",1967,3,"OR",1020
+"oregon",1968,1,"OR",NA
+"oregon",1969,1,"OR",NA
+"oregon",1970,1,"OR",600
+"oregon",1971,2,"OR",450
+"oregon",1972,1,"OR",NA
+"oregon",1973,2,"OR",3622.5
+"oregon",1974,1,"OR",198000
+"oregon",1975,1,"OR",300
+"oregon",1976,3,"OR",864470
+"oregon",1977,1,"OR",60
+"oregon",1978,1,"OR",480
+"oregon",1979,1,"OR",120
+"oregon",1980,4,"OR",301.666666666667
+"oregon",1981,1,"OR",2592000
+"oregon",1983,1,"OR",NA
+"oregon",1984,1,"OR",NA
+"oregon",1987,1,"OR",1800
+"oregon",1989,2,"OR",540007.5
+"oregon",1990,1,"OR",1200
+"oregon",1991,1,"OR",60
+"oregon",1992,2,"OR",210
+"oregon",1994,1,"OR",43200
+"oregon",1995,5,"OR",77505
+"oregon",1996,4,"OR",502.5
+"oregon",1997,5,"OR",480750
+"oregon",1998,2,"OR",864000
+"oregon",1999,6,"OR",2419806
+"oregon",2000,5,"OR",162063.75
+"oregon",2001,3,"OR",288060
+"oregon",2002,3,"OR",100
+"oregon",2003,6,"OR",577670
+"oregon",2004,4,"OR",648705
+"oregon",2005,10,"OR",1058814
+"oregon",2006,68,"OR",306061.968253968
+"oregon",2007,100,"OR",354568.505494506
+"oregon",2008,80,"OR",242288.625
+"oregon",2009,73,"OR",538867.623188406
+"oregon",2010,74,"OR",385401.397058824
+"oregon",2011,106,"OR",292684.734042553
+"oregon",2012,164,"OR",489536.583333333
+"oregon",2013,179,"OR",511521.951219512
+"oregon",2014,206,"OR",395303.526315789
+"oregon",2015,200,"OR",561270.793650794
+"oregon",2016,153,"OR",382232.765957447
+"oregon",2017,117,"OR",773997
+"oregon",2018,87,"OR",496406.551282051
+"oregon",2019,115,"OR",546341.116504854
+"oregon",2020,212,"OR",266444.752747253
+"oregon",2021,13,"OR",812304
+"oregon",NA,27,"OR",380762.857142857
+"pennsylvania",1951,1,"PA",600
+"pennsylvania",1952,2,"PA",180
+"pennsylvania",1958,1,"PA",300
+"pennsylvania",1961,2,"PA",705
+"pennsylvania",1963,2,"PA",450
+"pennsylvania",1965,8,"PA",134.285714285714
+"pennsylvania",1966,6,"PA",432420.2
+"pennsylvania",1967,1,"PA",10800
+"pennsylvania",1968,4,"PA",205425
+"pennsylvania",1969,5,"PA",778620
+"pennsylvania",1970,3,"PA",432400
+"pennsylvania",1971,1,"PA",300
+"pennsylvania",1972,1,"PA",300
+"pennsylvania",1973,8,"PA",109006.875
+"pennsylvania",1974,3,"PA",990
+"pennsylvania",1975,5,"PA",129860
+"pennsylvania",1976,6,"PA",590
+"pennsylvania",1977,5,"PA",936
+"pennsylvania",1978,7,"PA",186904.285714286
+"pennsylvania",1979,7,"PA",124097.142857143
+"pennsylvania",1980,2,"PA",750
+"pennsylvania",1981,2,"PA",129690
+"pennsylvania",1982,3,"PA",1425600
+"pennsylvania",1983,2,"PA",1500
+"pennsylvania",1984,2,"PA",649800
+"pennsylvania",1985,4,"PA",682.5
+"pennsylvania",1986,2,"PA",600
+"pennsylvania",1988,6,"PA",303648
+"pennsylvania",1989,3,"PA",450
+"pennsylvania",1990,1,"PA",1800
+"pennsylvania",1991,2,"PA",5
+"pennsylvania",1992,2,"PA",150
+"pennsylvania",1993,3,"PA",570
+"pennsylvania",1994,5,"PA",864200
+"pennsylvania",1995,7,"PA",123968.571428571
+"pennsylvania",1996,4,"PA",825
+"pennsylvania",1998,3,"PA",864640
+"pennsylvania",1999,2,"PA",174600
+"pennsylvania",2000,3,"PA",660
+"pennsylvania",2001,7,"PA",249535.714285714
+"pennsylvania",2002,2,"PA",432030
+"pennsylvania",2003,8,"PA",570
+"pennsylvania",2004,2,"PA",120
+"pennsylvania",2005,12,"PA",630232.5
+"pennsylvania",2006,80,"PA",321742.702702703
+"pennsylvania",2007,123,"PA",520158.040540541
+"pennsylvania",2008,147,"PA",240688.978873239
+"pennsylvania",2009,128,"PA",514397.710084034
+"pennsylvania",2010,138,"PA",397733.854961832
+"pennsylvania",2011,141,"PA",333289.725806452
+"pennsylvania",2012,233,"PA",390702.298578199
+"pennsylvania",2013,253,"PA",324319.527027027
+"pennsylvania",2014,301,"PA",417973.57400722
+"pennsylvania",2015,183,"PA",569974.93902439
+"pennsylvania",2016,158,"PA",409180
+"pennsylvania",2017,129,"PA",273694.473684211
+"pennsylvania",2018,77,"PA",737765.967741936
+"pennsylvania",2019,172,"PA",392548.637931034
+"pennsylvania",2020,245,"PA",396535.979381443
+"pennsylvania",2021,17,"PA",637969.411764706
+"pennsylvania",NA,25,"PA",427335.125
+"rhode island",1970,1,"RI",NA
+"rhode island",1975,2,"RI",1200
+"rhode island",1976,1,"RI",1800
+"rhode island",1982,1,"RI",120
+"rhode island",1983,1,"RI",900
+"rhode island",1998,1,"RI",240
+"rhode island",2000,1,"RI",180
+"rhode island",2004,2,"RI",720
+"rhode island",2005,1,"RI",3600
+"rhode island",2006,5,"RI",432144
+"rhode island",2007,4,"RI",100
+"rhode island",2008,9,"RI",119081.25
+"rhode island",2009,8,"RI",216241.875
+"rhode island",2010,9,"RI",25157.1428571429
+"rhode island",2011,8,"RI",335632.5
+"rhode island",2012,27,"RI",1002851.25
+"rhode island",2013,19,"RI",108543.75
+"rhode island",2014,14,"RI",41108.1818181818
+"rhode island",2015,21,"RI",358967.142857143
+"rhode island",2016,14,"RI",315167.142857143
+"rhode island",2017,9,"RI",837131.25
+"rhode island",2018,9,"RI",48306.6666666667
+"rhode island",2019,13,"RI",306404.090909091
+"rhode island",2020,9,"RI",1665
+"rhode island",2021,1,"RI",150
+"rhode island",NA,1,"RI",3600
+"south carolina",1955,1,"SC",300
+"south carolina",1960,1,"SC",300
+"south carolina",1962,1,"SC",300
+"south carolina",1964,1,"SC",600
+"south carolina",1965,1,"SC",2592000
+"south carolina",1968,1,"SC",1050
+"south carolina",1969,3,"SC",1470
+"south carolina",1971,2,"SC",864000
+"south carolina",1974,3,"SC",1728200
+"south carolina",1975,4,"SC",345
+"south carolina",1976,1,"SC",900
+"south carolina",1978,1,"SC",10
+"south carolina",1981,2,"SC",95
+"south carolina",1982,1,"SC",NA
+"south carolina",1983,1,"SC",345600
+"south carolina",1985,2,"SC",3825
+"south carolina",1986,1,"SC",9000
+"south carolina",1988,1,"SC",300
+"south carolina",1989,2,"SC",432000
+"south carolina",1990,2,"SC",600
+"south carolina",1991,2,"SC",660
+"south carolina",1992,2,"SC",120
+"south carolina",1993,1,"SC",300
+"south carolina",1994,1,"SC",900
+"south carolina",1995,6,"SC",403500
+"south carolina",1997,6,"SC",69474
+"south carolina",1998,3,"SC",11040
+"south carolina",1999,1,"SC",NA
+"south carolina",2000,2,"SC",972090
+"south carolina",2001,2,"SC",450
+"south carolina",2002,2,"SC",330
+"south carolina",2003,6,"SC",2525
+"south carolina",2004,5,"SC",173640
+"south carolina",2005,12,"SC",356121.818181818
+"south carolina",2006,22,"SC",628395.789473684
+"south carolina",2007,72,"SC",218629.816176471
+"south carolina",2008,40,"SC",234613.294117647
+"south carolina",2009,61,"SC",519798.377358491
+"south carolina",2010,62,"SC",386572.807017544
+"south carolina",2011,99,"SC",209283.804597701
+"south carolina",2012,169,"SC",448656.799363057
+"south carolina",2013,141,"SC",592460
+"south carolina",2014,224,"SC",488748.803827751
+"south carolina",2015,100,"SC",586232.393258427
+"south carolina",2016,82,"SC",439716.956521739
+"south carolina",2017,102,"SC",235240.625
+"south carolina",2018,71,"SC",450243.387096774
+"south carolina",2019,94,"SC",542674.230769231
+"south carolina",2020,104,"SC",372448.583333333
+"south carolina",2021,4,"SC",144240
+"south carolina",NA,7,"SC",690
+"south dakota",1963,3,"SD",58800
+"south dakota",1966,1,"SD",259200
+"south dakota",1968,1,"SD",1200
+"south dakota",1973,1,"SD",3600
+"south dakota",1976,1,"SD",300
+"south dakota",1978,1,"SD",NA
+"south dakota",1979,1,"SD",NA
+"south dakota",1981,1,"SD",475200
+"south dakota",1984,1,"SD",300
+"south dakota",1994,2,"SD",600
+"south dakota",1995,1,"SD",90
+"south dakota",1997,1,"SD",2700
+"south dakota",1998,3,"SD",289000
+"south dakota",2000,2,"SD",300
+"south dakota",2002,1,"SD",1200
+"south dakota",2003,1,"SD",NA
+"south dakota",2004,1,"SD",480
+"south dakota",2005,3,"SD",70
+"south dakota",2006,3,"SD",648000
+"south dakota",2007,8,"SD",162510
+"south dakota",2008,7,"SD",4030.66666666667
+"south dakota",2009,13,"SD",419029.615384615
+"south dakota",2010,14,"SD",432720.714285714
+"south dakota",2011,14,"SD",496893.75
+"south dakota",2012,25,"SD",383808.916666667
+"south dakota",2013,19,"SD",398625.789473684
+"south dakota",2014,21,"SD",288632.857142857
+"south dakota",2015,16,"SD",299064.545454545
+"south dakota",2016,22,"SD",473961.818181818
+"south dakota",2017,18,"SD",34796.25
+"south dakota",2018,9,"SD",579900
+"south dakota",2019,13,"SD",881958
+"south dakota",2020,16,"SD",1409733.75
+"south dakota",2021,2,"SD",2592000
+"south dakota",NA,3,"SD",7350
+"tennessee",1949,1,"TN",900
+"tennessee",1956,1,"TN",600
+"tennessee",1961,2,"TN",1050
+"tennessee",1964,4,"TN",630
+"tennessee",1967,3,"TN",1110
+"tennessee",1968,2,"TN",675
+"tennessee",1970,1,"TN",60
+"tennessee",1971,1,"TN",300
+"tennessee",1972,1,"TN",3600
+"tennessee",1973,2,"TN",975
+"tennessee",1974,1,"TN",900
+"tennessee",1976,2,"TN",210
+"tennessee",1977,1,"TN",300
+"tennessee",1978,6,"TN",2055
+"tennessee",1979,1,"TN",900
+"tennessee",1981,1,"TN",600
+"tennessee",1982,3,"TN",864500
+"tennessee",1984,1,"TN",1800
+"tennessee",1985,1,"TN",900
+"tennessee",1986,1,"TN",90
+"tennessee",1987,2,"TN",432600
+"tennessee",1989,2,"TN",450
+"tennessee",1991,3,"TN",460
+"tennessee",1992,3,"TN",620
+"tennessee",1993,1,"TN",300
+"tennessee",1994,3,"TN",202100
+"tennessee",1995,2,"TN",420
+"tennessee",1996,2,"TN",300
+"tennessee",1997,2,"TN",855
+"tennessee",1998,1,"TN",300
+"tennessee",1999,2,"TN",180
+"tennessee",2000,2,"TN",45
+"tennessee",2001,1,"TN",600
+"tennessee",2002,1,"TN",60
+"tennessee",2003,1,"TN",240
+"tennessee",2004,1,"TN",750
+"tennessee",2005,6,"TN",1560
+"tennessee",2006,43,"TN",402595.294871795
+"tennessee",2007,56,"TN",296443.823529412
+"tennessee",2008,84,"TN",567498.768115942
+"tennessee",2009,58,"TN",305569.471698113
+"tennessee",2010,54,"TN",555181.760869565
+"tennessee",2011,82,"TN",319762.875
+"tennessee",2012,114,"TN",649962.5
+"tennessee",2013,113,"TN",377793.113207547
+"tennessee",2014,132,"TN",407037.295081967
+"tennessee",2015,94,"TN",222153.214285714
+"tennessee",2016,91,"TN",548519.62962963
+"tennessee",2017,78,"TN",381531.549295775
+"tennessee",2018,44,"TN",608931.315789474
+"tennessee",2019,112,"TN",449950.85106383
+"tennessee",2020,90,"TN",188802.739726027
+"tennessee",2021,5,"TN",17652
+"tennessee",NA,7,"TN",640
+"texas",1947,1,"TX",600
+"texas",1948,1,"TX",777600
+"texas",1949,2,"TX",432270
+"texas",1950,3,"TX",420
+"texas",1952,1,"TX",5400
+"texas",1954,1,"TX",150
+"texas",1955,2,"TX",90
+"texas",1956,2,"TX",750
+"texas",1957,4,"TX",235.75
+"texas",1958,2,"TX",270
+"texas",1960,1,"TX",60
+"texas",1961,3,"TX",720
+"texas",1962,1,"TX",60
+"texas",1963,2,"TX",210
+"texas",1964,2,"TX",450
+"texas",1965,3,"TX",1800
+"texas",1966,5,"TX",756517.5
+"texas",1967,5,"TX",87432
+"texas",1968,5,"TX",1227360
+"texas",1969,3,"TX",3720
+"texas",1970,2,"TX",300
+"texas",1971,3,"TX",6300
+"texas",1972,7,"TX",72820
+"texas",1973,11,"TX",80642.7272727273
+"texas",1974,6,"TX",88030
+"texas",1975,5,"TX",576
+"texas",1976,8,"TX",277300
+"texas",1977,6,"TX",1600
+"texas",1978,13,"TX",126732.5
+"texas",1979,4,"TX",720490
+"texas",1980,1,"TX",2592000
+"texas",1981,2,"TX",420
+"texas",1982,2,"TX",330
+"texas",1983,6,"TX",252345
+"texas",1984,4,"TX",271215
+"texas",1985,7,"TX",124358.571428571
+"texas",1986,3,"TX",576170
+"texas",1987,6,"TX",44300
+"texas",1988,7,"TX",14570
+"texas",1989,6,"TX",52044
+"texas",1990,4,"TX",750
+"texas",1991,7,"TX",510
+"texas",1992,6,"TX",691356
+"texas",1993,5,"TX",324510
+"texas",1994,6,"TX",261504
+"texas",1995,8,"TX",108401.25
+"texas",1996,6,"TX",216982.5
+"texas",1997,12,"TX",74037.5
+"texas",1998,10,"TX",163746.666666667
+"texas",1999,7,"TX",308897.142857143
+"texas",2000,13,"TX",259636.363636364
+"texas",2001,7,"TX",1011130
+"texas",2002,11,"TX",777796.666666667
+"texas",2003,8,"TX",475500
+"texas",2004,10,"TX",371052.857142857
+"texas",2005,20,"TX",164571.052631579
+"texas",2006,156,"TX",445691.193430657
+"texas",2007,195,"TX",419492.828571429
+"texas",2008,339,"TX",309071.626644737
+"texas",2009,231,"TX",392869.096446701
+"texas",2010,210,"TX",291766.673796791
+"texas",2011,231,"TX",476808.654040404
+"texas",2012,245,"TX",553793.882075472
+"texas",2013,228,"TX",496828.374384236
+"texas",2014,281,"TX",516429.756097561
+"texas",2015,157,"TX",614022.755395683
+"texas",2016,149,"TX",322486.771653543
+"texas",2017,114,"TX",413423.168316832
+"texas",2018,81,"TX",477494.04109589
+"texas",2019,206,"TX",440081.272727273
+"texas",2020,273,"TX",441895
+"texas",2021,16,"TX",269210.625
+"texas",NA,50,"TX",138134.655172414
+"utah",1961,1,"UT",2700
+"utah",1963,1,"UT",120
+"utah",1964,1,"UT",300
+"utah",1965,1,"UT",16200
+"utah",1970,1,"UT",NA
+"utah",1973,3,"UT",494990666.666667
+"utah",1975,1,"UT",390
+"utah",1976,1,"UT",1944000
+"utah",1978,1,"UT",1728000
+"utah",1980,3,"UT",1620
+"utah",1981,1,"UT",360
+"utah",1982,1,"UT",120
+"utah",1984,1,"UT",600
+"utah",1985,2,"UT",1296000
+"utah",1988,1,"UT",660
+"utah",1991,1,"UT",60
+"utah",1992,1,"UT",NA
+"utah",1995,1,"UT",1296000
+"utah",1996,2,"UT",864075
+"utah",1998,2,"UT",173100
+"utah",1999,1,"UT",129600
+"utah",2000,2,"UT",108060
+"utah",2001,4,"UT",480
+"utah",2002,2,"UT",120
+"utah",2003,5,"UT",272.5
+"utah",2004,2,"UT",172890
+"utah",2005,2,"UT",7200
+"utah",2006,18,"UT",419841.588235294
+"utah",2007,29,"UT",667856.666666667
+"utah",2008,26,"UT",415101.458333333
+"utah",2009,32,"UT",132436.071428571
+"utah",2010,37,"UT",354727.444444444
+"utah",2011,47,"UT",58320.1555555556
+"utah",2012,103,"UT",129741.71875
+"utah",2013,84,"UT",545437.974683544
+"utah",2014,71,"UT",352421.641791045
+"utah",2015,67,"UT",211798.032786885
+"utah",2016,83,"UT",587178.461538462
+"utah",2017,61,"UT",310963.448275862
+"utah",2018,51,"UT",750768.181818182
+"utah",2019,70,"UT",225244.137931034
+"utah",2020,95,"UT",528876.847826087
+"utah",2021,3,"UT",160
+"utah",NA,7,"UT",3168040
+"vermont",1969,1,"VT",480
+"vermont",1987,1,"VT",1728000
+"vermont",2001,1,"VT",300
+"vermont",2007,4,"VT",216330
+"vermont",2008,3,"VT",1425
+"vermont",2009,5,"VT",86556
+"vermont",2010,6,"VT",907450
+"vermont",2011,5,"VT",292.5
+"vermont",2012,13,"VT",79487.5
+"vermont",2013,20,"VT",1101804
+"vermont",2014,10,"VT",147186
+"vermont",2015,14,"VT",411992.857142857
+"vermont",2016,6,"VT",121260
+"vermont",2017,6,"VT",540
+"vermont",2018,7,"VT",2037081.42857143
+"vermont",2019,5,"VT",1987725
+"vermont",2020,9,"VT",562246.666666667
+"vermont",2021,1,"VT",600
+"vermont",NA,1,"VT",300
+"virginia",1947,1,"VA",864000
+"virginia",1956,1,"VA",300
+"virginia",1962,1,"VA",NA
+"virginia",1963,2,"VA",4050
+"virginia",1964,4,"VA",76215
+"virginia",1965,1,"VA",600
+"virginia",1966,1,"VA",450
+"virginia",1968,1,"VA",600
+"virginia",1970,2,"VA",648015
+"virginia",1971,1,"VA",NA
+"virginia",1972,1,"VA",300
+"virginia",1973,2,"VA",750
+"virginia",1974,3,"VA",288360
+"virginia",1975,2,"VA",1050
+"virginia",1977,1,"VA",180
+"virginia",1979,2,"VA",180
+"virginia",1980,4,"VA",422.666666666667
+"virginia",1982,4,"VA",1144920
+"virginia",1983,5,"VA",408
+"virginia",1984,1,"VA",1200
+"virginia",1985,5,"VA",406.25
+"virginia",1986,3,"VA",288160
+"virginia",1987,1,"VA",432000
+"virginia",1988,1,"VA",120
+"virginia",1989,3,"VA",244980
+"virginia",1990,2,"VA",90
+"virginia",1991,1,"VA",300
+"virginia",1993,2,"VA",180
+"virginia",1994,3,"VA",160
+"virginia",1995,2,"VA",1080300
+"virginia",1996,5,"VA",172.5
+"virginia",1998,2,"VA",1728450
+"virginia",1999,2,"VA",561600
+"virginia",2000,1,"VA",900
+"virginia",2001,5,"VA",1669.5
+"virginia",2002,5,"VA",580
+"virginia",2003,5,"VA",1300590
+"virginia",2005,5,"VA",1920
+"virginia",2006,43,"VA",445290
+"virginia",2007,54,"VA",414305.730769231
+"virginia",2008,79,"VA",332867.464788732
+"virginia",2009,67,"VA",324899.153225806
+"virginia",2010,60,"VA",288570.272727273
+"virginia",2011,82,"VA",404990.012987013
+"virginia",2012,115,"VA",655769.102941177
+"virginia",2013,176,"VA",541778.903225806
+"virginia",2014,157,"VA",576885.625
+"virginia",2015,117,"VA",394921.682242991
+"virginia",2016,95,"VA",352847.407407407
+"virginia",2017,83,"VA",602443.026315789
+"virginia",2018,59,"VA",287430
+"virginia",2019,161,"VA",649549.2
+"virginia",2020,84,"VA",488183.289473684
+"virginia",2021,6,"VA",86700
+"virginia",NA,13,"VA",648252
+"washington",1946,1,"WA",30
+"washington",1947,2,"WA",432450
+"washington",1948,1,"WA",180
+"washington",1951,2,"WA",4650
+"washington",1952,2,"WA",216090
+"washington",1953,1,"WA",300
+"washington",1958,2,"WA",15900
+"washington",1959,2,"WA",2592000
+"washington",1960,1,"WA",900
+"washington",1961,1,"WA",900
+"washington",1962,3,"WA",1125
+"washington",1963,2,"WA",600
+"washington",1965,1,"WA",2592000
+"washington",1966,2,"WA",172.5
+"washington",1967,3,"WA",130
+"washington",1968,3,"WA",975
+"washington",1969,4,"WA",864240
+"washington",1970,2,"WA",1200
+"washington",1971,2,"WA",1020
+"washington",1972,3,"WA",146480
+"washington",1973,5,"WA",518904
+"washington",1974,6,"WA",379050
+"washington",1975,5,"WA",198
+"washington",1976,7,"WA",187945.714285714
+"washington",1977,1,"WA",1200
+"washington",1978,4,"WA",1836105
+"washington",1979,3,"WA",218600
+"washington",1980,5,"WA",756120
+"washington",1981,4,"WA",649035
+"washington",1982,1,"WA",600
+"washington",1983,1,"WA",432000
+"washington",1984,2,"WA",510
+"washington",1985,2,"WA",2175
+"washington",1986,6,"WA",649860
+"washington",1987,3,"WA",600
+"washington",1988,3,"WA",740
+"washington",1989,2,"WA",240
+"washington",1990,2,"WA",64800
+"washington",1991,3,"WA",165
+"washington",1992,6,"WA",1257.91666666667
+"washington",1993,8,"WA",550966.25
+"washington",1994,6,"WA",216675
+"washington",1995,13,"WA",221150.888888889
+"washington",1996,10,"WA",492.9375
+"washington",1997,12,"WA",216647.5
+"washington",1998,4,"WA",259425
+"washington",1999,12,"WA",621.818181818182
+"washington",2000,9,"WA",1584160
+"washington",2001,7,"WA",1247220
+"washington",2002,6,"WA",216595
+"washington",2003,7,"WA",1875
+"washington",2004,9,"WA",1481782
+"washington",2005,23,"WA",455258.684210526
+"washington",2006,134,"WA",806627.483333333
+"washington",2007,206,"WA",298082.949468085
+"washington",2008,180,"WA",367485.060606061
+"washington",2009,207,"WA",300479.401069519
+"washington",2010,258,"WA",380256.721982759
+"washington",2011,268,"WA",315779.651452282
+"washington",2012,385,"WA",467902.633802817
+"washington",2013,297,"WA",398602.883211679
+"washington",2014,341,"WA",469206.57807309
+"washington",2015,242,"WA",409369.427312775
+"washington",2016,208,"WA",386289.6875
+"washington",2017,190,"WA",477038.493975904
+"washington",2018,146,"WA",576570.725806452
+"washington",2019,216,"WA",448512.303370787
+"washington",2020,327,"WA",372829.9958159
+"washington",2021,17,"WA",901481.538461538
+"washington",NA,34,"WA",5268644.92
+"west virginia",1954,1,"WV",60
+"west virginia",1965,1,"WV",1200
+"west virginia",1966,1,"WV",30
+"west virginia",1967,2,"WV",180
+"west virginia",1968,1,"WV",120
+"west virginia",1971,1,"WV",600
+"west virginia",1974,1,"WV",1200
+"west virginia",1975,1,"WV",240
+"west virginia",1977,1,"WV",60
+"west virginia",1978,1,"WV",1200
+"west virginia",1979,2,"WV",3750
+"west virginia",1980,2,"WV",2790
+"west virginia",1982,3,"WV",510
+"west virginia",1983,2,"WV",450
+"west virginia",1985,1,"WV",432000
+"west virginia",1986,1,"WV",900
+"west virginia",1989,1,"WV",600
+"west virginia",1992,1,"WV",1296000
+"west virginia",1995,2,"WV",1200
+"west virginia",1996,3,"WV",43470
+"west virginia",1997,2,"WV",225
+"west virginia",1998,2,"WV",86700
+"west virginia",1999,1,"WV",600
+"west virginia",2001,3,"WV",103.333333333333
+"west virginia",2002,4,"WV",570
+"west virginia",2005,1,"WV",180
+"west virginia",2006,9,"WV",742149
+"west virginia",2007,23,"WV",289508.666666667
+"west virginia",2008,23,"WV",182529.473684211
+"west virginia",2009,35,"WV",642705.483870968
+"west virginia",2010,14,"WV",373190
+"west virginia",2011,25,"WV",454428
+"west virginia",2012,54,"WV",874605.5
+"west virginia",2013,45,"WV",272949.285714286
+"west virginia",2014,54,"WV",473762.941176471
+"west virginia",2015,37,"WV",374121.818181818
+"west virginia",2016,25,"WV",811613.47826087
+"west virginia",2017,18,"WV",607631.25
+"west virginia",2018,12,"WV",58210
+"west virginia",2019,33,"WV",620691.111111111
+"west virginia",2020,34,"WV",239204.482758621
+"west virginia",2021,3,"WV",520
+"west virginia",NA,4,"WV",97380
+"wisconsin",1947,1,"WI",240
+"wisconsin",1950,1,"WI",2592000
+"wisconsin",1952,1,"WI",864000
+"wisconsin",1958,1,"WI",864000
+"wisconsin",1959,1,"WI",1200
+"wisconsin",1963,1,"WI",3600
+"wisconsin",1964,1,"WI",1200
+"wisconsin",1966,2,"WI",2400
+"wisconsin",1971,1,"WI",120
+"wisconsin",1972,1,"WI",900
+"wisconsin",1973,2,"WI",510
+"wisconsin",1974,2,"WI",864150
+"wisconsin",1975,4,"WI",648333.75
+"wisconsin",1976,3,"WI",330
+"wisconsin",1977,2,"WI",70
+"wisconsin",1978,2,"WI",300
+"wisconsin",1979,2,"WI",120
+"wisconsin",1982,1,"WI",1200
+"wisconsin",1985,3,"WI",750
+"wisconsin",1987,4,"WI",432352.5
+"wisconsin",1988,2,"WI",360
+"wisconsin",1989,3,"WI",86670
+"wisconsin",1990,5,"WI",855
+"wisconsin",1991,2,"WI",1296000
+"wisconsin",1992,1,"WI",120
+"wisconsin",1993,3,"WI",180
+"wisconsin",1994,3,"WI",1296900
+"wisconsin",1995,3,"WI",756150
+"wisconsin",1996,4,"WI",9286.5
+"wisconsin",1997,3,"WI",216525
+"wisconsin",1998,3,"WI",260
+"wisconsin",1999,2,"WI",1200
+"wisconsin",2000,4,"WI",216176.25
+"wisconsin",2001,3,"WI",300
+"wisconsin",2002,4,"WI",65122.5
+"wisconsin",2003,3,"WI",1008200
+"wisconsin",2004,3,"WI",936000
+"wisconsin",2005,4,"WI",2700
+"wisconsin",2006,28,"WI",473895.3
+"wisconsin",2007,51,"WI",644687.847826087
+"wisconsin",2008,62,"WI",537755.775862069
+"wisconsin",2009,55,"WI",297670.625
+"wisconsin",2010,58,"WI",660357.307692308
+"wisconsin",2011,104,"WI",180586.303191489
+"wisconsin",2012,151,"WI",249552.284172662
+"wisconsin",2013,159,"WI",312379.931506849
+"wisconsin",2014,134,"WI",437207.213114754
+"wisconsin",2015,119,"WI",476364.375
+"wisconsin",2016,104,"WI",573876.18556701
+"wisconsin",2017,77,"WI",397090.3125
+"wisconsin",2018,35,"WI",786068.4375
+"wisconsin",2019,120,"WI",497781.666666667
+"wisconsin",2020,120,"WI",389072.330097087
+"wisconsin",2021,4,"WI",216045
+"wisconsin",NA,11,"WI",822213
+"wyoming",1949,1,"WY",300
+"wyoming",1962,1,"WY",120
+"wyoming",1965,1,"WY",60
+"wyoming",1970,1,"WY",2700
+"wyoming",1972,1,"WY",5184000
+"wyoming",1973,1,"WY",30
+"wyoming",1975,1,"WY",1728000
+"wyoming",1976,1,"WY",600
+"wyoming",1980,1,"WY",7200
+"wyoming",1987,1,"WY",240
+"wyoming",1996,2,"WY",60
+"wyoming",1999,1,"WY",120
+"wyoming",2000,1,"WY",120
+"wyoming",2002,1,"WY",60
+"wyoming",2003,1,"WY",2592000
+"wyoming",2006,6,"WY",142026
+"wyoming",2007,7,"WY",371057.142857143
+"wyoming",2008,7,"WY",52560
+"wyoming",2009,5,"WY",864086
+"wyoming",2010,12,"WY",125326.666666667
+"wyoming",2011,17,"WY",484485.588235294
+"wyoming",2012,12,"WY",335667.272727273
+"wyoming",2013,13,"WY",396510
+"wyoming",2014,17,"WY",493329.230769231
+"wyoming",2015,18,"WY",138532.5
+"wyoming",2016,14,"WY",752217.5
+"wyoming",2017,15,"WY",487045
+"wyoming",2018,12,"WY",248151.428571429
+"wyoming",2019,18,"WY",215874.375
+"wyoming",2020,24,"WY",228267.142857143
+"wyoming",NA,2,"WY",7200
+NA,2010,1,"DC",120
+NA,2011,1,"DC",345600
+NA,2012,4,"DC",324337.5
+NA,2016,1,"DC",NA
+NA,2017,1,"DC",60
+NA,2018,1,"DC",NA
+NA,2020,1,"DC",2592000

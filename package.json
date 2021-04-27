@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "dependencies": {
     "d3-geo-projection": "latest",
+    "humanize-duration": "latest",
     "ndjson-cli": "latest",
     "npx": "^10.2.2",
     "shapefile": "latest",

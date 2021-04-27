@@ -5,9 +5,9 @@
 
 div.tooltip {
       position: absolute;
-      text-align: center;
+      text-align: left;
       min-width: 60px;
-      height: 28px;
+      min-height: 28px;
       padding: 2px;
       font: 12px sans-serif;
       background: lightsteelblue;
@@ -15,3 +15,9 @@ div.tooltip {
       border-radius: 8px;
       pointer-events: none;
     }
+
+.cityDot {
+    opacity: 100%;
+    /* something */
+    stroke: white;
+}
