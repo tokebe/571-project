@@ -25,7 +25,8 @@ Some cleaning
 ufo_data_us$Posted <- as.Date(ufo_data_us$Posted, format = "%m/%d/%y")
 
 # Clean time of sighting (only saves Dates)
-ufo_data_us$`Date/Time` <- as.Date(ufo_data_us$`Date/Time`, format = "%m/%d/%y %H:%M")
+ufo_data_us$`Date/Time` <- format(as.Date(ufo_data_us$`Date/Time`, format = "%m/%d/%y"), "%Y")
+ufo_data_us$`Date/Time` <- as.numeric(ufo_data_us$`Date/Time`)
 ```
 
 Aggregating UFO data for historical time series (wide format to match stacked D3 format)
@@ -33,7 +34,7 @@ Aggregating UFO data for historical time series (wide format to match stacked D3
 ```{r}
 historical_data <- ufo_data_us %>%
   mutate(`Date/Time` = case_when(
-          `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
+          `Date/Time` > 2021 ~ `Date/Time` - 100,
           TRUE ~ `Date/Time`)
         ) %>% 
   group_by(`Date/Time`) %>% 
@@ -45,7 +46,7 @@ historical_data <- ufo_data_us %>%
 # Get UFO data by state
 states <- ufo_data_us %>% 
   mutate(`Date/Time` = case_when(
-          `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
+          `Date/Time` > 2021 ~ `Date/Time` - 100,
           TRUE ~ `Date/Time`)
         ) %>% 
   group_by(`Date/Time`, State) %>% 
@@ -59,7 +60,7 @@ states <- ufo_data_us %>%
 # Get UFO data by shape
 shapes <- ufo_data_us %>% 
   mutate(`Date/Time` = case_when(
-          `Date/Time` > as.POSIXct("2021-04-01 01:00:00") ~ `Date/Time` - years(100),
+          `Date/Time` > 2021 ~ `Date/Time` - 100,
           TRUE ~ `Date/Time`)
         ) %>% 
   group_by(`Date/Time`, Shape) %>% 
