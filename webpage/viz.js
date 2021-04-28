@@ -343,7 +343,7 @@ Promise.all([
     relColor = false;
 
   let prevArea = await updateHistoricalPlot(); // Needed as a basis for transitions (based on previous area plots)
-
+  
   // time slider
   const sliderTime = d3
     .sliderBottom()

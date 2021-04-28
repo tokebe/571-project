@@ -1,5 +1,5 @@
-.mapContainer, #historicalContainer {
-    max-height: 600px;
+.container-fluid {
+    max-height: 500px;
 }
 
 .state {

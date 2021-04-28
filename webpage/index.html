@@ -30,33 +30,33 @@
 
 <body>
   <!-- Top half of page-->
-  <div class="top container">
+  <div class="top container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <div class="mapContainer"></div>
       </div>
       <div class="col-md-4" id="historicalContainer"></div>
     </div>
   </div>
   <!-- Bottom half of page -->
-  <div class="bottom container">
+  <div class="bottom container-fluid mt-2">
     <!-- Headers and bottom right plot -->
     <div class="row">
-      <h3 class="col-md-6 mt-4">Global Settings</h3>
+      <h3 class="col-md-6 mt-5">Global Settings</h3>
       <!-- TODO: Histogram of aggregated data -->
     </div>
     <!-- Global settings -->
-    <div class="row globalSettings">
-      <div class="custom-control custom-checkbox col-md-4 mx-4">
+    <div class="row">
+      <div class="custom-control custom-checkbox col-md-2 mx-4">
         <input type="checkbox" class="custom-control-input" id="useRange" checked>
         <label class="custom-control-label" for="useRange">Use Year Range</label>
       </div>
-      <b class="col mx-n5">Attribute Selection</b>
     </div>
     <div class="row">
       <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
       <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
-      <div class="col-md-4">
+      <div class="col-md-4 mt-n4">
+        <b>Attribute Selection</b>
         <p>Choose an Attribute: 
           <select name='dropdown' id='attr-selection'>
             <option>None</option>
@@ -70,7 +70,7 @@
       </div>
     </div>
     <!-- Map settings -->
-    <b class="row mx-1">Map Settings:</b> 
+    <h4 class="row mx-1 mt-4">Map Settings</h4>
     <div class="row">
       <div class="col">
         <div class="mapControls">
@@ -92,6 +92,6 @@
   </div>
 
   <!-- Script to create svg -->
-  <script type="text/javascript" src="viz.js"></script>
   <script type="text/javascript" src="historical.js"></script>
+  <script type="text/javascript" src="viz.js"></script>
 </body>
