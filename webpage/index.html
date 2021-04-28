@@ -5,44 +5,85 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>UFO Sightings and Airports</title>
-  <!-- Scripts for data to work -->
+  <!-- D3  -->
   <script src="https://d3js.org/topojson.v2.min.js"></script>
   <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
   <script src="https://d3js.org/d3-geo.v2.min.js"></script>
   <script src="https://unpkg.com/d3fc"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <!-- For human-readable time -->
   <script src="../node_modules/humanize-duration/humanize-duration.js"></script>
   <!-- Range Slider -->
   <script src="https://unpkg.com/d3-simple-slider@1.10.4/dist/d3-simple-slider.min.js"></script>
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
-
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- Script to create svg -->
-  <script type="module" src="viz.js"></script>
-  <div class="mapContainer"></div>
-  <div class="mapControls">
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="useRange" checked>
-      <label class="custom-control-label" for="useRange">Use Year Range</label>
+  <!-- Top half of page-->
+  <div class="top container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="mapContainer"></div>
+      </div>
+      <div class="col-md-4" id="historicalContainer"></div>
     </div>
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="relColor">
-      <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
+  </div>
+  <!-- Bottom half of page -->
+  <div class="bottom container">
+    <!-- Headers and bottom right plot -->
+    <div class="row">
+      <h3 class="col-md-6 mt-4">Global Settings</h3>
+      <!-- TODO: Histogram of aggregated data -->
     </div>
-    <div class="custom-control custom-radio">
-      <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
-      <label class="custom-control-label" for="showFreq">Color by Sighting Frequency</label>
+    <!-- Global settings -->
+    <div class="row globalSettings">
+      <div class="custom-control custom-checkbox col-md-4 mx-4">
+        <input type="checkbox" class="custom-control-input" id="useRange" checked>
+        <label class="custom-control-label" for="useRange">Use Year Range</label>
+      </div>
+      <b class="col mx-n5">Attribute Selection</b>
     </div>
-    <div class="custom-control custom-radio">
-      <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
-      <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+    <div class="row">
+      <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
+      <div id="yearRangeSliderBox" class="yearRangeSliderBox col-md-4"></div>
+      <div class="col-md-4">
+        <p>Choose an Attribute: <select name='dropdown' id='attr-selection'></select><p>
+        <div class='dropdown' id='attr-types'>Placeholder</div>
+        <button class='btn btn-primary btn-sm' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
+      </div>
     </div>
-    <div id="yearSliderBox" class="yearSliderBox"></div>
-    <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
+    <!-- Map settings -->
+    <b class="row mx-1">Map Settings:</b> 
+    <div class="row">
+      <div class="col">
+        <div class="mapControls">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="relColor">
+            <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
+            <label class="custom-control-label" for="showFreq">Color by Sighting Frequency</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
+            <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-
+  <!-- Script to create svg -->
+  <script type="module" src="viz.js"></script>
 </body>

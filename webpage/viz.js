@@ -1,9 +1,9 @@
-const width = 960;
-const height = 500;
+const width = 660;
+const height = 400;
 
 const projection = d3
   .geoAlbersUsa()
-  .scale(1000)
+  .scale(800)
   .translate([width / 2, height / 2]);
 
 const path = d3.geoPath().projection(projection);
@@ -365,7 +365,7 @@ Promise.all([
     .select(".yearSliderBox")
     .attr("class", "yearSlider hidden")
     .append("svg")
-    .attr("width", width)
+    .attr("width", width / 2)
     .attr("height", 100)
     .append("g")
     .attr("transform", "translate(30,30)");
@@ -377,7 +377,7 @@ Promise.all([
     .sliderBottom()
     .min(d3.min(data[3], (d) => d.year))
     .max(d3.max(data[3], (d) => d.year))
-    .width(width * 0.8)
+    .width((width / 2) * 0.8)
     .tickFormat(d3.format(""))
     .ticks(10)
     .step(1)
@@ -395,7 +395,7 @@ Promise.all([
   const gRange = d3
     .select(".yearRangeSliderBox")
     .append("svg")
-    .attr("width", width)
+    .attr("width", width / 2)
     .attr("height", 100)
     .append("g")
     .attr("transform", "translate(30,30)")

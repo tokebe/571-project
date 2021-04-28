@@ -1,6 +1,5 @@
-.mapContainer {
-    min-height: 580px;
-    column-count: 2;
+.mapContainer, #historicalContainer {
+    max-height: 600px;
 }
 
 .state {
@@ -33,13 +32,6 @@ div.tooltip {
     max-height: 200px;
 }
 
-#filter-dates {
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
 .cityDot {
     opacity: 100%;
     /* something */

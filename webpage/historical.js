@@ -5,10 +5,6 @@
  // When page loads initially
 window.addEventListener('load', async () => {
     
-    // Hide map
-    // const states = Array.from(document.getElementsByClassName('state'));
-    // states.map(elem => elem.style.visibility = 'hidden');
-
     // Dimensions
     const [ margin, width, height ] = initDimensions();
 
@@ -18,7 +14,7 @@ window.addEventListener('load', async () => {
     // Create other 
     createAttrSelection();
     createAttrTypeSelection();
-    createDateFilter('1928', '2021');
+    createDateFilter('2000', '2021');
 
     // Read and initialize plots
     const dataset = readData('data/us-historical-wide.csv');
@@ -179,7 +175,7 @@ function initDimensions() {
 
 
 async function initSVG(margin, width, height) {
-    const svg = d3.select('#historical-viz')
+    const svg = d3.select('#historicalContainer')
                 .append('svg')
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
