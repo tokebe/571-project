@@ -4,7 +4,12 @@
 
 .state {
     /* fill: white; */
-    stroke: black;
+    stroke: #fff;
+    fill: #aaa;
+}
+
+.stateInfo {
+    min-height: 3em;
 }
 
 div.tooltip {
@@ -43,4 +48,10 @@ div.tooltip {
     opacity: 0;
     width: 0;
     height: 0;
+}
+
+.mapLegendLabel {
+    font-size: 12px;
+    /* margin: auto; */
+    left: 50%
 }

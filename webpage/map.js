@@ -14,12 +14,18 @@ const svg = d3
   .attr("width", width)
   .attr("height", height);
 
+const legendLabel = d3
+  .select(".mapContainer")
+  .append("div")
+  .attr("class", "mapLegendLabel")
+  .html("Sighting Frequency");
+
 const colorScaleLegend = d3
   .select(".mapContainer")
   .append("svg")
   .attr("class", "colorScaleLegend")
   .attr("width", width)
-  .attr("height", 100);
+  .attr("height", 50);
 
 // const margin = { top: 20, right: 40, bottom: 30, left: 40 };
 const margin = { top: 0, right: 0, bottom: 0, left: 0 };
@@ -44,6 +50,8 @@ const stateInfo = d3
   .append("div")
   .attr("class", "stateInfo")
   .style("opacity", "0%");
+
+let fullFreqExtent, fullDurExtent;
 
 function getProjectedCoord(d, i) {
   return projection([d.lng, d.lat])[i];
@@ -112,6 +120,7 @@ function cityMouseOutFunc(e, d) {
 }
 
 function getDataInRange(data, range) {
+  // summarize the city data within the extent
   const cityData = [];
   for (const state in data[1]) {
     const stateObj = data[1][state];
@@ -127,11 +136,6 @@ function getDataInRange(data, range) {
           count += year.mean_dur === "NA" ? 0 : 1;
         }
       }
-      // if (typeof mean_dur !== "number") {
-      //   console.log(
-      //     "non-number dur '" + mean_dur + "' in " + city + ", " + state
-      //   );
-      // }
       mean_dur /= count ? count : 1;
       if (freq > 0) {
         cityData.push({
@@ -147,6 +151,7 @@ function getDataInRange(data, range) {
     }
   }
 
+  // summarize the state data within the extent
   const stateData = {};
   for (const state in data[2]) {
     const stateObj = data[2][state];
@@ -169,7 +174,14 @@ function getDataInRange(data, range) {
     };
   }
 
-  console.log(d3.extent(data[3], (d) => d.freq));
+  // calculate the full extents only once
+  if (!fullFreqExtent || !fullDurExtent) {
+    fullDurExtent = d3
+      .extent(data[3], (d) => (d.mean_dur !== "NA" ? parseInt(d.mean_dur) : 0))
+      .map((d) => d / 86400);
+
+    fullFreqExtent = d3.extent(data[3], (d) => parseInt(d.freq));
+  }
 
   return {
     stateData: stateData,
@@ -182,15 +194,12 @@ function getDataInRange(data, range) {
         return parseFloat(d.mean_dur);
       })
       .map((d) => d / 86400),
-    fullFreqExtent: d3.extent(data[3], (d) => parseInt(d.freq)),
-    fullDurExtent: d3
-      .extent(data[3], (d) => (d.mean_dur !== "NA" ? parseInt(d.mean_dur) : 0))
-      .map((d) => d / 86400),
+    fullFreqExtent: fullFreqExtent,
+    fullDurExtent: fullDurExtent,
   };
 }
 
 function makeColorLegend(extent, colorScale, color) {
-  console.log(extent);
   linearGradient.exit().remove();
 
   linearGradient
@@ -220,17 +229,15 @@ function makeColorLegend(extent, colorScale, color) {
 
   colorScaleLegend.exit().remove();
 
-  const axisScale = d3.scaleLog().domain(extent).range([0, 600]);
+  extent[0] = extent[0] ? extent[0] : 1;
+  const axisScale = d3.scaleLog().domain(extent).range([0, 600]).nice(1);
 
   const axisBottom = (g) =>
     g
       .attr("class", `x-axis`)
       .call(
-        d3
-          .axisBottom(axisScale)
-          .ticks(width / 80)
-          .tickSize(-barHeight)
-          .tickFormat(d3.format("~s"))
+        d3.axisBottom(axisScale).ticks(10, d3.format("~s")).tickSize(-barHeight)
+        // .tickFormat()
       )
       .selectAll("text")
       .attr("transform", "rotate(-45)translate(0, 10)");
@@ -267,7 +274,6 @@ function makeMap(stateShapes, data) {
     .append("path")
     .attr("class", "state")
     .attr("d", path)
-    .style("fill", "#444")
     .on("mouseover", (e, d) => {
       stateInfo.transition().style("opacity", "100%");
       stateInfo.html(
@@ -317,8 +323,6 @@ function updateMap(data, color, relColor) {
   const freqExtent = data.freqExtent;
   const durExtent = data.durExtent;
 
-  console.log(relColor);
-
   let extent = color === "freq" ? freqExtent : durExtent;
 
   extent = relColor
@@ -327,9 +331,7 @@ function updateMap(data, color, relColor) {
       : data.fullDurExtent
     : extent;
 
-  console.log(extent);
-
-  const logScale = d3.scaleSymlog().domain(extent);
+  const logScale = d3.scaleSymlog().domain(extent).nice();
   const colorScale = d3
     .scaleSequential()
     .interpolator((d) => d3.interpolateViridis(logScale(d)));
@@ -417,7 +419,6 @@ Promise.all([
   d3.json("data/ufo_us_by_state_year.json"),
   d3.csv("data/ufo_us_by_city_year.csv"),
 ]).then(async (data) => {
-  // console.log(data);
   let savedData = getDataInRange(data, [2000, 2021]);
   makeMap(data[0], savedData);
 
@@ -495,7 +496,7 @@ Promise.all([
   gRange.call(sliderRange);
   // TODO implement color switch between count and duration
 
-  document.getElementById("useRange").addEventListener("change", () => {
+  document.getElementById("useRange").addEventListener("change", async () => {
     // toggle which slider is shown
     document.getElementById("yearSliderBox").classList.toggle("hidden");
     document.getElementById("yearRangeSliderBox").classList.toggle("hidden");
@@ -505,20 +506,23 @@ Promise.all([
       .classList.contains("hidden")
       ? sliderRange.value().map((d) => parseInt(d))
       : [parseInt(sliderTime.value()), parseInt(sliderTime.value())];
-    // console.log(range);
     savedData = getDataInRange(data, range);
     updateMap(savedData, color, relColor);
+
+    // Historical data update
+    prevArea = await updateHistoricalPlot(prevArea);
   });
 
   document.getElementById("relColor").addEventListener("change", () => {
     relColor = document.getElementById("relColor").checked;
-    console.log(relColor);
     updateMap(savedData, color, relColor);
   });
 
   function colorDisplayChanged(event) {
     color = document.getElementById("showFreq").checked ? "freq" : "dur";
-    // console.log(color);
+    legendLabel.html(
+      color === "freq" ? "Sighting Frequency" : "Avg. Sighting Duration (Hours)"
+    );
     savedData = getDataInRange(data, range);
     updateMap(savedData, color, relColor);
   }
