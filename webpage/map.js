@@ -14,12 +14,12 @@ const svg = d3
   .attr("width", width)
   .attr("height", height);
 
-const colorScaleLegend = d3
-  .select(".mapContainer")
-  .append("svg")
-  .attr("class", "colorScaleLegend")
-  .attr("width", 50)
-  .attr("height", height);
+// const colorScaleLegend = d3
+//   .select(".mapContainer")
+//   .append("svg")
+//   .attr("class", "colorScaleLegend")
+//   .attr("width", 50)
+//   .attr("height", height);
 
 // Set up tooltip
 const tooltip = d3
@@ -297,6 +297,12 @@ function updateMap(data, color, relColor) {
         parseFloat(color === "freq" ? d.freq : d.mean_dur)
       );
       return val ? val : "grey";
+    })
+    .on("mouseover", (e, d) => {
+      cityMouseOverFunc(e, d, data);
+    })
+    .on("mouseout", function (e, d) {
+      cityMouseOutFunc(e, d);
     });
 
   // add any new points
@@ -326,6 +332,27 @@ function updateMap(data, color, relColor) {
 
   // remove unused points
   points.exit().remove();
+
+  // update state hover info
+  svg.selectAll("path").on("mouseover", (e, d) => {
+    stateInfo.transition().style("opacity", "100%");
+    stateInfo.html(
+      d.properties.name.toLowerCase().toTitleCase() +
+        ": " +
+        "</br>" +
+        "State Total Sightings: " +
+        stateData[d.properties.name.toLowerCase()].freq +
+        "</br>" +
+        "State Avg. Duration: " +
+        humanizeDuration(
+          stateData[d.properties.name.toLowerCase()].mean_dur * 1000,
+          {
+            maxDecimalPoints: 1,
+            largest: 1,
+          }
+        )
+    );
+  });
 }
 
 Promise.all([
@@ -343,7 +370,7 @@ Promise.all([
     relColor = false;
 
   let prevArea = await updateHistoricalPlot(); // Needed as a basis for transitions (based on previous area plots)
-  
+
   // time slider
   const sliderTime = d3
     .sliderBottom()
@@ -364,7 +391,7 @@ Promise.all([
 
       // Historical data update
       prevArea = await updateHistoricalPlot(prevArea);
-    })
+    });
 
   const gTime = d3
     .select(".yearSliderBox")
@@ -398,7 +425,7 @@ Promise.all([
 
       // Historical data update
       prevArea = await updateHistoricalPlot(prevArea);
-    })
+    });
 
   const gRange = d3
     .select(".yearRangeSliderBox")
