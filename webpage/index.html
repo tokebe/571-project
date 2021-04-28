@@ -55,10 +55,17 @@
     </div>
     <div class="row">
       <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
-      <div id="yearRangeSliderBox" class="yearRangeSliderBox col-md-4"></div>
+      <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
       <div class="col-md-4">
-        <p>Choose an Attribute: <select name='dropdown' id='attr-selection'></select><p>
-        <div class='dropdown' id='attr-types'>Placeholder</div>
+        <p>Choose an Attribute: 
+          <select name='dropdown' id='attr-selection'>
+            <option>None</option>
+            <option>US States</option>
+            <option>UFO Shapes</option>
+            <option>US Airports</option>
+          </select>
+        <p>
+        <div class='dropdown' id='attr-types'></div>
         <button class='btn btn-primary btn-sm' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
       </div>
     </div>
@@ -85,5 +92,6 @@
   </div>
 
   <!-- Script to create svg -->
-  <script type="module" src="viz.js"></script>
+  <script type="text/javascript" src="viz.js"></script>
+  <script type="text/javascript" src="historical.js"></script>
 </body>

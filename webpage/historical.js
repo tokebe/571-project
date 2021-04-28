@@ -12,16 +12,15 @@ window.addEventListener('load', async () => {
     const svg = await initSVG(margin, width, height);
 
     // Create other 
-    createAttrSelection();
+    // createAttrSelection();
     createAttrTypeSelection();
-    createDateFilter('2000', '2021');
+    // createDateFilter('2000', '2021');
 
     // Read and initialize plots
     const dataset = readData('data/us-historical-wide.csv');
     await initPlots(dataset, svg, margin, width, height); 
 
     // Updates
-    await updateTimeAndSlider();
     updateAttrTypeSelection();
 });
 
@@ -32,8 +31,6 @@ window.addEventListener('load', async () => {
 function updateAttrTypeSelection(initial = true, checked) {
     const attr = document.getElementById('attr-selection').value;
     const defaults = initial ? ['Total', 'CA', 'NM', 'NC', 'NY', 'Light', 'Circle', 'Sphere'] : checked; 
-
-    console.log(defaults);
 
     const types = getAttrValues();
     const selection = document.getElementById('filter-types');
@@ -68,52 +65,52 @@ function updateAttrTypeSelection(initial = true, checked) {
 }
 
 async function updateTimeAndSlider() {
-    const slider = document.getElementById('filter-dates');
+    // const slider = document.getElementById('filter-dates');
 
-    if (slider !== undefined) {
-        // When there is a change on the range slider for dates, text is updated
-        slider.noUiSlider.on('update', (values, handle) => {
-            // Starting and ending handles for slider
-            const dateValues = [
-                document.getElementById('date-start'),
-                document.getElementById('date-end')
-            ];
+    // if (slider !== undefined) {
+    //     // When there is a change on the range slider for dates, text is updated
+    //     slider.noUiSlider.on('update', (values, handle) => {
+    //         // Starting and ending handles for slider
+    //         const dateValues = [
+    //             document.getElementById('date-start'),
+    //             document.getElementById('date-end')
+    //         ];
 
-            // Update text
-            dateValues[handle].innerText = formatDate(new Date(+values[handle]));
-        });
-    }
+    //         // Update text
+    //         dateValues[handle].innerText = formatDate(new Date(+values[handle]));
+    //     });
+    // }
 }
 
 /*--------------------------------------*
  *---------- Page generation -----------*
  *--------------------------------------*/
 
-function createAttrSelection() {
-    // Selection
-    const select = document.getElementById('attr-selection')
+// function createAttrSelection() {
+//     // Selection
+//     const select = document.getElementById('attr-selection')
 
-    // Options
-    const optionsList = ['All', 'State', 'Shape'];
-    optionsList.forEach(option => {
-        const options = document.createElement('option');
-        options.setAttribute('value', option);
-        options.innerText = option;
-        select.appendChild(options);
-    });
-}
+//     // Options
+//     const optionsList = ['All', 'State', 'Shape'];
+//     optionsList.forEach(option => {
+//         const options = document.createElement('option');
+//         options.setAttribute('value', option);
+//         options.innerText = option;
+//         select.appendChild(options);
+//     });
+// }
 
 function createAttrTypeSelection() {
     const dropdown = document.getElementById('attr-types');
 
     // Button to display dropdown
     const button = document.createElement('button');
-    button.setAttribute('class', 'btn dropdown-toggle');
+    button.setAttribute('class', 'btn dropdown-toggle mx-n2');
     button.setAttribute('type', 'button');
     button.setAttribute('data-toggle', 'dropdown');
     button.setAttribute('aria-haspopup', 'true');
     button.setAttribute('aria-expanded', 'false');
-    button.innerText = 'Filter by Attribute Type';
+    button.innerText = 'Filter by Attribute Values';
     dropdown.appendChild(button);
 
     // Form hosting items
@@ -127,32 +124,39 @@ function createAttrTypeSelection() {
     dropdown.appendChild(form);
 }
 
-function createDateFilter(start, end) {
-    // Creates slider
-    const slider = document.getElementById('filter-dates');
+// function createDateFilter(start, end) {
+//     // Creates slider
+//     const slider = document.getElementById('filter-dates');
 
-    noUiSlider.create(slider, {
-        start: [timestamp(start), timestamp(end)],
-        range: {
-            min: timestamp('1928'),
-            max: timestamp('2021')
-        },
-        format: wNumb({ decimals: 0 }),         // No decimals
-        step: 12 * 4 * 7 * 24 * 60 * 60 * 1000  // Step every year
-    });
-}
+//     noUiSlider.create(slider, {
+//         start: [timestamp(start), timestamp(end)],
+//         range: {
+//             min: timestamp('1928'),
+//             max: timestamp('2021')
+//         },
+//         format: wNumb({ decimals: 0 }),         // No decimals
+//         step: 12 * 4 * 7 * 24 * 60 * 60 * 1000  // Step every year
+//     });
+// }
 
 /*--------------------------------------*
  *------ Pre-plot initialization -------*
  *--------------------------------------*/
 
-function getData(fullData) {
+async function getData(fullData) {
     // Subset and options choosen by user
-    const subsetChoosen = $('input:checked').map((i, e) => e.value).toArray();
-    const [start, end] = getSelectedDates();
+    const subsetChoosen = $('input:checked').map((i, e) => e.value).toArray()
+                                            .filter(value => value !== 'on');
+    const dates = await getSelectedDates();
+    let dataSubset;
 
-    // Subsets data
-    const dataSubset = getSubset(fullData, subsetChoosen, start, end);
+    // Range slider selected
+    if (dates[0]) {
+        dataSubset = getSubset(fullData, subsetChoosen, dates[1], dates[2]);
+    } else {
+        dataSubset = getSubset(fullData, subsetChoosen, dates[1], dates[1]);
+    }
+
     // Stacks data
     const stackedData = d3.stack().keys(subsetChoosen)(dataSubset);
 
@@ -167,8 +171,8 @@ function initDimensions() {
         bottom: 50, 
         left: 50
     },
-    width = 960,
-    height = 500;
+    width = 350,
+    height = 300;
     
     return [ margin, width, height ];
 }
@@ -250,7 +254,7 @@ function initLegend(subset, svg, margin, width, color) {
       .data(subset)
       .enter()
       .append('rect')
-        .attr('x', width + margin.left)
+        .attr('x', width + margin.left - 20)
         .attr('y', (d, i) =>  10 + i * (squareSize + 5)) // 100 is first square. 25 is the distance between them
         .attr('width', squareSize)
         .attr('height', squareSize)
@@ -261,7 +265,7 @@ function initLegend(subset, svg, margin, width, color) {
         .data(subset)
         .enter()
         .append('text')
-            .attr('x', (width + margin.left) + (squareSize * 1.3))
+            .attr('x', (width + margin.left - 20) + (squareSize * 1.3))
             .attr('y', (d, i) => 10 + i * (squareSize + 5) + (squareSize / 1.8)) // 100 is first square. 25 is the distance between them
             .style('fill', d => color(d))
             .text(function(d){ return d})
@@ -276,6 +280,7 @@ function initLegend(subset, svg, margin, width, color) {
 const readData = (file) => d3.csv(file);
 
 function getSubset(data, keys, startDate, endDate) {
+    
     // Convert to proper time
     const timeConv = d3.timeParse('%Y');
 
@@ -292,8 +297,8 @@ function getSubset(data, keys, startDate, endDate) {
         return result;
     });
 
-    // Returns filtered by keys and time
-    return subset.filter(d => d.date >= new Date(+startDate) & d.date <= new Date(+endDate));
+    // TODO: Make barchart for single years?
+    return subset.filter(d => d.date >= new Date(startDate) && d.date <= new Date(endDate));
 }
 
 /*--------------------------------------*
@@ -328,12 +333,6 @@ async function initPlots(dataset, svg, margin, width, height, initialArea = unde
             areaGenerator = await initUpdate(data, margin, width, height, areaGenerator);
         });
 
-        // Slider events
-        document.getElementById('filter-dates').addEventListener('mouseup', async () => {
-            const checked = $('input:checked').map((i, e) => e.value).toArray(); 
-            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
-        });
-
         // Changing between attribute types
         document.getElementById('confirm-attr-types').addEventListener('click', async () => {
             const checked = $('input:checked').map((i, e) => e.value).toArray(); 
@@ -366,7 +365,7 @@ async function initUpdate(data, margin, width, height, initialArea, initial = tr
 }
 
 async function updatePlot(data, svg, margin, width, height, initialArea) {
-    const [subsetChoosen, dataSubset, stackedData] = getData(data);
+    const [subsetChoosen, dataSubset, stackedData] = await getData(data);
     
     // Scales 
     const [ xScale, yScale ] = initScales(dataSubset, width, height, subsetChoosen);
@@ -402,6 +401,20 @@ async function updatePlot(data, svg, margin, width, height, initialArea) {
     return areaGenerator;
 }
 
+async function updateHistoricalPlot(initialArea = undefined) {
+    const data = await readData('data/us-historical-wide.csv');
+    const [ margin, width, height ] = initDimensions();
+    const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+
+    updateAttrTypeSelection(false, checked);
+    await d3.selectAll('#stacked-area-plot').remove();
+    const newSvg = await initSVG(margin, width, height);
+
+    newArea = await updatePlot(data, newSvg, margin, width, height, initialArea);
+    
+    return newArea;
+}
+
 /*--------------------------------------*
  *-------------- Utilities -------------*
  *--------------------------------------*/
@@ -410,12 +423,12 @@ function getAttrValues() {
     const attr = document.getElementById('attr-selection').value;
     
     switch (attr) {
-        case 'State': 
+        case 'US States': 
             return ['CA', 'NM', 'NC', 'NY', 'MO', 'ID', 'ND', 'AL', 'IN', 'GA', 'KY', 'FL', 'LA',
                     'MD', 'WA', 'ME', 'TX', 'VA', 'WI', 'OK', 'MI', 'OR', 'TN', 'WY', 'AK', 'DE',
                     'MN', 'MS', 'CO', 'PA', 'MA', 'AZ', 'OH', 'NE', 'IL', 'KS', 'WV', 'AR', 'SC',
                     'NJ', 'IA', 'CT', 'UT', 'MT', 'SD', 'NV', 'NH', 'HI', 'VT', 'RI', 'DC']; 
-        case 'Shape':
+        case 'UFO Shapes':
             return ['Light', 'Circle', 'Sphere', 'Disk', 'Fireball', 'Formation', 
                     'Unknown', 'Rectangle', 'Other', 'Oval', 'Cylinder', 'Cigar',
                     'Triangle', 'Cone', 'Chevron', 'Diamond', 'Teardrop', 'Egg',
@@ -425,9 +438,18 @@ function getAttrValues() {
     }
 }
 
-function getSelectedDates() {
-    const slider = document.getElementById('filter-dates');
-    return slider.noUiSlider.get();
+async function getSelectedDates() {
+    const yearRangeSelected = document.getElementById('useRange').checked;
+    let years = document.getElementsByClassName('handle');
+    
+    if (years.length === 0) {
+        return [yearRangeSelected, '2000', '2021'];
+    }
+    
+    years = Array.from(years);
+    years = years.map(html => html.getAttribute('aria-valuenow'));
+
+    return yearRangeSelected ? [yearRangeSelected, years[1], years[2]] : [yearRangeSelected, years[0]];
 }
 
 function timestamp(str) {

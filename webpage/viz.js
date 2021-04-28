@@ -333,7 +333,7 @@ Promise.all([
   d3.json("data/ufo_us_by_city_year.json"),
   d3.json("data/ufo_us_by_state_year.json"),
   d3.csv("data/ufo_us_by_city_year.csv"),
-]).then((data) => {
+]).then(async (data) => {
   console.log(data);
   let savedData = getDataInRange(data, [2000, 2021]);
   makeMap(data[0], savedData);
@@ -342,24 +342,29 @@ Promise.all([
     range = [2000, 2021],
     relColor = false;
 
+  let prevArea = await updateHistoricalPlot(); // Needed as a basis for transitions (based on previous area plots)
+
   // time slider
   const sliderTime = d3
     .sliderBottom()
     .min(d3.min(data[3], (d) => d.year))
     .max(d3.max(data[3], (d) => d.year))
-    .width(width * 0.8)
+    .width((width / 2) * 0.8)
     .step(1)
     .tickFormat(d3.format(""))
     .ticks(10)
     .default(2021)
-    .on("onchange", (val) => {
+    .on("onchange", async (val) => {
       val = [parseInt(val), parseInt(val)];
       if (range[0] !== val[0] || range[1] !== val[1]) {
         range = val;
         savedData = getDataInRange(data, range);
       }
       updateMap(savedData, color, relColor);
-    });
+
+      // Historical data update
+      prevArea = await updateHistoricalPlot(prevArea);
+    })
 
   const gTime = d3
     .select(".yearSliderBox")
@@ -383,14 +388,17 @@ Promise.all([
     .step(1)
     .default([2000, 2021])
     .fill("#2196f3")
-    .on("end", (val) => {
+    .on("end", async (val) => {
       val = val.map((d) => parseInt(d));
       if (range[0] !== val[0] || range[1] !== val[1]) {
         range = val;
         savedData = getDataInRange(data, range);
       }
       updateMap(savedData, color, relColor);
-    });
+
+      // Historical data update
+      prevArea = await updateHistoricalPlot(prevArea);
+    })
 
   const gRange = d3
     .select(".yearRangeSliderBox")
