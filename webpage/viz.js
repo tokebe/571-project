@@ -171,6 +171,30 @@ function getDataInRange(data, range) {
   };
 }
 
+function filterByState(data) {
+  const attr = document.getElementById('attr-selection');
+  
+  if (attr !== undefined) {
+    const stateSelected = attr.value === 'US States';
+  
+    // State selected in dropdown
+    if (stateSelected) {
+      const newData = data;
+
+      // States selected in dropdown
+      const filteredStates = $('input:checked').map((i, e) => e.value).toArray()
+                                              .filter(value => value !== 'on'); // Excludes checkboxes, etc.
+
+      // Updates data with city and state data filtered by choosen state values in drop down
+      newData.cityData = data.cityData.filter(city => filteredStates.includes(city.state_code));
+
+      return newData;
+    } else {
+      return data;
+    }
+  }
+}
+
 function makeMap(stateShapes, data) {
   const stateData = data.stateData;
   const cityData = data.cityData;
@@ -360,6 +384,9 @@ Promise.all([
         range = val;
         savedData = getDataInRange(data, range);
       }
+      
+      savedData = filterByState(savedData);
+
       updateMap(savedData, color, relColor);
 
       // Historical data update
@@ -394,6 +421,8 @@ Promise.all([
         range = val;
         savedData = getDataInRange(data, range);
       }
+
+      savedData = filterByState(savedData);
       updateMap(savedData, color, relColor);
 
       // Historical data update
@@ -424,6 +453,8 @@ Promise.all([
       : [parseInt(sliderTime.value()), parseInt(sliderTime.value())];
     console.log(range);
     savedData = getDataInRange(data, range);
+    savedData = filterByState(savedData);
+
     updateMap(savedData, color, relColor);
   });
 
@@ -436,6 +467,7 @@ Promise.all([
     color = document.getElementById("showFreq").checked ? "freq" : "dur";
     console.log(color);
     savedData = getDataInRange(data, range);
+    savedData = filterByState(savedData);
     updateMap(savedData, color, relColor);
   }
 
@@ -446,6 +478,26 @@ Promise.all([
   document
     .getElementById("showDur")
     .addEventListener("change", colorDisplayChanged);
+
+  document.getElementById('attr-selection').addEventListener('change', () => {
+    const attr = document.getElementById('attr-selection').value;
+
+    if (attr === 'US States') {
+      savedData = getDataInRange(data, range);
+      savedData = filterByState(savedData);
+      updateMap(savedData, color, relColor);
+    }
+  });
+
+  document.getElementById('confirm-attr-types').addEventListener('click', () => {
+    const attr = document.getElementById('attr-selection').value;
+
+    if (attr === 'US States') {
+      savedData = getDataInRange(data, range);
+      savedData = filterByState(savedData);
+      updateMap(savedData, color, relColor); 
+    }
+  });
 });
 
 document.getElementById("useRange").checked = true;
