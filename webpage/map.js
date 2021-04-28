@@ -14,12 +14,22 @@ const svg = d3
   .attr("width", width)
   .attr("height", height);
 
-// const colorScaleLegend = d3
-//   .select(".mapContainer")
-//   .append("svg")
-//   .attr("class", "colorScaleLegend")
-//   .attr("width", 50)
-//   .attr("height", height);
+const colorScaleLegend = d3
+  .select(".mapContainer")
+  .append("svg")
+  .attr("class", "colorScaleLegend")
+  .attr("width", width)
+  .attr("height", 100);
+
+// const margin = { top: 20, right: 40, bottom: 30, left: 40 };
+const margin = { top: 0, right: 0, bottom: 0, left: 0 };
+const barHeight = 10;
+
+const defs = colorScaleLegend.append("defs");
+
+const linearGradient = defs
+  .append("linearGradient")
+  .attr("id", "linear-gradient");
 
 // Set up tooltip
 const tooltip = d3
@@ -159,16 +169,78 @@ function getDataInRange(data, range) {
     };
   }
 
+  console.log(d3.extent(data[3], (d) => d.freq));
+
   return {
     stateData: stateData,
     cityData: cityData,
-    freqExtent: d3.extent(data[3], (d) => {
+    freqExtent: d3.extent(cityData, (d) => {
       return parseFloat(d.freq);
     }),
-    durExtent: d3.extent(data[3], (d) => {
-      return parseFloat(d.mean_dur);
-    }),
+    durExtent: d3
+      .extent(cityData, (d) => {
+        return parseFloat(d.mean_dur);
+      })
+      .map((d) => d / 86400),
+    fullFreqExtent: d3.extent(data[3], (d) => parseInt(d.freq)),
+    fullDurExtent: d3
+      .extent(data[3], (d) => (d.mean_dur !== "NA" ? parseInt(d.mean_dur) : 0))
+      .map((d) => d / 86400),
   };
+}
+
+function makeColorLegend(extent, colorScale, color) {
+  console.log(extent);
+  linearGradient.exit().remove();
+
+  linearGradient
+    .selectAll("stop")
+    .data(
+      colorScale.ticks(5).map((t, i, n) => {
+        t *= extent[1] - extent[0];
+        return {
+          offset: `${(100 * i) / n.length}%`,
+          color: colorScale(t),
+        };
+      })
+    )
+    .enter()
+    .append("stop")
+    .attr("offset", (d) => d.offset)
+    .attr("stop-color", (d) => d.color);
+
+  colorScaleLegend
+    .append("g")
+    // .attr("transform", `translate(0,${height - margin.bottom - barHeight})`)
+    .append("rect")
+    // .attr("transform", `translate(${margin.left}, 0)`)
+    .attr("width", 600)
+    .attr("height", barHeight)
+    .style("fill", "url(#linear-gradient)");
+
+  colorScaleLegend.exit().remove();
+
+  const axisScale = d3.scaleLog().domain(extent).range([0, 600]);
+
+  const axisBottom = (g) =>
+    g
+      .attr("class", `x-axis`)
+      .call(
+        d3
+          .axisBottom(axisScale)
+          .ticks(width / 80)
+          .tickSize(-barHeight)
+          .tickFormat(d3.format("~s"))
+      )
+      .selectAll("text")
+      .attr("transform", "rotate(-45)translate(0, 10)");
+
+  colorScaleLegend.select(".x-axis").remove();
+
+  colorScaleLegend
+    .append("g")
+    .call(axisBottom)
+    .attr("transform", `translate(0, ${barHeight})`);
 }
 
 function makeMap(stateShapes, data) {
@@ -180,34 +252,12 @@ function makeMap(stateShapes, data) {
   const logScale = d3.scaleLog().domain(extent);
   const colorScale = d3
     .scaleSequential()
-    // .domain(d3.extent(data[1], (d) => parseFloat(d.freq)))
+    // .domain(extent)
     .interpolator((d) => d3.interpolateViridis(logScale(d)));
 
+  makeColorLegend(extent, colorScale, "freq");
+
   svg.selectAll("g").remove();
-
-  // TODO scale bar https://blog.scottlogic.com/2019/03/13/how-to-create-a-continuous-colour-range-legend-using-d3-and-d3fc.html
-
-  // const expandedDomain = d3.range(
-  //   extent[0],
-  //   extent[1],
-  //   (extent[1] - extent[0]) / height
-  // );
-
-  // // Defining the legend bar
-  // const svgBar = fc
-  //   .autoBandwidth(fc.seriesSvgBar())
-  //   // .xScale(xScale)
-  //   .yScale(logScale)
-  //   .crossValue(0)
-  //   .baseValue((_, i) => (i > 0 ? expandedDomain[i - 1] : 0))
-  //   .mainValue((d) => d)
-  //   .decorate((selection) => {
-  //     selection.selectAll("path").style("fill", (d) => colourScale(d));
-  //   });
-
-  // // Drawing the legend bar
-  // const legendSvg = container.append("svg");
-  // const legendBar = legendSvg.append("g").datum(expandedDomain).call(svgBar);
 
   svg
     .append("g")
@@ -267,18 +317,24 @@ function updateMap(data, color, relColor) {
   const freqExtent = data.freqExtent;
   const durExtent = data.durExtent;
 
-  const logScale = d3.scaleSymlog().domain(
-    relColor
-      ? color === "freq"
-        ? freqExtent
-        : durExtent
-      : d3.extent(cityData, (d) => {
-          return parseFloat(color === "freq" ? d.freq : d.mean_dur);
-        })
-  );
+  console.log(relColor);
+
+  let extent = color === "freq" ? freqExtent : durExtent;
+
+  extent = relColor
+    ? color === "freq"
+      ? data.fullFreqExtent
+      : data.fullDurExtent
+    : extent;
+
+  console.log(extent);
+
+  const logScale = d3.scaleSymlog().domain(extent);
   const colorScale = d3
     .scaleSequential()
     .interpolator((d) => d3.interpolateViridis(logScale(d)));
+
+  makeColorLegend(extent, colorScale, color);
 
   const points = svg.selectAll("circle").data(cityData);
 
@@ -294,7 +350,7 @@ function updateMap(data, color, relColor) {
     // .transition()
     .style("fill", (d) => {
       const val = colorScale(
-        parseFloat(color === "freq" ? d.freq : d.mean_dur)
+        parseFloat(color === "freq" ? d.freq : d.mean_dur / 86400)
       );
       return val ? val : "grey";
     })
@@ -319,7 +375,7 @@ function updateMap(data, color, relColor) {
     .style("stroke-width", "0px")
     .style("fill", (d) => {
       const val = colorScale(
-        parseFloat(color === "freq" ? d.freq : d.mean_dur)
+        parseFloat(color === "freq" ? d.freq : d.mean_dur / 86400)
       );
       return val ? val : "grey";
     })
@@ -361,7 +417,7 @@ Promise.all([
   d3.json("data/ufo_us_by_state_year.json"),
   d3.csv("data/ufo_us_by_city_year.csv"),
 ]).then(async (data) => {
-  console.log(data);
+  // console.log(data);
   let savedData = getDataInRange(data, [2000, 2021]);
   makeMap(data[0], savedData);
 
@@ -449,19 +505,20 @@ Promise.all([
       .classList.contains("hidden")
       ? sliderRange.value().map((d) => parseInt(d))
       : [parseInt(sliderTime.value()), parseInt(sliderTime.value())];
-    console.log(range);
+    // console.log(range);
     savedData = getDataInRange(data, range);
     updateMap(savedData, color, relColor);
   });
 
   document.getElementById("relColor").addEventListener("change", () => {
     relColor = document.getElementById("relColor").checked;
+    console.log(relColor);
     updateMap(savedData, color, relColor);
   });
 
   function colorDisplayChanged(event) {
     color = document.getElementById("showFreq").checked ? "freq" : "dur";
-    console.log(color);
+    // console.log(color);
     savedData = getDataInRange(data, range);
     updateMap(savedData, color, relColor);
   }
