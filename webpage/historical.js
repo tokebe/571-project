@@ -30,7 +30,8 @@ window.addEventListener('load', async () => {
 
 function updateAttrTypeSelection(initial = true, checked) {
     const attr = document.getElementById('attr-selection').value;
-    const defaults = initial ? ['Total', 'CA', 'NM', 'NC', 'NY', 'Light', 'Circle', 'Sphere'] : checked; 
+
+    const defaults = initial ? ['Total','CA', 'NM', 'NC', 'NY', 'Light', 'Circle', 'Sphere', 'State'] : checked; 
 
     const types = getAttrValues();
     const selection = document.getElementById('filter-types');
@@ -61,7 +62,7 @@ function updateAttrTypeSelection(initial = true, checked) {
             label.appendChild(input);
             selection.appendChild(label);
         });
-    }    
+    }  
 }
 
 async function updateTimeAndSlider() {
@@ -105,7 +106,7 @@ function createAttrTypeSelection() {
 
     // Button to display dropdown
     const button = document.createElement('button');
-    button.setAttribute('class', 'btn dropdown-toggle mx-n2');
+    button.setAttribute('class', 'btn dropdown-toggle');
     button.setAttribute('type', 'button');
     button.setAttribute('data-toggle', 'dropdown');
     button.setAttribute('aria-haspopup', 'true');
@@ -167,7 +168,7 @@ function initDimensions() {
     // Dimensions
     const margin = { 
         top: 50, 
-        right: 250, 
+        right: 100, 
         bottom: 50, 
         left: 50
     },
@@ -179,7 +180,7 @@ function initDimensions() {
 
 
 async function initSVG(margin, width, height) {
-    const svg = d3.select('#historicalContainer')
+    const svg = d3.select('#historicalAndAirportContainer')
                 .append('svg')
                 .attr('width', width + margin.left + margin.right)
                 .attr('height', height + margin.top + margin.bottom)
@@ -330,7 +331,15 @@ async function initPlots(dataset, svg, margin, width, height, initialArea = unde
         
         // Changing between attributes
         document.getElementById('attr-selection').addEventListener('change', async () => {
-            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator);
+            
+            if (document.getElementById('attr-selection').value === 'US Airports') {
+                d3.select('#stacked-area-plot').remove();
+                updateAttrTypeSelection()
+                updateAirports();
+            } else {
+                d3.select('#routes-plot').remove();    
+                areaGenerator = await initUpdate(data, margin, width, height, areaGenerator);
+            }
         });
 
         // Changing between attribute types
@@ -358,10 +367,11 @@ function createPlot(svg, stackedData, initialArea, areaGenerator, colorScale) {
 }
 
 async function initUpdate(data, margin, width, height, initialArea, initial = true, checked) {
-    updateAttrTypeSelection(initial, checked);
+    updateAttrTypeSelection(initial, checked) 
     await d3.selectAll('#stacked-area-plot').remove();
     const newSvg = await initSVG(margin, width, height);
     return await updatePlot(data, newSvg, margin, width, height, initialArea);
+    
 }
 
 async function updatePlot(data, svg, margin, width, height, initialArea) {

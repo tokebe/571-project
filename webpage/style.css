@@ -2,6 +2,10 @@
     max-height: 500px;
 }
 
+#historicalContainer {
+    max-width: 500px;
+}
+
 .state {
     /* fill: white; */
     stroke: black;
@@ -18,7 +22,7 @@ div.tooltip {
       border: 0px;
       border-radius: 8px;
       pointer-events: none;
-    }
+}
 
 /* TODO: Move placement */
 #historical-btn {
