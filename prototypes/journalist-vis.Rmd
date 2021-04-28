@@ -159,6 +159,32 @@ plot_usmap(fill = fg.color, color = border.color) +
 ```
 
 ```{r}
+ufo_by_city <- read_csv('../Data/ufo_data_us_cleaned_v2.csv') %>% 
+  mutate(Posted = as.Date(Posted, format = "%m/%d/%Y")) %>% 
+  mutate(year = parse_integer(format(as.Date(`Date/Time`, format = "%m/%d/%y %H:%M"), "%Y"))) %>% 
+  mutate(year = ifelse(year > 2021, year - 100, year)) %>% 
+  mutate(state = tolower(state.name[match(State, state.abb)])) %>% 
+  mutate(state_code = State) %>% 
+  group_by(lat, lng) %>%
+  summarise(freq = n(), city = first(city_lower), state = first(state), state_code = first(state_code), mean_dur = mean(Duration, na.rm = TRUE), .groups = "keep")
+
+ufo_by_city %>% write.csv('../Data/ufo_us_by_city.csv', row.names = FALSE)
+```
+
+```{r}
+per_city_shapes <- read_csv('../Data/ufo_data_us_cleaned_v2.csv') %>% 
+  mutate(Posted = as.Date(Posted, format = "%m/%d/%Y")) %>% 
+  mutate(year = parse_integer(format(as.Date(`Date/Time`, format = "%m/%d/%y %H:%M"), "%Y"))) %>% 
+  mutate(year = ifelse(year > 2021, year - 100, year)) %>% 
+  mutate(state = tolower(state.name[match(State, state.abb)])) %>% 
+  mutate(state_code = State) %>% 
+  group_by(lat, lng) %>%
+  pivot_wider(Shape)
+```
+
+
+
+```{r}
 # cutoff <- mean(c(qt[[1]], qt[[2]]))
 # cutoff <- 20000
 
@@ -176,7 +202,7 @@ by.city <- ufo_us_coords %>%
   ) %>% 
   mutate(year = parse_integer(format(Date.Time, "%Y"))) %>% 
   group_by(lat, lng) %>% 
-  summarise(freq = n(), city = first(city_lower), .groups = "keep")
+  summarise(freq = n(), city = first(city_lower), dur = mean(duration), .groups = "keep")
 
 cutoff <- quantile(by.city$freq, .99)[[1]]
 

@@ -1,0 +1,308 @@
+{
+  "alabama": {
+    "state": "alabama",
+    "freq": 831,
+    "state_code": "AL",
+    "mean_dur": 347570.537568306
+  },
+  "alaska": {
+    "state": "alaska",
+    "freq": 382,
+    "state_code": "AK",
+    "mean_dur": 383919.796511628
+  },
+  "arizona": {
+    "state": "arizona",
+    "freq": 2847,
+    "state_code": "AZ",
+    "mean_dur": 605052.618138425
+  },
+  "arkansas": {
+    "state": "arkansas",
+    "freq": 679,
+    "state_code": "AR",
+    "mean_dur": 1620302.84517304
+  },
+  "california": {
+    "state": "california",
+    "freq": 8819,
+    "state_code": "CA",
+    "mean_dur": 404287.381283152
+  },
+  "colorado": {
+    "state": "colorado",
+    "freq": 1965,
+    "state_code": "CO",
+    "mean_dur": 467303.401408451
+  },
+  "connecticut": {
+    "state": "connecticut",
+    "freq": 546,
+    "state_code": "CT",
+    "mean_dur": 364124.214912281
+  },
+  "delaware": {
+    "state": "delaware",
+    "freq": 256,
+    "state_code": "DE",
+    "mean_dur": 526700.991341991
+  },
+  "florida": {
+    "state": "florida",
+    "freq": 5151,
+    "state_code": "FL",
+    "mean_dur": 535404.473468937
+  },
+  "georgia": {
+    "state": "georgia",
+    "freq": 1770,
+    "state_code": "GA",
+    "mean_dur": 390068.321850394
+  },
+  "hawaii": {
+    "state": "hawaii",
+    "freq": 352,
+    "state_code": "HI",
+    "mean_dur": 436069.372611465
+  },
+  "idaho": {
+    "state": "idaho",
+    "freq": 920,
+    "state_code": "ID",
+    "mean_dur": 427193.96437659
+  },
+  "illinois": {
+    "state": "illinois",
+    "freq": 2567,
+    "state_code": "IL",
+    "mean_dur": 406248.273011618
+  },
+  "indiana": {
+    "state": "indiana",
+    "freq": 1569,
+    "state_code": "IN",
+    "mean_dur": 392616.575260208
+  },
+  "iowa": {
+    "state": "iowa",
+    "freq": 791,
+    "state_code": "IA",
+    "mean_dur": 435548.941176471
+  },
+  "kansas": {
+    "state": "kansas",
+    "freq": 719,
+    "state_code": "KS",
+    "mean_dur": 431722.713622291
+  },
+  "kentucky": {
+    "state": "kentucky",
+    "freq": 987,
+    "state_code": "KY",
+    "mean_dur": 392900.805361305
+  },
+  "louisiana": {
+    "state": "louisiana",
+    "freq": 680,
+    "state_code": "LA",
+    "mean_dur": 379925.019543974
+  },
+  "maine": {
+    "state": "maine",
+    "freq": 181,
+    "state_code": "ME",
+    "mean_dur": 326844.779141104
+  },
+  "maryland": {
+    "state": "maryland",
+    "freq": 1066,
+    "state_code": "MD",
+    "mean_dur": 401756.077639752
+  },
+  "massachusetts": {
+    "state": "massachusetts",
+    "freq": 739,
+    "state_code": "MA",
+    "mean_dur": 389578.898484848
+  },
+  "michigan": {
+    "state": "michigan",
+    "freq": 1963,
+    "state_code": "MI",
+    "mean_dur": 430571.589108911
+  },
+  "minnesota": {
+    "state": "minnesota",
+    "freq": 1310,
+    "state_code": "MN",
+    "mean_dur": 358729.365449915
+  },
+  "mississippi": {
+    "state": "mississippi",
+    "freq": 455,
+    "state_code": "MS",
+    "mean_dur": 427046.237597911
+  },
+  "missouri": {
+    "state": "missouri",
+    "freq": 1662,
+    "state_code": "MO",
+    "mean_dur": 460922.159138291
+  },
+  "montana": {
+    "state": "montana",
+    "freq": 653,
+    "state_code": "MT",
+    "mean_dur": 303985.914721724
+  },
+  "nebraska": {
+    "state": "nebraska",
+    "freq": 428,
+    "state_code": "NE",
+    "mean_dur": 416311.12924282
+  },
+  "nevada": {
+    "state": "nevada",
+    "freq": 949,
+    "state_code": "NV",
+    "mean_dur": 373119.98463357
+  },
+  "new hampshire": {
+    "state": "new hampshire",
+    "freq": 266,
+    "state_code": "NH",
+    "mean_dur": 362821.060538117
+  },
+  "new jersey": {
+    "state": "new jersey",
+    "freq": 987,
+    "state_code": "NJ",
+    "mean_dur": 413067.287246722
+  },
+  "new mexico": {
+    "state": "new mexico",
+    "freq": 996,
+    "state_code": "NM",
+    "mean_dur": 316181.396571429
+  },
+  "new york": {
+    "state": "new york",
+    "freq": 1999,
+    "state_code": "NY",
+    "mean_dur": 427104.05384184
+  },
+  "north carolina": {
+    "state": "north carolina",
+    "freq": 2311,
+    "state_code": "NC",
+    "mean_dur": 402323.392857143
+  },
+  "north dakota": {
+    "state": "north dakota",
+    "freq": 175,
+    "state_code": "ND",
+    "mean_dur": 423692.853146853
+  },
+  "ohio": {
+    "state": "ohio",
+    "freq": 2680,
+    "state_code": "OH",
+    "mean_dur": 419865.355652174
+  },
+  "oklahoma": {
+    "state": "oklahoma",
+    "freq": 914,
+    "state_code": "OK",
+    "mean_dur": 459153.28820698
+  },
+  "oregon": {
+    "state": "oregon",
+    "freq": 2076,
+    "state_code": "OR",
+    "mean_dur": 442808.256959315
+  },
+  "pennsylvania": {
+    "state": "pennsylvania",
+    "freq": 2717,
+    "state_code": "PA",
+    "mean_dur": 394884.967561983
+  },
+  "rhode island": {
+    "state": "rhode island",
+    "freq": 191,
+    "state_code": "RI",
+    "mean_dur": 326258.612716763
+  },
+  "south carolina": {
+    "state": "south carolina",
+    "freq": 1537,
+    "state_code": "SC",
+    "mean_dur": 419419.035688274
+  },
+  "south dakota": {
+    "state": "south dakota",
+    "freq": 249,
+    "state_code": "SD",
+    "mean_dur": 428818.637554585
+  },
+  "tennessee": {
+    "state": "tennessee",
+    "freq": 1328,
+    "state_code": "TN",
+    "mean_dur": 395000.333756345
+  },
+  "texas": {
+    "state": "texas",
+    "freq": 3460,
+    "state_code": "TX",
+    "mean_dur": 415119.445351549
+  },
+  "utah": {
+    "state": "utah",
+    "freq": 929,
+    "state_code": "UT",
+    "mean_dur": 2132922.44312796
+  },
+  "vermont": {
+    "state": "vermont",
+    "freq": 118,
+    "state_code": "VT",
+    "mean_dur": 610864.770642202
+  },
+  "virginia": {
+    "state": "virginia",
+    "freq": 1544,
+    "state_code": "VA",
+    "mean_dur": 465364.679477612
+  },
+  "washington": {
+    "state": "washington",
+    "freq": 3893,
+    "state_code": "WA",
+    "mean_dur": 454966.820721769
+  },
+  "west virginia": {
+    "state": "west virginia",
+    "freq": 490,
+    "state_code": "WV",
+    "mean_dur": 444573.576309795
+  },
+  "wisconsin": {
+    "state": "wisconsin",
+    "freq": 1483,
+    "state_code": "WI",
+    "mean_dur": 416715.077868852
+  },
+  "wyoming": {
+    "state": "wyoming",
+    "freq": 215,
+    "state_code": "WY",
+    "mean_dur": 373444.755434783
+  },
+  "district of columbia": {
+    "state": "district of columbia",
+    "freq": 10,
+    "state_code": "DC",
+    "mean_dur": 529391.25
+  }
+}

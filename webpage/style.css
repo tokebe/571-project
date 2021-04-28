@@ -1,14 +1,18 @@
+.mapContainer {
+    min-height: 580px;
+    column-count: 2;
+}
+
 .state {
     /* fill: white; */
     stroke: black;
-    stroke-width: 1px;
 }
 
 div.tooltip {
       position: absolute;
-      text-align: center;
+      text-align: left;
       min-width: 60px;
-      height: 28px;
+      min-height: 28px;
       padding: 2px;
       font: 12px sans-serif;
       background: lightsteelblue;
@@ -35,4 +39,16 @@ div.tooltip {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.cityDot {
+    opacity: 100%;
+    /* something */
+    stroke: white;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }

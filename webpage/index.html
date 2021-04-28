@@ -5,14 +5,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>UFO Sightings and Airports</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- D3 -->
+  <!-- Scripts for data to work -->
   <script src="https://d3js.org/topojson.v2.min.js"></script>
   <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
   <script src="https://d3js.org/d3-geo.v2.min.js"></script>
+  <script src="https://unpkg.com/d3fc"></script>
+  <!-- For human-readable time -->
+  <script src="../node_modules/humanize-duration/humanize-duration.js"></script>
+  <!-- Range Slider -->
+  <script src="https://unpkg.com/d3-simple-slider@1.10.4/dist/d3-simple-slider.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
   <!-- Script to create svg -->
-  <script type="text/javascript" src="viz.js"></script>
+  <script type="module" src="viz.js"></script>
+  <div class="mapContainer"></div>
+  <div class="mapControls">
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="useRange" checked>
+      <label class="custom-control-label" for="useRange">Use Year Range</label>
+    </div>
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="relColor">
+      <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
+      <label class="custom-control-label" for="showFreq">Color by Sighting Frequency</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
+      <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+    </div>
+    <div id="yearSliderBox" class="yearSliderBox"></div>
+    <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
+  </div>
+
+
 </body>
