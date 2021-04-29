@@ -14,28 +14,12 @@ const svg = d3
   .attr("width", width)
   .attr("height", height);
 
-const legendLabel = d3
-  .select(".mapContainer")
-  .append("div")
-  .attr("class", "mapLegendLabel")
-  .html("Sighting Frequency");
-
 const colorScaleLegend = d3
   .select(".mapContainer")
   .append("svg")
   .attr("class", "colorScaleLegend")
-  .attr("width", width)
-  .attr("height", 50);
-
-// const margin = { top: 20, right: 40, bottom: 30, left: 40 };
-const margin = { top: 0, right: 0, bottom: 0, left: 0 };
-const barHeight = 10;
-
-const defs = colorScaleLegend.append("defs");
-
-const linearGradient = defs
-  .append("linearGradient")
-  .attr("id", "linear-gradient");
+  .attr("width", 50)
+  .attr("height", height);
 
 // Set up tooltip
 const tooltip = d3
@@ -50,8 +34,6 @@ const stateInfo = d3
   .append("div")
   .attr("class", "stateInfo")
   .style("opacity", "0%");
-
-let fullFreqExtent, fullDurExtent;
 
 function getProjectedCoord(d, i) {
   return projection([d.lng, d.lat])[i];
@@ -120,7 +102,6 @@ function cityMouseOutFunc(e, d) {
 }
 
 function getDataInRange(data, range) {
-  // summarize the city data within the extent
   const cityData = [];
   for (const state in data[1]) {
     const stateObj = data[1][state];
@@ -136,6 +117,11 @@ function getDataInRange(data, range) {
           count += year.mean_dur === "NA" ? 0 : 1;
         }
       }
+      // if (typeof mean_dur !== "number") {
+      //   console.log(
+      //     "non-number dur '" + mean_dur + "' in " + city + ", " + state
+      //   );
+      // }
       mean_dur /= count ? count : 1;
       if (freq > 0) {
         cityData.push({
@@ -151,7 +137,6 @@ function getDataInRange(data, range) {
     }
   }
 
-  // summarize the state data within the extent
   const stateData = {};
   for (const state in data[2]) {
     const stateObj = data[2][state];
@@ -174,102 +159,34 @@ function getDataInRange(data, range) {
     };
   }
 
-  // calculate the full extents only once
-  if (!fullFreqExtent || !fullDurExtent) {
-    fullDurExtent = d3
-      .extent(data[3], (d) => (d.mean_dur !== "NA" ? parseInt(d.mean_dur) : 0))
-      .map((d) => d / 86400);
-
-    fullFreqExtent = d3.extent(data[3], (d) => parseInt(d.freq));
-  }
-
   return {
     stateData: stateData,
     cityData: cityData,
-    freqExtent: d3.extent(cityData, (d) => {
+    freqExtent: d3.extent(data[3], (d) => {
       return parseFloat(d.freq);
     }),
-    durExtent: d3
-      .extent(cityData, (d) => {
-        return parseFloat(d.mean_dur);
-      })
-      .map((d) => d / 86400),
-    fullFreqExtent: fullFreqExtent,
-    fullDurExtent: fullDurExtent,
+    durExtent: d3.extent(data[3], (d) => {
+      return parseFloat(d.mean_dur);
+    }),
   };
 }
 
-function makeColorLegend(extent, colorScale, color) {
-  linearGradient.exit().remove();
-
-  linearGradient
-    .selectAll("stop")
-    .data(
-      colorScale.ticks(5).map((t, i, n) => {
-        t *= extent[1] - extent[0];
-        return {
-          offset: `${(100 * i) / n.length}%`,
-          color: colorScale(t),
-        };
-      })
-    )
-    .enter()
-    .append("stop")
-    .attr("offset", (d) => d.offset)
-    .attr("stop-color", (d) => d.color);
-
-  colorScaleLegend
-    .append("g")
-    // .attr("transform", `translate(0,${height - margin.bottom - barHeight})`)
-    .append("rect")
-    // .attr("transform", `translate(${margin.left}, 0)`)
-    .attr("width", 600)
-    .attr("height", barHeight)
-    .style("fill", "url(#linear-gradient)");
-
-  colorScaleLegend.exit().remove();
-
-  extent[0] = extent[0] ? extent[0] : 1;
-  const axisScale = d3.scaleLog().domain(extent).range([0, 600]).nice(1);
-
-  const axisBottom = (g) =>
-    g
-      .attr("class", `x-axis`)
-      .call(
-        d3.axisBottom(axisScale).ticks(10, d3.format("~s")).tickSize(-barHeight)
-        // .tickFormat()
-      )
-      .selectAll("text")
-      .attr("transform", "rotate(-45)translate(0, 10)");
-
-  colorScaleLegend.select(".x-axis").remove();
-
-  colorScaleLegend
-    .append("g")
-    .call(axisBottom)
-    .attr("transform", `translate(0, ${barHeight})`);
-}
-
 function filterByState(data) {
-  const attr = document.getElementById("attr-selection");
-
+  const attr = document.getElementById('attr-selection');
+  
   if (attr !== undefined) {
-    const stateSelected = attr.value === "US States";
-
+    const stateSelected = attr.value === 'US States';
+  
     // State selected in dropdown
     if (stateSelected) {
       const newData = data;
 
       // States selected in dropdown
-      const filteredStates = $("input:checked")
-        .map((i, e) => e.value)
-        .toArray()
-        .filter((value) => value !== "on"); // Excludes checkboxes, etc.
+      const filteredStates = $('input:checked').map((i, e) => e.value).toArray()
+                                              .filter(value => value !== 'on'); // Excludes checkboxes, etc.
 
       // Updates data with city and state data filtered by choosen state values in drop down
-      newData.cityData = data.cityData.filter((city) =>
-        filteredStates.includes(city.state_code)
-      );
+      newData.cityData = data.cityData.filter(city => filteredStates.includes(city.state_code));
 
       return newData;
     } else {
@@ -290,9 +207,31 @@ function makeMap(stateShapes, data) {
     // .domain(d3.extent(data[1], (d) => parseFloat(d.freq)))
     .interpolator((d) => d3.interpolateViridis(logScale(d)));
 
-  makeColorLegend(extent, colorScale, "freq");
-
   svg.selectAll("g").remove();
+
+  // TODO scale bar https://blog.scottlogic.com/2019/03/13/how-to-create-a-continuous-colour-range-legend-using-d3-and-d3fc.html
+
+  // const expandedDomain = d3.range(
+  //   extent[0],
+  //   extent[1],
+  //   (extent[1] - extent[0]) / height
+  // );
+
+  // // Defining the legend bar
+  // const svgBar = fc
+  //   .autoBandwidth(fc.seriesSvgBar())
+  //   // .xScale(xScale)
+  //   .yScale(logScale)
+  //   .crossValue(0)
+  //   .baseValue((_, i) => (i > 0 ? expandedDomain[i - 1] : 0))
+  //   .mainValue((d) => d)
+  //   .decorate((selection) => {
+  //     selection.selectAll("path").style("fill", (d) => colourScale(d));
+  //   });
+
+  // // Drawing the legend bar
+  // const legendSvg = container.append("svg");
+  // const legendBar = legendSvg.append("g").datum(expandedDomain).call(svgBar);
 
   svg
     .append("g")
@@ -302,6 +241,7 @@ function makeMap(stateShapes, data) {
     .append("path")
     .attr("class", "state")
     .attr("d", path)
+    .style("fill", "#444")
     .on("mouseover", (e, d) => {
       stateInfo.transition().style("opacity", "100%");
       stateInfo.html(
@@ -351,20 +291,18 @@ function updateMap(data, color, relColor) {
   const freqExtent = data.freqExtent;
   const durExtent = data.durExtent;
 
-  let extent = color === "freq" ? freqExtent : durExtent;
-
-  extent = relColor
-    ? color === "freq"
-      ? data.fullFreqExtent
-      : data.fullDurExtent
-    : extent;
-
-  const logScale = d3.scaleSymlog().domain(extent).nice();
+  const logScale = d3.scaleSymlog().domain(
+    relColor
+      ? color === "freq"
+        ? freqExtent
+        : durExtent
+      : d3.extent(cityData, (d) => {
+          return parseFloat(color === "freq" ? d.freq : d.mean_dur);
+        })
+  );
   const colorScale = d3
     .scaleSequential()
     .interpolator((d) => d3.interpolateViridis(logScale(d)));
-
-  makeColorLegend(extent, colorScale, color);
 
   const points = svg.selectAll("circle").data(cityData);
 
@@ -380,15 +318,9 @@ function updateMap(data, color, relColor) {
     // .transition()
     .style("fill", (d) => {
       const val = colorScale(
-        parseFloat(color === "freq" ? d.freq : d.mean_dur / 86400)
+        parseFloat(color === "freq" ? d.freq : d.mean_dur)
       );
       return val ? val : "grey";
-    })
-    .on("mouseover", (e, d) => {
-      cityMouseOverFunc(e, d, data);
-    })
-    .on("mouseout", function (e, d) {
-      cityMouseOutFunc(e, d);
     });
 
   // add any new points
@@ -405,7 +337,7 @@ function updateMap(data, color, relColor) {
     .style("stroke-width", "0px")
     .style("fill", (d) => {
       const val = colorScale(
-        parseFloat(color === "freq" ? d.freq : d.mean_dur / 86400)
+        parseFloat(color === "freq" ? d.freq : d.mean_dur)
       );
       return val ? val : "grey";
     })
@@ -418,27 +350,6 @@ function updateMap(data, color, relColor) {
 
   // remove unused points
   points.exit().remove();
-
-  // update state hover info
-  svg.selectAll("path").on("mouseover", (e, d) => {
-    stateInfo.transition().style("opacity", "100%");
-    stateInfo.html(
-      d.properties.name.toLowerCase().toTitleCase() +
-        ": " +
-        "</br>" +
-        "State Total Sightings: " +
-        stateData[d.properties.name.toLowerCase()].freq +
-        "</br>" +
-        "State Avg. Duration: " +
-        humanizeDuration(
-          stateData[d.properties.name.toLowerCase()].mean_dur * 1000,
-          {
-            maxDecimalPoints: 1,
-            largest: 1,
-          }
-        )
-    );
-  });
 }
 
 Promise.all([
@@ -451,14 +362,12 @@ Promise.all([
   let savedData = getDataInRange(data, [2000, 2021]);
   makeMap(data[0], savedData);
 
-  let barPlotData;
-
   let color = "freq",
     range = [2000, 2021],
     relColor = false;
 
   let prevArea = await updateHistoricalPlot(); // Needed as a basis for transitions (based on previous area plots)
-
+  
   // time slider
   const sliderTime = d3
     .sliderBottom()
@@ -475,28 +384,26 @@ Promise.all([
         range = val;
         savedData = getDataInRange(data, range);
 
-        const attr = document.getElementById("attr-selection").value;
-        if (attr === "US States") {
-          const checked = $("input:checked")
-            .map((i, e) => e.value)
-            .toArray();
-          d3.select(".barplot").remove();
+        const attr = document.getElementById('attr-selection').value;
+        if (attr === 'US States') {
+          const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+          d3.select('.barplot').remove();
           const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3), checked);
+          updateBarplot(getRange.slice(1,3), checked);
         } else {
-          d3.select(".barplot").remove();
+          d3.select('.barplot').remove();
           const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3));
+          updateBarplot(getRange.slice(1,3));
         }
       }
-
+      
       savedData = filterByState(savedData);
 
       updateMap(savedData, color, relColor);
 
       // Historical data update
       prevArea = await updateHistoricalPlot(prevArea);
-    });
+    })
 
   const gTime = d3
     .select(".yearSliderBox")
@@ -526,18 +433,16 @@ Promise.all([
         range = val;
         savedData = getDataInRange(data, range);
 
-        const attr = document.getElementById("attr-selection").value;
-        if (attr === "US States") {
-          const checked = $("input:checked")
-            .map((i, e) => e.value)
-            .toArray();
-          d3.select(".barplot").remove();
+        const attr = document.getElementById('attr-selection').value;
+        if (attr === 'US States') {
+          const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+          d3.select('.barplot').remove();
           const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3), checked);
+          updateBarplot(getRange.slice(1,3), checked);
         } else {
-          d3.select(".barplot").remove();
+          d3.select('.barplot').remove();
           const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3));
+          updateBarplot(getRange.slice(1,3));
         }
       }
 
@@ -546,7 +451,7 @@ Promise.all([
 
       // Historical data update
       prevArea = await updateHistoricalPlot(prevArea);
-    });
+    })
 
   const gRange = d3
     .select(".yearRangeSliderBox")
@@ -575,21 +480,20 @@ Promise.all([
     savedData = filterByState(savedData);
 
     updateMap(savedData, color, relColor);
+    
+    const attr = document.getElementById('attr-selection').value;
 
-    const attr = document.getElementById("attr-selection").value;
-
-    if (attr === "US States") {
-      const checked = $("input:checked")
-        .map((i, e) => e.value)
-        .toArray();
-      d3.select(".barplot").remove();
+    if (attr === 'US States') {
+      const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+      d3.select('.barplot').remove();
       const getRange = await getSelectedDates();
-      updateBarplot(getRange.slice(1, 3), checked);
+      updateBarplot(getRange.slice(1,3), checked);
     } else {
-      d3.select(".barplot").remove();
+      d3.select('.barplot').remove();
       const getRange = await getSelectedDates();
-      updateBarplot(getRange.slice(1, 3));
+      updateBarplot(getRange.slice(1,3));
     }
+
   });
 
   document.getElementById("relColor").addEventListener("change", async () => {
@@ -600,9 +504,6 @@ Promise.all([
   function colorDisplayChanged(event) {
     color = document.getElementById("showFreq").checked ? "freq" : "dur";
     console.log(color);
-    legendLabel.html(
-      color === "freq" ? "Sighting Frequency" : "Avg. Sighting Duration (Hours)"
-    );
     savedData = getDataInRange(data, range);
     savedData = filterByState(savedData);
     updateMap(savedData, color, relColor);
@@ -616,40 +517,34 @@ Promise.all([
     .getElementById("showDur")
     .addEventListener("change", colorDisplayChanged);
 
-  document
-    .getElementById("attr-selection")
-    .addEventListener("change", async () => {
-      const attr = document.getElementById("attr-selection").value;
+  document.getElementById('attr-selection').addEventListener('change', async () => {
+    const attr = document.getElementById('attr-selection').value;
 
-      if (attr === "US States") {
-        savedData = getDataInRange(data, range);
-        savedData = filterByState(savedData);
-        updateMap(savedData, color, relColor);
+    if (attr === 'US States') {
+      savedData = getDataInRange(data, range);
+      savedData = filterByState(savedData);
+      updateMap(savedData, color, relColor);
 
-        d3.select(".barplot").remove();
-        const getRange = await getSelectedDates();
-        updateBarplot(getRange.slice(1, 3));
-      }
-    });
+      d3.select('.barplot').remove();
+      const getRange = await getSelectedDates();
+      updateBarplot(getRange.slice(1,3));
+    }
+  });
 
-  document
-    .getElementById("confirm-attr-types")
-    .addEventListener("click", async () => {
-      const attr = document.getElementById("attr-selection").value;
+  document.getElementById('confirm-attr-types').addEventListener('click', async () => {
+    const attr = document.getElementById('attr-selection').value;
 
-      if (attr === "US States") {
-        savedData = getDataInRange(data, range);
-        savedData = filterByState(savedData);
-        updateMap(savedData, color, relColor);
+    if (attr === 'US States') {
+      savedData = getDataInRange(data, range);
+      savedData = filterByState(savedData);
+      updateMap(savedData, color, relColor); 
 
-        const checked = $("input:checked")
-          .map((i, e) => e.value)
-          .toArray();
-        d3.select(".barplot").remove();
-        const getRange = await getSelectedDates();
-        updateBarplot(getRange.slice(1, 3), checked);
-      }
-    });
+      const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+      d3.select('.barplot').remove();
+      const getRange = await getSelectedDates();
+      updateBarplot(getRange.slice(1,3), checked);
+    }
+  });
 });
 
 document.getElementById("useRange").checked = true;
