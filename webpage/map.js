@@ -383,6 +383,18 @@ Promise.all([
       if (range[0] !== val[0] || range[1] !== val[1]) {
         range = val;
         savedData = getDataInRange(data, range);
+
+        const attr = document.getElementById('attr-selection').value;
+        if (attr === 'US States') {
+          const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+          d3.select('.barplot').remove();
+          const getRange = await getSelectedDates();
+          updateBarplot(getRange.slice(1,3), checked);
+        } else {
+          d3.select('.barplot').remove();
+          const getRange = await getSelectedDates();
+          updateBarplot(getRange.slice(1,3));
+        }
       }
       
       savedData = filterByState(savedData);
@@ -420,6 +432,18 @@ Promise.all([
       if (range[0] !== val[0] || range[1] !== val[1]) {
         range = val;
         savedData = getDataInRange(data, range);
+
+        const attr = document.getElementById('attr-selection').value;
+        if (attr === 'US States') {
+          const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+          d3.select('.barplot').remove();
+          const getRange = await getSelectedDates();
+          updateBarplot(getRange.slice(1,3), checked);
+        } else {
+          d3.select('.barplot').remove();
+          const getRange = await getSelectedDates();
+          updateBarplot(getRange.slice(1,3));
+        }
       }
 
       savedData = filterByState(savedData);
@@ -441,7 +465,7 @@ Promise.all([
   gRange.call(sliderRange);
   // TODO implement color switch between count and duration
 
-  document.getElementById("useRange").addEventListener("change", () => {
+  document.getElementById("useRange").addEventListener("change", async () => {
     // toggle which slider is shown
     document.getElementById("yearSliderBox").classList.toggle("hidden");
     document.getElementById("yearRangeSliderBox").classList.toggle("hidden");
@@ -456,9 +480,23 @@ Promise.all([
     savedData = filterByState(savedData);
 
     updateMap(savedData, color, relColor);
+    
+    const attr = document.getElementById('attr-selection').value;
+
+    if (attr === 'US States') {
+      const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+      d3.select('.barplot').remove();
+      const getRange = await getSelectedDates();
+      updateBarplot(getRange.slice(1,3), checked);
+    } else {
+      d3.select('.barplot').remove();
+      const getRange = await getSelectedDates();
+      updateBarplot(getRange.slice(1,3));
+    }
+
   });
 
-  document.getElementById("relColor").addEventListener("change", () => {
+  document.getElementById("relColor").addEventListener("change", async () => {
     relColor = document.getElementById("relColor").checked;
     updateMap(savedData, color, relColor);
   });
@@ -479,23 +517,32 @@ Promise.all([
     .getElementById("showDur")
     .addEventListener("change", colorDisplayChanged);
 
-  document.getElementById('attr-selection').addEventListener('change', () => {
+  document.getElementById('attr-selection').addEventListener('change', async () => {
     const attr = document.getElementById('attr-selection').value;
 
     if (attr === 'US States') {
       savedData = getDataInRange(data, range);
       savedData = filterByState(savedData);
       updateMap(savedData, color, relColor);
+
+      d3.select('.barplot').remove();
+      const getRange = await getSelectedDates();
+      updateBarplot(getRange.slice(1,3));
     }
   });
 
-  document.getElementById('confirm-attr-types').addEventListener('click', () => {
+  document.getElementById('confirm-attr-types').addEventListener('click', async () => {
     const attr = document.getElementById('attr-selection').value;
 
     if (attr === 'US States') {
       savedData = getDataInRange(data, range);
       savedData = filterByState(savedData);
       updateMap(savedData, color, relColor); 
+
+      const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+      d3.select('.barplot').remove();
+      const getRange = await getSelectedDates();
+      updateBarplot(getRange.slice(1,3), checked);
     }
   });
 });

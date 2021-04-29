@@ -459,7 +459,7 @@ async function getSelectedDates() {
     years = Array.from(years);
     years = years.map(html => html.getAttribute('aria-valuenow'));
 
-    return yearRangeSelected ? [yearRangeSelected, years[1], years[2]] : [yearRangeSelected, years[0]];
+    return yearRangeSelected ? [yearRangeSelected, years[1], years[2]] : [yearRangeSelected, years[0], years[0]];
 }
 
 function timestamp(str) {
