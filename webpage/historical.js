@@ -11,10 +11,8 @@ window.addEventListener('load', async () => {
     // Append svg
     const svg = await initSVG(margin, width, height);
 
-    // Create other 
-    // createAttrSelection();
+    // Create attribute values dropdown
     createAttrTypeSelection();
-    // createDateFilter('2000', '2021');
 
     // Read and initialize plots
     const dataset = readData('data/us-historical-wide.csv');
@@ -65,41 +63,9 @@ function updateAttrTypeSelection(initial = true, checked) {
     }  
 }
 
-async function updateTimeAndSlider() {
-    // const slider = document.getElementById('filter-dates');
-
-    // if (slider !== undefined) {
-    //     // When there is a change on the range slider for dates, text is updated
-    //     slider.noUiSlider.on('update', (values, handle) => {
-    //         // Starting and ending handles for slider
-    //         const dateValues = [
-    //             document.getElementById('date-start'),
-    //             document.getElementById('date-end')
-    //         ];
-
-    //         // Update text
-    //         dateValues[handle].innerText = formatDate(new Date(+values[handle]));
-    //     });
-    // }
-}
-
 /*--------------------------------------*
  *---------- Page generation -----------*
  *--------------------------------------*/
-
-// function createAttrSelection() {
-//     // Selection
-//     const select = document.getElementById('attr-selection')
-
-//     // Options
-//     const optionsList = ['All', 'State', 'Shape'];
-//     optionsList.forEach(option => {
-//         const options = document.createElement('option');
-//         options.setAttribute('value', option);
-//         options.innerText = option;
-//         select.appendChild(options);
-//     });
-// }
 
 function createAttrTypeSelection() {
     const dropdown = document.getElementById('attr-types');
@@ -125,21 +91,6 @@ function createAttrTypeSelection() {
     dropdown.appendChild(form);
 }
 
-// function createDateFilter(start, end) {
-//     // Creates slider
-//     const slider = document.getElementById('filter-dates');
-
-//     noUiSlider.create(slider, {
-//         start: [timestamp(start), timestamp(end)],
-//         range: {
-//             min: timestamp('1928'),
-//             max: timestamp('2021')
-//         },
-//         format: wNumb({ decimals: 0 }),         // No decimals
-//         step: 12 * 4 * 7 * 24 * 60 * 60 * 1000  // Step every year
-//     });
-// }
-
 /*--------------------------------------*
  *------ Pre-plot initialization -------*
  *--------------------------------------*/
@@ -150,12 +101,13 @@ async function getData(fullData) {
                                             .filter(value => value !== 'on');
     const dates = await getSelectedDates();
     let dataSubset;
-
+    
     // Range slider selected
     if (dates[0]) {
         dataSubset = getSubset(fullData, subsetChoosen, dates[1], dates[2]);
     } else {
-        dataSubset = getSubset(fullData, subsetChoosen, dates[1], dates[1]);
+        const newStart = dates[1] > 1930 ? parseInt(dates[1]) - 2 : parseInt(dates[1]) + 2; // Accounts for beginning years
+        dataSubset = getSubset(fullData, subsetChoosen, newStart.toString(), dates[1]);
     }
 
     // Stacks data
@@ -192,11 +144,12 @@ async function initSVG(margin, width, height) {
     return svg; 
 }
 
-
 function initScales(data, width, height, subset) {
+
     const xScale = d3.scaleTime()
                     .domain(d3.extent(data, (d) => d.date))
                     .range([0, width]);
+
     const yScale = d3.scaleLinear()
                     .domain([0, d3.max(data, (d) => {
                         const numList = [];
@@ -209,9 +162,17 @@ function initScales(data, width, height, subset) {
 }
 
 
-function initAxes(svg, xScale, yScale, margin, width, height) {
+async function initAxes(svg, xScale, yScale, margin, width, height) {
+    const getYears = await getSelectedDates();
+    
     const xAxis = d3.axisBottom()
-                    .scale(xScale);
+                    .scale(xScale)
+
+    // 2 or less year range
+    if (parseInt(getYears[2]) - parseInt(getYears[1]) <= 2) {
+        // Add tick marks (makes plots with smaller years cleaner)
+        xAxis.tickFormat(d3.timeFormat('%b'))
+    } 
                         
     const yAxis = d3.axisLeft()
                     .scale(yScale);
@@ -347,6 +308,12 @@ async function initPlots(dataset, svg, margin, width, height, initialArea = unde
             const checked = $('input:checked').map((i, e) => e.value).toArray(); 
             areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
         });
+
+        // Changing between range year and one year
+        document.getElementById('useRange').addEventListener('change', async () => {
+            const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
+        });
     });
 }
 
@@ -371,7 +338,6 @@ async function initUpdate(data, margin, width, height, initialArea, initial = tr
     await d3.selectAll('#stacked-area-plot').remove();
     const newSvg = await initSVG(margin, width, height);
     return await updatePlot(data, newSvg, margin, width, height, initialArea);
-    
 }
 
 async function updatePlot(data, svg, margin, width, height, initialArea) {
@@ -381,7 +347,7 @@ async function updatePlot(data, svg, margin, width, height, initialArea) {
     const [ xScale, yScale ] = initScales(dataSubset, width, height, subsetChoosen);
 
     // Add axes
-    initAxes(svg, xScale, yScale, margin, width, height);
+    await initAxes(svg, xScale, yScale, margin, width, height);
 
     // Create color pallete
     const colorScale = initColorScale(subsetChoosen);
@@ -460,13 +426,4 @@ async function getSelectedDates() {
     years = years.map(html => html.getAttribute('aria-valuenow'));
 
     return yearRangeSelected ? [yearRangeSelected, years[1], years[2]] : [yearRangeSelected, years[0], years[0]];
-}
-
-function timestamp(str) {
-    return new Date(str).getTime();
-}
-
-// Format correct date for slider
-function formatDate(date) {
-    return date.getFullYear();
 }
