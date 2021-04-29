@@ -17,7 +17,7 @@ window.addEventListener("load", async () => {
 
   // add the SVG element
   var svg = d3
-    .select("body")
+    .select(".barPlotCol")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)

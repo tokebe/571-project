@@ -44,79 +44,90 @@
   </div>
   <!-- Global settings -->
   <div class="bottom globalSettings container-fluid mt-2">
-    <!-- Headers-->
     <div class="row">
-      <h3 class="col-md-6 mt-5">Global Settings</h3>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-checkbox col-md-2 mx-4">
-        <input type="checkbox" class="custom-control-input" id="useRange" checked>
-        <label class="custom-control-label" for="useRange">Use Year Range</label>
-      </div>
-    </div>
-    <div class="row">
-      <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
-      <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
-      <div class="col-md-4 mt-n4">
-        <b>Attribute Selection</b>
-        <p>Choose an Attribute:
-          <select name='dropdown' id='attr-selection'>
-            <option>None</option>
-            <option>US States</option>
-            <option>UFO Shapes</option>
-            <option>US Airports</option>
-          </select>
-        <p>
-        <div class='dropdown' id='attr-types'></div>
-        <button class='btn btn-primary btn-sm' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
-      </div>
-    </div>
-  </div>
-  <!-- Bottom left side (below Global settings) -->
-  <div class="bottom container-fluid">
-    <div class="container-fluid row">
-      <!-- Map settings -->
-      <div class="col-md-2 mapSettings">
-        <div class="row mt-3">
-          <h4 class="col">Map Settings</h4>
+      <div class="col">
+        <!-- Headers-->
+        <div class="row">
+          <h3 class="col-md-6 mt-5">Global Settings</h3>
         </div>
         <div class="row">
-          <div class="col">
-            <div class="mapControls">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="relColor">
-                <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
+          <div class="custom-control custom-checkbox col-md-2 mx-4">
+            <input type="checkbox" class="custom-control-input" id="useRange" checked>
+            <label class="custom-control-label" for="useRange">Use Year Range</label>
+          </div>
+        </div>
+        <div class="row">
+          <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
+          <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
+          <div class="col-md-4 mt-n4">
+            <b>Attribute Selection</b>
+            <p>Choose an Attribute:
+              <select name='dropdown' id='attr-selection'>
+                <option>None</option>
+                <option>US States</option>
+                <option>UFO Shapes</option>
+                <option>US Airports</option>
+              </select>
+            <p>
+            <div class='dropdown' id='attr-types'></div>
+            <button class='btn btn-primary btn-sm' type='button' id='confirm-attr-types'>Confirm Attribute
+              Values</button>
+          </div>
+        </div>
+        <!-- Bottom left side (below Global settings) -->
+        <div class="bottom container-fluid">
+          <div class="container-fluid row">
+            <!-- Map settings -->
+            <div class="col mapSettings">
+              <div class="row mt-3">
+                <h4 class="col">Map Settings</h4>
               </div>
-              <div class="custom-control custom-radio">
-                <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
-                <label class="custom-control-label" for="showFreq">Color by Sighting Freq.</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
-                <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+              <div class="row">
+                <div class="col">
+                  <div class="mapControls">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="relColor">
+                      <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
+                      <label class="custom-control-label" for="showFreq">Color by Sighting Freq.</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
+                      <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="col historicalAndAirportSetings mt-3">
+              <div class="col">
+                <div class="row mx-4">
+                  <h5 class="col mx-5">Historical / Airport Plot Settings</h5>
+                </div>
+                <div class="row mx-5">
+                  <div class="custom-control custom-checkbox col mx-5">
+                    <input type="checkbox" class="custom-control-input" id="filterAirportByState" checked>
+                    <label class="custom-control-label" for="filterAirportByState">Filter by State</label>
+                  </div>
+                  <div class="custom-control custom-checkbox col mx-5">
+                    <input type="checkbox" class="custom-control-input" id="showAirportCityPoints">
+                    <label class="custom-control-label" for="showAirportCityPoints">Show Individual Points</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-      <div class="col-md-4 historicalAndAirportSetings mt-3">
-        <div class="row mx-4">
-          <h5 class="col mx-5">Historical / Airport Plot Settings</h5>
-        </div>
-        <div class="row mx-5">
-          <div class="custom-control custom-checkbox col mx-5">
-            <input type="checkbox" class="custom-control-input" id="filterAirportByState" checked>
-            <label class="custom-control-label" for="filterAirportByState">Filter by State</label>
-          </div>
-          <div class="custom-control custom-checkbox col mx-5">
-            <input type="checkbox" class="custom-control-input" id="showAirportCityPoints">
-            <label class="custom-control-label" for="showAirportCityPoints">Show Individual Points</label>
-          </div>
-        </div>
-      </div>
+      <div class="col barPlotCol"></div>
     </div>
+
   </div>
-  
+
+
   <!-- Script to create svg -->
   <script type="text/javascript" src="airports.js"></script>
   <script type="text/javascript" src="historical.js"></script>
