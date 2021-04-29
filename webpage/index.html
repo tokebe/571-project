@@ -33,78 +33,88 @@
 
 <body>
   <!-- Top half of page-->
-  <div class="top container-fluid">
+  <div class="top container">
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-8">
         <div class="mapContainer"></div>
       </div>
-      <div class="col-md-4" id="historicalAndAirportContainer">
+      <div class="col-md-4 mt-4 mx-n5" id="historicalAndAirportContainer">
       </div>
     </div>
   </div>
-  <!-- Global settings -->
-  <div class="bottom globalSettings container-fluid mt-2">
-    <!-- Headers-->
-    <div class="row">
-      <h3 class="col-md-6 mt-5">Global Settings</h3>
-    </div>
-    <div class="row">
-      <div class="custom-control custom-checkbox col-md-2 mx-4">
-        <input type="checkbox" class="custom-control-input" id="useRange" checked>
-        <label class="custom-control-label" for="useRange">Use Year Range</label>
-      </div>
-    </div>
-    <div class="row">
-      <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
-      <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
-      <div class="col-md-4 mt-n4">
-        <b>Attribute Selection</b>
-        <p>Choose an Attribute:
-          <select name='dropdown' id='attr-selection'>
-            <option>None</option>
-            <option>US States</option>
-            <option>UFO Shapes</option>
-            <option>US Airports</option>
-          </select>
-        <p>
-        <div class='dropdown' id='attr-types'></div>
-        <button class='btn btn-primary btn-sm' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
-      </div>
-    </div>
-  </div>
-  <!-- Bottom left side (below Global settings) -->
-  <div class="bottom container-fluid">
-    <div class="container-fluid row">
-      <!-- Map settings -->
-      <div class="col-md-2 mapSettings">
-        <div class="row mt-3">
-          <h4 class="col">Map Settings</h4>
+  <!-- Bottom half of page -->
+  <div class="bottom container mt-2">
+    <div class="row bottom-top">
+      <!-- Global settings -->
+      <div class="col-sm-7 globalSettings">
+        <div class="row">
+          <h3 class="col-md-6">Global Settings</h3>
         </div>
         <div class="row">
+          <div class="custom-control custom-checkbox col-md-2 mx-4">
+            <input type="checkbox" class="custom-control-input" id="useRange" checked>
+            <label class="custom-control-label" for="useRange">Use Year Range</label>
+          </div>
+        </div>
+        <div class="row">
+          <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
+          <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
+          <div class="col-md-4 mt-n5">
+            <b>Attribute Selection</b>
+            <p>Choose an Attribute:
+              <select name='dropdown' id='attr-selection'>
+                <option>None</option>
+                <option>US States</option>
+                <option>UFO Shapes</option>
+                <option>US Airports</option>
+              </select>
+            <p>
+            <div class='dropdown' id='attr-types'></div>
+            <button class='btn btn-primary btn-sm' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="barplotContainer row mt-n5 mx-2"></div>
+      </div>
+    </div>
+    <!-- Bottom left side -->
+    <div class="row">
+      <!-- Map settings -->
+      <div class="col-lg-3 mapSettings">
+        <div class="row">
           <div class="col">
-            <div class="mapControls">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="relColor">
-                <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
-                <label class="custom-control-label" for="showFreq">Color by Sighting Freq.</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
-                <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+            <div class="row mt-3 mapSettings">
+              <h4 class="col">Map Settings</h4>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mapControls">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="relColor">
+                    <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="showFreq">Color by Sighting Freq.</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
+                    <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4 historicalAndAirportSetings mt-3">
+      <!-- Historical / Airport Plot -->
+      <div class="col-lg-5 historicalAndAirportSetings mt-3">
         <div class="row mx-4">
-          <h5 class="col mx-5">Historical / Airport Plot Settings</h5>
+          <h5 class="col">Historical / Airport Plot(s) Settings</h5>
         </div>
         <div class="row mx-5">
-          <div class="custom-control custom-checkbox col mx-5">
+          <div class="custom-control custom-checkbox col">
             <input type="checkbox" class="custom-control-input" id="filterAirportByState" checked>
             <label class="custom-control-label" for="filterAirportByState">Filter by State</label>
           </div>

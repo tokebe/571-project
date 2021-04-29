@@ -1,5 +1,10 @@
-.container-fluid {
-    max-height: 500px;
+.bottom-top {
+    max-height: 200px;
+}
+
+.barPlotContainer {
+    min-height: 400px;
+    min-width: 500px;
 }
 
 #historicalContainer {
@@ -13,7 +18,7 @@
 }
 
 .stateInfo {
-    min-height: 3em;
+    min-height: 2em;
 }
 
 div.tooltip {

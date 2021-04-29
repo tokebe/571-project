@@ -11,8 +11,8 @@ function updateBarplot(range = [2000, 2021], selected_state = allStates) {
 
   // set the dimensions of the canvas
   const margin = { top: 20, right: 20, bottom: 70, left: 40 },
-    width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
   // set the ranges
   // var x = d3.scaleOrdinal().rangeRoundBands([0, width], 0.05);
@@ -27,7 +27,7 @@ function updateBarplot(range = [2000, 2021], selected_state = allStates) {
 
   // add the SVG element
   var svg = d3
-    .select("body")
+    .select(".barplotContainer")
     .append("svg")
     .attr("class", 'barplot')
     .attr("width", width + margin.left + margin.right)
