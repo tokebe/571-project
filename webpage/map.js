@@ -172,21 +172,25 @@ function getDataInRange(data, range) {
 }
 
 function filterByState(data) {
-  const attr = document.getElementById('attr-selection');
-  
+  const attr = document.getElementById("attr-selection");
+
   if (attr !== undefined) {
-    const stateSelected = attr.value === 'US States';
-  
+    const stateSelected = attr.value === "US States";
+
     // State selected in dropdown
     if (stateSelected) {
       const newData = data;
 
       // States selected in dropdown
-      const filteredStates = $('input:checked').map((i, e) => e.value).toArray()
-                                              .filter(value => value !== 'on'); // Excludes checkboxes, etc.
+      const filteredStates = $("input:checked")
+        .map((i, e) => e.value)
+        .toArray()
+        .filter((value) => value !== "on"); // Excludes checkboxes, etc.
 
       // Updates data with city and state data filtered by choosen state values in drop down
-      newData.cityData = data.cityData.filter(city => filteredStates.includes(city.state_code));
+      newData.cityData = data.cityData.filter((city) =>
+        filteredStates.includes(city.state_code)
+      );
 
       return newData;
     } else {
@@ -367,7 +371,7 @@ Promise.all([
     relColor = false;
 
   let prevArea = await updateHistoricalPlot(); // Needed as a basis for transitions (based on previous area plots)
-  
+
   // time slider
   const sliderTime = d3
     .sliderBottom()
@@ -384,14 +388,14 @@ Promise.all([
         range = val;
         savedData = getDataInRange(data, range);
       }
-      
+
       savedData = filterByState(savedData);
 
       updateMap(savedData, color, relColor);
 
       // Historical data update
       prevArea = await updateHistoricalPlot(prevArea);
-    })
+    });
 
   const gTime = d3
     .select(".yearSliderBox")
@@ -427,7 +431,7 @@ Promise.all([
 
       // Historical data update
       prevArea = await updateHistoricalPlot(prevArea);
-    })
+    });
 
   const gRange = d3
     .select(".yearRangeSliderBox")
@@ -441,7 +445,7 @@ Promise.all([
   gRange.call(sliderRange);
   // TODO implement color switch between count and duration
 
-  document.getElementById("useRange").addEventListener("change", () => {
+  document.getElementById("useRange").addEventListener("change", async () => {
     // toggle which slider is shown
     document.getElementById("yearSliderBox").classList.toggle("hidden");
     document.getElementById("yearRangeSliderBox").classList.toggle("hidden");
@@ -456,6 +460,7 @@ Promise.all([
     savedData = filterByState(savedData);
 
     updateMap(savedData, color, relColor);
+    await hackyDrawPlot(range, "MA");
   });
 
   document.getElementById("relColor").addEventListener("change", () => {
@@ -479,25 +484,27 @@ Promise.all([
     .getElementById("showDur")
     .addEventListener("change", colorDisplayChanged);
 
-  document.getElementById('attr-selection').addEventListener('change', () => {
-    const attr = document.getElementById('attr-selection').value;
+  document.getElementById("attr-selection").addEventListener("change", () => {
+    const attr = document.getElementById("attr-selection").value;
 
-    if (attr === 'US States') {
+    if (attr === "US States") {
       savedData = getDataInRange(data, range);
       savedData = filterByState(savedData);
       updateMap(savedData, color, relColor);
     }
   });
 
-  document.getElementById('confirm-attr-types').addEventListener('click', () => {
-    const attr = document.getElementById('attr-selection').value;
+  document
+    .getElementById("confirm-attr-types")
+    .addEventListener("click", () => {
+      const attr = document.getElementById("attr-selection").value;
 
-    if (attr === 'US States') {
-      savedData = getDataInRange(data, range);
-      savedData = filterByState(savedData);
-      updateMap(savedData, color, relColor); 
-    }
-  });
+      if (attr === "US States") {
+        savedData = getDataInRange(data, range);
+        savedData = filterByState(savedData);
+        updateMap(savedData, color, relColor);
+      }
+    });
 });
 
 document.getElementById("useRange").checked = true;

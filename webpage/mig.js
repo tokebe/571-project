@@ -32,7 +32,7 @@ window.addEventListener("load", async () => {
     }
 
     function isInState(state) {
-      return state === selected_state;
+      return selected_state.includes(state);
     }
 
     let year_filtered = data.reduce(
