@@ -50,31 +50,32 @@ function updateAirports(byState = true, showPoints = false) {
                             .data(data)
                             .enter()
                             .append("circle")
-            
-            dots.attr("cy", height / 2)
-                .transition()
-                .duration(1000)
-
-            dots.attr("cx", d => xScale(d.Sightings))
-            .attr("cy", d => yScale(d['Airport Count']))
-            .attr("r", 3.5)
-            .style("fill", d => colorScale(+d.Sightings))
-            .style("opacity", "0.7")
-            .style('stroke-width', "0.7")
-            .attr("stroke", "black")
-            .on('mouseover', (event, d) => tooltip.style('opacity', 1))
-            .on('mousemove', (event, d) => {
-                tooltip.html('State: ' + d.State + '<br>' + 
-                                'Sightings: ' + d.Sightings + '<br>' +
-                                'Airports: ' + d['Airport Count'] + '<br>')
-                    .style("left", (event.x - 900) + "px")
-                    .style("top", (event.y) + "px")
-            })
-            .on('mouseleave', (event, d) => {
-                tooltip.transition()
-                    .duration(200)
-                    .style('opacity', 0)
-            })
+                            .attr("height", d => height - yScale(0))
+                            .attr("cy", d => yScale(0))
+                            
+            dots.transition()
+                .duration(700)
+                .attr("cx", d => xScale(d.Sightings))
+                .attr("cy", d => yScale(d['Airport Count']))
+                .attr("r", 3.5)
+                .style("fill", d => colorScale(+d.Sightings))
+                .style("opacity", "0.7")
+                .style('stroke-width', "0.7")
+                .attr("stroke", "black")
+        
+            dots.on('mouseover', (event, d) => tooltip.style('opacity', 1))
+                .on('mousemove', (event, d) => {
+                    tooltip.html('State: ' + d.State + '<br>' + 
+                                    'Sightings: ' + d.Sightings + '<br>' +
+                                    'Airports: ' + d['Airport Count'] + '<br>')
+                        .style("left", (event.x - 900) + "px")
+                        .style("top", (event.y) + "px")
+                })
+                .on('mouseleave', (event, d) => {
+                    tooltip.transition()
+                        .duration(200)
+                        .style('opacity', 0)
+                })
         });
     // Plot by city
     } else {
@@ -171,7 +172,7 @@ function updateAirports(byState = true, showPoints = false) {
 
             if (showPoints) {
                 const jitterWidth = 50
-                svg.selectAll("indPoints")
+                const dots = svg.selectAll("indPoints")
                     .data(data)
                     .enter()
                     .append("circle")
@@ -180,7 +181,8 @@ function updateAirports(byState = true, showPoints = false) {
                     .attr("cy", d => yScale(+d['Airport Count']) + (yScale.bandwidth() / 2) - 
                         jitterWidth / 2 + Math.random() * jitterWidth) // Add jitter (randomize points by airport count)
                     .attr("r", 4)
-                    .style("fill", d => colorScale(+d.Sightings))
+                
+                dots.style("fill", d => colorScale(+d.Sightings))
                     .style('opacity', 0.5)
             }
         });

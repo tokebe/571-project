@@ -31,7 +31,7 @@ function updateAttrTypeSelection(initial = true, checked) {
 
     const defaults = initial ? ['Total','CA', 'NM', 'NC', 'NY', 'Light', 'Circle', 'Sphere', 'State'] : checked; 
 
-    const types = getAttrValues();
+    const types = getDefaultAttrValues();
     const selection = document.getElementById('filter-types');
     
     if (selection !== null) {
@@ -97,8 +97,7 @@ function createAttrTypeSelection() {
 
 async function getData(fullData) {
     // Subset and options choosen by user
-    const subsetChoosen = $('input:checked').map((i, e) => e.value).toArray()
-                                            .filter(value => value !== 'on');
+    const subsetChoosen = await getSelectedAttrValues();
     const dates = await getSelectedDates();
     let dataSubset;
     
@@ -120,7 +119,7 @@ function initDimensions() {
     // Dimensions
     const margin = { 
         top: 50, 
-        right: 100, 
+        right: 150, 
         bottom: 50, 
         left: 50
     },
@@ -305,14 +304,20 @@ async function initPlots(dataset, svg, margin, width, height, initialArea = unde
 
         // Changing between attribute types
         document.getElementById('confirm-attr-types').addEventListener('click', async () => {
-            const checked = $('input:checked').map((i, e) => e.value).toArray(); 
-            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
+            
+            if (document.getElementById('attr-selection').value !== 'US Airports') {
+                const checked = await getSelectedAttrValues();
+                areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
+            }
         });
 
         // Changing between range year and one year
         document.getElementById('useRange').addEventListener('change', async () => {
-            const checked = $('input:checked').map((i, e) => e.value).toArray(); 
-            areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
+            
+            if (document.getElementById('attr-selection').value !== 'US Airports') {
+                const checked = await getSelectedAttrValues(); 
+                areaGenerator = await initUpdate(data, margin, width, height, areaGenerator, false, checked);
+            }
         });
     });
 }
@@ -380,7 +385,7 @@ async function updatePlot(data, svg, margin, width, height, initialArea) {
 async function updateHistoricalPlot(initialArea = undefined) {
     const data = await readData('data/us-historical-wide.csv');
     const [ margin, width, height ] = initDimensions();
-    const checked = $('input:checked').map((i, e) => e.value).toArray(); 
+    const checked = await getSelectedAttrValues();
 
     updateAttrTypeSelection(false, checked);
     await d3.selectAll('#stacked-area-plot').remove();
@@ -395,7 +400,7 @@ async function updateHistoricalPlot(initialArea = undefined) {
  *-------------- Utilities -------------*
  *--------------------------------------*/
 
-function getAttrValues() {
+function getDefaultAttrValues() {
     const attr = document.getElementById('attr-selection').value;
     
     switch (attr) {
@@ -426,4 +431,10 @@ async function getSelectedDates() {
     years = years.map(html => html.getAttribute('aria-valuenow'));
 
     return yearRangeSelected ? [yearRangeSelected, years[1], years[2]] : [yearRangeSelected, years[0], years[0]];
+}
+
+async function getSelectedAttrValues() {
+    return $('input:checked').map((i, e) => e.value)
+                            .toArray()
+                            .filter((value) => value !== "on"); // Excludes checkboxes, etc.
 }

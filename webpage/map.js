@@ -475,27 +475,17 @@ Promise.all([
         range = val;
         savedData = getDataInRange(data, range);
 
-        const attr = document.getElementById("attr-selection").value;
-        if (attr === "US States") {
-          const checked = $("input:checked")
-            .map((i, e) => e.value)
-            .toArray();
-          d3.select(".barplot").remove();
-          const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3), checked);
-        } else {
-          d3.select(".barplot").remove();
-          const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3));
-        }
+        await initNewBarchart()
       }
 
       savedData = filterByState(savedData);
 
       updateMap(savedData, color, relColor);
 
-      // Historical data update
-      prevArea = await updateHistoricalPlot(prevArea);
+      if (document.getElementById('attr-selection').value !== 'US Airports') {
+        // Historical data update
+        prevArea = await updateHistoricalPlot(prevArea);
+      }
     });
 
   const gTime = d3
@@ -526,26 +516,16 @@ Promise.all([
         range = val;
         savedData = getDataInRange(data, range);
 
-        const attr = document.getElementById("attr-selection").value;
-        if (attr === "US States") {
-          const checked = $("input:checked")
-            .map((i, e) => e.value)
-            .toArray();
-          d3.select(".barplot").remove();
-          const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3), checked);
-        } else {
-          d3.select(".barplot").remove();
-          const getRange = await getSelectedDates();
-          updateBarplot(getRange.slice(1, 3));
-        }
+        await initNewBarchart()
       }
 
       savedData = filterByState(savedData);
       updateMap(savedData, color, relColor);
 
-      // Historical data update
-      prevArea = await updateHistoricalPlot(prevArea);
+      if (document.getElementById('attr-selection').value !== 'US Airports') {
+        // Historical data update
+        prevArea = await updateHistoricalPlot(prevArea);
+      }
     });
 
   const gRange = d3
@@ -576,20 +556,7 @@ Promise.all([
 
     updateMap(savedData, color, relColor);
 
-    const attr = document.getElementById("attr-selection").value;
-
-    if (attr === "US States") {
-      const checked = $("input:checked")
-        .map((i, e) => e.value)
-        .toArray();
-      d3.select(".barplot").remove();
-      const getRange = await getSelectedDates();
-      updateBarplot(getRange.slice(1, 3), checked);
-    } else {
-      d3.select(".barplot").remove();
-      const getRange = await getSelectedDates();
-      updateBarplot(getRange.slice(1, 3));
-    }
+    await initNewBarchart()
   });
 
   document.getElementById("relColor").addEventListener("change", async () => {
@@ -621,15 +588,13 @@ Promise.all([
     .addEventListener("change", async () => {
       const attr = document.getElementById("attr-selection").value;
 
-      if (attr === "US States") {
-        savedData = getDataInRange(data, range);
-        savedData = filterByState(savedData);
-        updateMap(savedData, color, relColor);
+      savedData = getDataInRange(data, range);
 
-        d3.select(".barplot").remove();
-        const getRange = await getSelectedDates();
-        updateBarplot(getRange.slice(1, 3));
+      if (attr === "US States") {
+        savedData = filterByState(savedData);
       }
+
+      updateMap(savedData, color, relColor);
     });
 
   document
@@ -637,18 +602,13 @@ Promise.all([
     .addEventListener("click", async () => {
       const attr = document.getElementById("attr-selection").value;
 
-      if (attr === "US States") {
-        savedData = getDataInRange(data, range);
-        savedData = filterByState(savedData);
-        updateMap(savedData, color, relColor);
+      savedData = getDataInRange(data, range);
 
-        const checked = $("input:checked")
-          .map((i, e) => e.value)
-          .toArray();
-        d3.select(".barplot").remove();
-        const getRange = await getSelectedDates();
-        updateBarplot(getRange.slice(1, 3), checked);
+      if (attr === "US States") { 
+        savedData = filterByState(savedData);
       }
+
+      updateMap(savedData, color, relColor);
     });
 });
 
