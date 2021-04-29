@@ -8,10 +8,16 @@
 
 .state {
     /* fill: white; */
-    stroke: black;
+    stroke: #fff;
+    fill: #aaa;
+}
+
+.stateInfo {
+    min-height: 3em;
 }
 
 div.tooltip {
+<<<<<<< HEAD
       position: absolute;
       text-align: left;
       min-width: 60px;
@@ -22,6 +28,18 @@ div.tooltip {
       border: 0px;
       border-radius: 8px;
       pointer-events: none;
+=======
+    position: absolute;
+    text-align: left;
+    min-width: 60px;
+    min-height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+>>>>>>> 30dff176084282c053d94d7b317ead57a27e22e2
 }
 
 /* TODO: Move placement */
@@ -47,4 +65,29 @@ div.tooltip {
     opacity: 0;
     width: 0;
     height: 0;
+}
+
+.mapLegendLabel {
+    font-size: 12px;
+    /* margin: auto; */
+    left: 50%
+}
+
+.bar{
+    fill: steelblue;
+}
+
+.bar:hover{
+    ill: brown;
+}
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
