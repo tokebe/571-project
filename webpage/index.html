@@ -12,7 +12,10 @@
   <script src="https://unpkg.com/d3fc"></script>
   <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
   <!-- For human-readable time -->
-  <script src="../node_modules/humanize-duration/humanize-duration.js"></script>
+  <!-- <script src="../node_modules/humanize-duration/humanize-duration.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.25.2/humanize-duration.min.js" 
+    integrity="sha512-r9ThvBP2jyJeyG9W3oRla6kEL2DSqnDZ371VtMCbwWsed8kWVV85e+rqr7f+DUnDiMUJsffxed3nx2Pnq0q20Q==" 
+    crossorigin="anonymous"></script>
   <!-- Range Slider -->
   <script src="https://unpkg.com/d3-simple-slider@1.10.4/dist/d3-simple-slider.min.js"></script>
   <!-- Custom CSS -->
@@ -70,7 +73,7 @@
               </select>
             <p>
             <div class='dropdown' id='attr-types'></div>
-            <button class='btn btn-primary btn-sm' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
+            <button class='btn btn-primary btn-sm mt-2' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
           </div>
         </div>
       </div>
@@ -110,7 +113,7 @@
       </div>
       <!-- Historical / Airport Plot -->
       <div class="col-lg-5 historicalAndAirportSetings mt-3">
-        <div class="row mx-4">
+        <div class="row mx-4 mt-1">
           <h5 class="col">Airport Plot Settings</h5>
         </div>
         <div class="row mx-5">
@@ -118,7 +121,9 @@
             <input type="checkbox" class="custom-control-input" id="filterAirportByState" checked>
             <label class="custom-control-label" for="filterAirportByState">Filter by State</label>
           </div>
-          <div class="custom-control custom-checkbox col mx-5">
+        </div>
+        <div class="row mx-5">
+          <div class="custom-control custom-checkbox col">
             <input type="checkbox" class="custom-control-input" id="showAirportCityPoints">
             <label class="custom-control-label" for="showAirportCityPoints">Show Individual Points</label>
           </div>

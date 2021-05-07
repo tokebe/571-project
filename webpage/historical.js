@@ -72,7 +72,7 @@ function createAttrTypeSelection() {
 
     // Button to display dropdown
     const button = document.createElement('button');
-    button.setAttribute('class', 'btn dropdown-toggle');
+    button.setAttribute('class', 'btn dropdown-toggle btn btn-outline-primary');
     button.setAttribute('type', 'button');
     button.setAttribute('data-toggle', 'dropdown');
     button.setAttribute('aria-haspopup', 'true');
