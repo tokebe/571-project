@@ -3,12 +3,138 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>UFO Sightings and Airports</title>
-  <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
-  <script type="text/javascript" src="viz.js"></script>
+  <!-- D3  -->
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+  <script src="https://d3js.org/d3-geo.v2.min.js"></script>
+  <script src="https://unpkg.com/d3fc"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <!-- For human-readable time -->
+  <!-- <script src="../node_modules/humanize-duration/humanize-duration.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.25.2/humanize-duration.min.js" 
+    integrity="sha512-r9ThvBP2jyJeyG9W3oRla6kEL2DSqnDZ371VtMCbwWsed8kWVV85e+rqr7f+DUnDiMUJsffxed3nx2Pnq0q20Q==" 
+    crossorigin="anonymous"></script>
+  <!-- Range Slider -->
+  <script src="https://unpkg.com/d3-simple-slider@1.10.4/dist/d3-simple-slider.min.js"></script>
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
-
+  <!-- Top half of page-->
+  <div class="top container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="mapContainer"></div>
+      </div>
+      <div class="col-md-4 mt-4 mx-n5" id="historicalAndAirportContainer">
+      </div>
+    </div>
+  </div>
+  <!-- Bottom half of page -->
+  <div class="bottom container mt-2">
+    <div class="row bottom-top">
+      <!-- Global settings -->
+      <div class="col-sm-7 globalSettings">
+        <div class="row">
+          <h3 class="col-md-6">Global Settings</h3>
+        </div>
+        <div class="row">
+          <div class="custom-control custom-checkbox col-md-2 mx-4">
+            <input type="checkbox" class="custom-control-input" id="useRange" checked>
+            <label class="custom-control-label" for="useRange">Use Year Range</label>
+          </div>
+        </div>
+        <div class="row">
+          <div id="yearSliderBox" class="yearSliderBox col-md-4"></div>
+          <div id="yearRangeSliderBox" class="yearRangeSliderBox"></div>
+          <div class="col-md-4 mt-n5">
+            <b>Attribute Selection</b>
+            <p>Choose an Attribute:
+              <select name='dropdown' id='attr-selection'>
+                <option>None</option>
+                <option>US States</option>
+                <option>UFO Shapes</option>
+                <option>US Airports</option>
+              </select>
+            <p>
+            <div class='dropdown' id='attr-types'></div>
+            <button class='btn btn-primary btn-sm mt-2' type='button' id='confirm-attr-types'>Confirm Attribute Values</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="barplotContainer row mt-n5 mx-2"></div>
+      </div>
+    </div>
+    <!-- Bottom left side -->
+    <div class="row">
+      <!-- Map settings -->
+      <div class="col-lg-3 mapSettings">
+        <div class="row">
+          <div class="col">
+            <div class="row mt-3 mapSettings">
+              <h4 class="col">Map Settings</h4>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mapControls">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="relColor">
+                    <label class="custom-control-label" for="relColor">Use Global Color Scale</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="showFreq" name="colorBy" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="showFreq">Color by Sighting Freq.</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="showDur" name="colorBy" class="custom-control-input">
+                    <label class="custom-control-label" for="showDur">Color by Avg. Sighting Duration</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Historical / Airport Plot -->
+      <div class="col-lg-5 historicalAndAirportSetings mt-3">
+        <div class="row mx-4 mt-1">
+          <h5 class="col">Airport Plot Settings</h5>
+        </div>
+        <div class="row mx-5">
+          <div class="custom-control custom-checkbox col">
+            <input type="checkbox" class="custom-control-input" id="filterAirportByState" checked>
+            <label class="custom-control-label" for="filterAirportByState">Filter by State</label>
+          </div>
+        </div>
+        <div class="row mx-5">
+          <div class="custom-control custom-checkbox col">
+            <input type="checkbox" class="custom-control-input" id="showAirportCityPoints">
+            <label class="custom-control-label" for="showAirportCityPoints">Show Individual Points</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Script to create svg -->
+  <script type="text/javascript" src="airports.js"></script>
+  <script type="text/javascript" src="historical.js"></script>
+  <script type="text/javascript" src="map.js"></script>
+  <script type="text/javascript" src="mig.js"></script>
 </body>

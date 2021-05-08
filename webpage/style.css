@@ -1,0 +1,85 @@
+.bottom-top {
+    max-height: 200px;
+}
+
+.barPlotContainer {
+    min-height: 400px;
+    min-width: 500px;
+}
+
+#historicalContainer {
+    max-width: 500px;
+}
+
+.state {
+    /* fill: white; */
+    stroke: #fff;
+    fill: #aaa;
+}
+
+.stateInfo {
+    min-height: 2em;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: left;
+    min-width: 60px;
+    min-height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* TODO: Move placement */
+#historical-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#filter-types {
+    overflow-y: scroll;
+    max-height: 200px;
+}
+
+.cityDot {
+    opacity: 100%;
+    /* something */
+    stroke: white;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.mapLegendLabel {
+    font-size: 12px;
+    /* margin: auto; */
+    left: 50%
+}
+
+.bar{
+    fill: steelblue;
+}
+
+.bar:hover{
+    fill: brown;
+}
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
